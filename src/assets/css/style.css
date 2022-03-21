@@ -7683,3 +7683,20 @@ background-image: none;
 .ms-form-wizard.style3-wizard ul[role="tablist"] li>a:before{
   display: none;
 }
+.collapse {
+  transform: translateX(-100%);
+  transition: 0.4s !important;
+  display: block !important;
+  content-visibility: hidden;
+  height:0px;
+}
+.active.collapse{
+  transform: translateX(0%) !important;
+  height: auto;
+  content-visibility: auto;
+  
+  
+}
+.side-nav .menu-item ul {
+  padding-left: 17px !important;
+}

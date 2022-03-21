@@ -138,7 +138,7 @@ class Topnavigation extends Component {
                                     </Link>
                                 </div>
                                 <div className="dropdown-menu-footer">
-                                    <Link className="media fs-14 p-2" to="/default-login"> <span><i className="flaticon-shut-down mr-2" /> Logout</span>
+                                    <Link className="media fs-14 p-2" to="/"> <span><i className="flaticon-shut-down mr-2" /> Logout</span>
                                     </Link>
                                 </div>
                             </Dropdown.Menu>
