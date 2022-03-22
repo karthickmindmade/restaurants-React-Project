@@ -1,6 +1,9 @@
 import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
+// import { firebase, auth } from './../firebase';
+
+import { firebase, auth } from '../../../firebase';
 export default function Content() {
     const [show1, setshow1] = useState()
     //initialize datatable
@@ -32,10 +35,10 @@ export default function Content() {
     function handleClose() {
         setshow1(false);
     }
-    const FROM_NUMBER = '+18037705278';
-    const TO_NUMBER = '9750877583';
-    const TWILIO_AUTH_TOKEN = '0c7f74f4ca14820764a8ef8eb67b3ab8';
-    const TWILIO_ACCOUNT_SID = 'AC22863bbf6e02379e0ff900cd9bb1ea9f';
+    // const FROM_NUMBER = '+18037705278';
+    // const TO_NUMBER = '9750877583';
+    // const TWILIO_AUTH_TOKEN = '0c7f74f4ca14820764a8ef8eb67b3ab8';
+    // const TWILIO_ACCOUNT_SID = 'AC22863bbf6e02379e0ff900cd9bb1ea9f';
 
     // const client = require('twilio')(ACCOUNT_SID, AUTH_TOKEN);
     // const sendMail =()=> {
@@ -51,16 +54,48 @@ export default function Content() {
     //             console.log(error)
     //         });
     // }
-    
-    const client = require('twilio')(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN);
-    const sendMail=()=> {
-        client.messages
-            .create({
-                body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-                from: '+18037705278',
-                to: '9750877583',
-            })
-            // .then(message => console.log(message.sid));
+
+    // const client = require('twilio')(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN);
+    // const sendMail=()=> {
+    //     client.messages
+    //         .create({
+    //             body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+    //             from: '+18037705278',
+    //             to: '9750877583',
+    //         })
+    //         // .then(message => console.log(message.sid));
+    // }
+    const [mynumber, setnumber] = useState("");
+    const [otp, setotp] = useState('');
+    const [show, setshow] = useState(false);
+    const [final, setfinal] = useState('');
+
+    // Sent OTP
+    const signin = () => {
+
+        if (mynumber === "" || mynumber.length < 10) return;
+
+        let verify = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+        auth.signInWithPhoneNumber(mynumber, verify).then((result) => {
+            setfinal(result);
+            alert("code sent")
+            setshow(true);
+        })
+            .catch((err) => {
+                alert(err);
+                window.location.reload()
+            });
+    }
+
+    // Validate OTP
+    const ValidateOtp = () => {
+        if (otp === null || final === null)
+            return;
+        final.confirm(otp).then((result) => {
+            alert("sucess")
+        }).catch((err) => {
+            alert("Wrong code");
+        })
     }
 
 
@@ -72,7 +107,26 @@ export default function Content() {
                 </div>
                 <div className="ms-auth-col">
                     <div className="ms-auth-form">
-                        <form className="needs-validation" noValidate>
+                        <div style={{ "marginTop": "200px" }}>
+                            <center>
+                                <div style={{ display: !show ? "block" : "none" }}>
+                                    <input value={mynumber} onChange={(e) => {
+                                        setnumber(e.target.value)
+                                    }}
+                                        placeholder="phone number" />
+                                    <br /><br />
+                                    <div id="recaptcha-container"></div>
+                                    <button onClick={signin}>Send OTP</button>
+                                </div>
+                                <div style={{ display: show ? "block" : "none" }}>
+                                    <input type="text" placeholder={"Enter your OTP"}
+                                        onChange={(e) => { setotp(e.target.value) }}></input>
+                                    <br /><br />
+                                    <button onClick={ValidateOtp}>Verify</button>
+                                </div>
+                            </center>
+                        </div>
+                        {/* <form className="needs-validation" noValidate>
                             <h3>Login to Account</h3>
                             <p>Please enter your email and password to continue</p>
                             <div className="mb-3">
@@ -100,8 +154,8 @@ export default function Content() {
                             <p className="mb-0 mt-3 text-center">Don't have an account? <Link className="btn-link" to="/default-register">Create Account</Link>
                             </p>
                             <Link className="btn-link" to="/Dashboard">Go to Dashboard</Link>
-                            {/* <Button onClick={sendMail}>sendMail</Button> */}
-                        </form>
+                          
+                        </form> */}
                     </div>
                 </div>
             </div>

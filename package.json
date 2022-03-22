@@ -20,6 +20,7 @@
     "driver.js": "^0.9.8",
     "express": "^4.17.3",
     "express-pino-logger": "^7.0.0",
+    "firebase": "^8.3.1",
     "goober": "^2.0.41",
     "google-map-react": "^2.1.10",
     "ion-rangeslider": "^2.3.1",
@@ -39,6 +40,7 @@
     "react-data-components": "^1.2.0",
     "react-datepicker": "^3.8.0",
     "react-dom": "^16.14.0",
+    "react-firebase-hooks": "^5.0.3",
     "react-google-charts": "^3.0.15",
     "react-image-crop": "^8.6.12",
     "react-image-crop-component": "^1.1.2",
@@ -59,7 +61,8 @@
     "sweetalert2": "^9.17.2",
     "sweetalert2-react": "^0.8.3",
     "sweetalert2-react-content": "^3.3.3",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "with": "^7.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
