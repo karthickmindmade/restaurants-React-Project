@@ -1,11 +1,12 @@
 import React, { Component, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
 // import { firebase, auth } from './../firebase';
 
 import { firebase, auth } from '../../../firebase';
 export default function Content() {
     const [show1, setshow1] = useState()
+    const router = useHistory()
     //initialize datatable
     function formValidation() {
         window.addEventListener('load', function () {
@@ -92,9 +93,10 @@ export default function Content() {
         if (otp === null || final === null)
             return;
         final.confirm(otp).then((result) => {
-            alert("sucess")
+            router.push("/Dashboard")
+            console.log(result)
         }).catch((err) => {
-            alert("Wrong code");
+            console.log(err)
         })
     }
 
@@ -107,7 +109,34 @@ export default function Content() {
                 </div>
                 <div className="ms-auth-col">
                     <div className="ms-auth-form">
-                        <div style={{ "marginTop": "200px" }}>
+
+                        <div className={!show ? "display-block needs-validation" : "display-none needs-validation"} noValidate>
+                            <h3>Login to Account</h3>
+                            <p>Please enter your PhoneNumber to continue</p>
+                            <div className="mb-2">
+                                <label htmlFor="validationCustom09">PhoneNumber</label>
+                                <div className="input-group">
+                                    <input type="phone" className="form-control" id="validationCustom09" value={mynumber} onChange={(e)=>{setnumber(e.target.value)}} placeholder="phone number" required />
+                                    <div className="invalid-feedback">Please provide a PhoneNumber.</div>
+                                </div>
+                            </div>
+                            <div id="recaptcha-container"></div>
+                            <button className="btn btn-primary mt-4 d-block w-100" type="submit" onClick={signin}>Send OTP</button>
+                        </div>
+                        <div className={show ? "display-block needs-validation" : "display-none needs-validation"} noValidate>
+                            <h3>Login to Account</h3>
+                            <p>Please enter your OTP to continue</p>
+                            <div className="mb-2">
+                                <label htmlFor="validationCustom09">OTP</label>
+                                <div className="input-group">
+                                    <input className="form-control" type="text" placeholder={"Enter your OTP"} onChange={(e) => { setotp(e.target.value) }} id="validationCustom09"  required />
+                                    <div className="invalid-feedback">Please provide a OTP</div>
+                                </div>
+                            </div>
+                            <div id="recaptcha-container"></div>
+                            <button className="btn btn-primary mt-4 d-block w-100" type="submit" onClick={ValidateOtp}>Verify</button>
+                        </div>
+                        {/* <div style={{ "marginTop": "200px" }}>
                             <center>
                                 <div style={{ display: !show ? "block" : "none" }}>
                                     <input value={mynumber} onChange={(e) => {
@@ -125,7 +154,7 @@ export default function Content() {
                                     <button onClick={ValidateOtp}>Verify</button>
                                 </div>
                             </center>
-                        </div>
+                        </div> */}
                         {/* <form className="needs-validation" noValidate>
                             <h3>Login to Account</h3>
                             <p>Please enter your email and password to continue</p>

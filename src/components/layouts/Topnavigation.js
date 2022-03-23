@@ -4,23 +4,28 @@ import $ from 'jquery';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import Scrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
-
+import { auth } from '../../firebase';
 import costiclogo from '../../assets/img/costic/costic-logo-84x41.png'
 
-class Topnavigation extends Component {
-    addsidenavigation = () => {
+export default function Topnavigation (){
+   const addsidenavigation = () => {
         $('.ms-body').toggleClass('ms-aside-left-open');
         $('#ms-side-nav').toggleClass('ms-aside-open');
         $(".ms-aside-overlay.ms-overlay-left").toggleClass('d-block');
     }
-    topbaropen = () => {
+    const topbaropen = () => {
         $('#ms-nav-options').toggleClass('ms-slide-down');
     }
 
-    render() {
+   
+  
+        const logout = () => {
+            auth.signOut();
+        }
+    
         return (
             <nav className="navbar ms-navbar">
-                <div className="ms-aside-toggler ms-toggler pl-0" onClick={this.addsidenavigation}>
+                <div className="ms-aside-toggler ms-toggler pl-0" onClick={addsidenavigation}>
                     <span className="ms-toggler-bar bg-primary" />
                     <span className="ms-toggler-bar bg-primary" />
                     <span className="ms-toggler-bar bg-primary" />
@@ -138,14 +143,14 @@ class Topnavigation extends Component {
                                     </Link>
                                 </div>
                                 <div className="dropdown-menu-footer">
-                                    <Link className="media fs-14 p-2" to="/"> <span><i className="flaticon-shut-down mr-2" /> Logout</span>
+                                    <Link className="media fs-14 p-2" onClick={logout} to="/"> <span><i className="flaticon-shut-down mr-2" /> Logout</span>
                                     </Link>
                                 </div>
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>
                 </ul>
-                <div className="ms-toggler ms-d-block-sm pr-0 ms-nav-toggler" onClick={this.topbaropen}>
+                <div className="ms-toggler ms-d-block-sm pr-0 ms-nav-toggler" onClick={topbaropen}>
                     <span className="ms-toggler-bar bg-primary" />
                     <span className="ms-toggler-bar bg-primary" />
                     <span className="ms-toggler-bar bg-primary" />
@@ -153,6 +158,5 @@ class Topnavigation extends Component {
             </nav >
         );
     }
-}
 
-export default Topnavigation;
+
