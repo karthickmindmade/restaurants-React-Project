@@ -12,11 +12,14 @@ import './assets/vendors/iconic-fonts/cryptocoins/cryptocoins.css';
 import './assets/vendors/iconic-fonts/cryptocoins/cryptocoins-colors.css';
 import './assets/css/animate.min.css';
 import './assets/css/style.css';
-
+import { Provider } from "react-redux";
+import {store} from "./redux/store"
 ReactDOM.render(
+  <Provider store={store}>
   <BrowserRouter basename={'/themes/themeforest/react/costic'}>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>,
   document.getElementById('costic')
 );
 

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Breadcrumb from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
-
+import { useDispatch, useSelector } from "react-redux";
+import actions from '../../../redux/users/actions';
 // Table data
 var dataSet1 = [
     ["40521", "<img src='../../assets/img/costic/customer-1.jpg' style='width:50px; height:30px;'> Merry", "Hall Street", "kbc@gfail.com", " Garlic Bread", "$43"],
@@ -43,22 +44,33 @@ var dataSet1 = [
     ["15451", "<img src='../../assets/img/costic/customer-5.jpg' style='width:50px; height:30px;'> Max", "Hall Street", "ghj@gfail.com", "  Noodles", "$56"],
     ["14451", "<img src='../../assets/img/costic/customer-6.jpg' style='width:50px; height:30px;'> Dum sum", "Hall Street", "bbc@gfail.com", " Pizza", "$43"]
 ];
-class Content extends Component {
-    componentDidMount() {
+export default  function Content () {
         //initialize datatable
-        $('#data-table-4').DataTable({
-            data: dataSet1,
-            columns: [
-                { title: "Customer ID" },
-                { title: "Customer Name" },
-                { title: "Location" },
-                { title: "Email ID" },
-                { title: "Ordered Item" },
-                { title: "Bill" }
-            ],
-        });
-    }
-    render() {
+     
+    const dispatch = useDispatch();
+
+    const RegisteredUsers = useSelector(
+        (state) => state.registeredUserReducer
+    );
+        console.log(RegisteredUsers)
+        useEffect(()=>{
+            $('#data-table-4').DataTable({
+                data: dataSet1,
+                columns: [
+                    { title: "Customer ID" },
+                    { title: "Customer Name" },
+                    { title: "Location" },
+                    { title: "Email ID" },
+                    { title: "Ordered Item" },
+                    { title: "Bill" }
+                ],
+            });
+           },[])
+           useEffect(()=>{
+            dispatch({type:actions.GET_ALL_USERS})
+         
+        },[])
+        console.log(RegisteredUsers)
         return (
             <div className="ms-content-wrapper">
                 <div className="row">
@@ -79,6 +91,5 @@ class Content extends Component {
             </div>
         );
     }
-}
 
-export default Content;
+
