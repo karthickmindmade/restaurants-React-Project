@@ -1,10 +1,12 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Breadcrumb from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../../redux/users/actions';
+import axios from 'axios';
+import rootSaga from '../../../redux/users/sagas';
 // Table data
 var dataSet1 = [
     ["40521", "<img src='../../assets/img/costic/customer-1.jpg' style='width:50px; height:30px;'> Merry", "Hall Street", "kbc@gfail.com", " Garlic Bread", "$43"],
@@ -52,7 +54,7 @@ export default  function Content () {
     const RegisteredUsers = useSelector(
         (state) => state.registeredUserReducer
     );
-        console.log(RegisteredUsers)
+       console.log(RegisteredUsers)
         useEffect(()=>{
             $('#data-table-4').DataTable({
                 data: dataSet1,
@@ -70,7 +72,7 @@ export default  function Content () {
             dispatch({type:actions.GET_ALL_USERS})
          
         },[])
-        console.log(RegisteredUsers)
+       
         return (
             <div className="ms-content-wrapper">
                 <div className="row">
@@ -80,6 +82,8 @@ export default  function Content () {
                             <div className="ms-panel-header">
                                 <h6>Customer List</h6>
                             </div>
+                           
+                          
                             <div className="ms-panel-body">
                                 <div className="table-responsive">
                                     <table id="data-table-4" className="table w-100 thead-primary" />
@@ -87,7 +91,9 @@ export default  function Content () {
                             </div>
                         </div>
                     </div>
+                    {/* <div>{RegisteredUsers.map((item)=><div key={item.UserName}><p>{item.UserName}hftrgdh</p></div>)}</div> */}
                 </div>
+            
             </div>
         );
     }

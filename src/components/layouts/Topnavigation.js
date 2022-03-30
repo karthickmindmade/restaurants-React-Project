@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import Scrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import { auth } from '../../firebase';
+
 import costiclogo from '../../assets/img/costic/costic-logo-84x41.png'
 
 export default function Topnavigation (){
@@ -20,7 +20,7 @@ export default function Topnavigation (){
    
   
         const logout = () => {
-            auth.signOut();
+          
         }
     
         return (

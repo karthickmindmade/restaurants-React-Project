@@ -12,7 +12,7 @@ const rootSaga = function* () {
 const getAllUsers = function* () {
     try{
         const result = yield call(()=>
-            axios.get(`${API_URL}/api/users/list`)
+            axios.get(`https://cakey-database.vercel.app/api/users/list`)
         );
         yield put({type:actions.SET_ALL_USERS,payload:result.data});
     }catch(err){

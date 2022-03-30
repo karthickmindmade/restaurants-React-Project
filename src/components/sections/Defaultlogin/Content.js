@@ -1,9 +1,9 @@
 import React, { Component, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
-// import { firebase, auth } from './../firebase';
 
-import { firebase, auth } from '../../../firebase';
+
+
 export default function Content() {
     const [show1, setshow1] = useState()
     const router = useHistory()
@@ -66,40 +66,7 @@ export default function Content() {
     //         })
     //         // .then(message => console.log(message.sid));
     // }
-    const [mynumber, setnumber] = useState("");
-    const [otp, setotp] = useState('');
-    const [show, setshow] = useState(false);
-    const [final, setfinal] = useState('');
-
-    // Sent OTP
-    const signin = () => {
-
-        if (mynumber === "" || mynumber.length < 10) return;
-
-        let verify = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-        auth.signInWithPhoneNumber(mynumber, verify).then((result) => {
-            setfinal(result);
-            alert("code sent")
-            setshow(true);
-        })
-            .catch((err) => {
-                alert(err);
-                window.location.reload()
-            });
-    }
-
-    // Validate OTP
-    const ValidateOtp = () => {
-        if (otp === null || final === null)
-            return;
-        final.confirm(otp).then((result) => {
-            router.push("/Dashboard")
-            console.log(result)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-
+  
 
     return (
         <div className="ms-content-wrapper ms-auth">
@@ -110,32 +77,20 @@ export default function Content() {
                 <div className="ms-auth-col">
                     <div className="ms-auth-form">
 
-                        <div className={!show ? "display-block needs-validation" : "display-none needs-validation"} noValidate>
+                        <div className="display-block needs-validation" noValidate>
                             <h3>Login to Account</h3>
                             <p>Please enter your PhoneNumber to continue</p>
                             <div className="mb-2">
                                 <label htmlFor="validationCustom09">PhoneNumber</label>
                                 <div className="input-group">
-                                    <input type="phone" className="form-control" id="validationCustom09" value={mynumber} onChange={(e)=>{setnumber(e.target.value)}} placeholder="phone number" required />
+                                    <input type="phone" className="form-control" id="validationCustom09"   placeholder="phone number" required />
                                     <div className="invalid-feedback">Please provide a PhoneNumber.</div>
                                 </div>
                             </div>
                             <div id="recaptcha-container"></div>
-                            <button className="btn btn-primary mt-4 d-block w-100" type="submit" onClick={signin}>Send OTP</button>
+                            <button className="btn btn-primary mt-4 d-block w-100" type="submit" >Send OTP</button>
                         </div>
-                        <div className={show ? "display-block needs-validation" : "display-none needs-validation"} noValidate>
-                            <h3>Login to Account</h3>
-                            <p>Please enter your OTP to continue</p>
-                            <div className="mb-2">
-                                <label htmlFor="validationCustom09">OTP</label>
-                                <div className="input-group">
-                                    <input className="form-control" type="text" placeholder={"Enter your OTP"} onChange={(e) => { setotp(e.target.value) }} id="validationCustom09"  required />
-                                    <div className="invalid-feedback">Please provide a OTP</div>
-                                </div>
-                            </div>
-                            <div id="recaptcha-container"></div>
-                            <button className="btn btn-primary mt-4 d-block w-100" type="submit" onClick={ValidateOtp}>Verify</button>
-                        </div>
+                      
                         {/* <div style={{ "marginTop": "200px" }}>
                             <center>
                                 <div style={{ display: !show ? "block" : "none" }}>
