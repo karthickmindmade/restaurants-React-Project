@@ -75,73 +75,37 @@ export default function Content() {
                     <div className="ms-auth-bg" />
                 </div>
                 <div className="ms-auth-col">
-                    <div className="ms-auth-form">
-
-                        <div className="display-block needs-validation" noValidate>
-                            <h3>Login to Account</h3>
-                            <p>Please enter your PhoneNumber to continue</p>
-                            <div className="mb-2">
-                                <label htmlFor="validationCustom09">PhoneNumber</label>
-                                <div className="input-group">
-                                    <input type="phone" className="form-control" id="validationCustom09"   placeholder="phone number" required />
-                                    <div className="invalid-feedback">Please provide a PhoneNumber.</div>
+                        <div className="ms-auth-form">
+                            <form className="needs-validation" noValidate>
+                                <h3>Login to Account</h3>
+                                <p>Please enter your email and password to continue</p>
+                                <div className="mb-3">
+                                    <label htmlFor="validationCustom08">Email Address</label>
+                                    <div className="input-group">
+                                        <input type="email" className="form-control" id="validationCustom08" placeholder="Email Address" required />
+                                        <div className="invalid-feedback">Please provide a valid email.</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="recaptcha-container"></div>
-                            <button className="btn btn-primary mt-4 d-block w-100" type="submit" >Send OTP</button>
+                                <div className="mb-2">
+                                    <label htmlFor="validationCustom09">Password</label>
+                                    <div className="input-group">
+                                        <input type="password" className="form-control" id="validationCustom09" placeholder="Password" required />
+                                        <div className="invalid-feedback">Please provide a password.</div>
+                                    </div>
+                                </div>
+                                <div className="form-group">
+                                    <label className="ms-checkbox-wrap">
+                                        <input className="form-check-input" type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
+                                    </label> <span> Remember Password </span>
+                                    <label className="d-block mt-3"><Link  className="btn-link" onClick={handleShow1}>Forgot Password?</Link>
+                                    </label>
+                                </div>
+                                <button className="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button>
+                                <p className="mb-0 mt-3 text-center">Don't have an account? <Link className="btn-link" to="/default-register">Create Account</Link>
+                                </p>
+                            </form>
                         </div>
-                      
-                        {/* <div style={{ "marginTop": "200px" }}>
-                            <center>
-                                <div style={{ display: !show ? "block" : "none" }}>
-                                    <input value={mynumber} onChange={(e) => {
-                                        setnumber(e.target.value)
-                                    }}
-                                        placeholder="phone number" />
-                                    <br /><br />
-                                    <div id="recaptcha-container"></div>
-                                    <button onClick={signin}>Send OTP</button>
-                                </div>
-                                <div style={{ display: show ? "block" : "none" }}>
-                                    <input type="text" placeholder={"Enter your OTP"}
-                                        onChange={(e) => { setotp(e.target.value) }}></input>
-                                    <br /><br />
-                                    <button onClick={ValidateOtp}>Verify</button>
-                                </div>
-                            </center>
-                        </div> */}
-                        {/* <form className="needs-validation" noValidate>
-                            <h3>Login to Account</h3>
-                            <p>Please enter your email and password to continue</p>
-                            <div className="mb-3">
-                                <label htmlFor="validationCustom08">Email Address</label>
-                                <div className="input-group">
-                                    <input type="email" className="form-control" id="validationCustom08" placeholder="Email Address" required />
-                                    <div className="invalid-feedback">Please provide a valid email.</div>
-                                </div>
-                            </div>
-                            <div className="mb-2">
-                                <label htmlFor="validationCustom09">Password</label>
-                                <div className="input-group">
-                                    <input type="password" className="form-control" id="validationCustom09" placeholder="Password" required />
-                                    <div className="invalid-feedback">Please provide a password.</div>
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label className="ms-checkbox-wrap">
-                                    <input className="form-check-input" type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
-                                </label> <span> Remember Password </span>
-                                <label className="d-block mt-3"><Link className="btn-link" onClick={handleShow1}>Forgot Password?</Link>
-                                </label>
-                            </div>
-                            <button className="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button>
-                            <p className="mb-0 mt-3 text-center">Don't have an account? <Link className="btn-link" to="/default-register">Create Account</Link>
-                            </p>
-                            <Link className="btn-link" to="/Dashboard">Go to Dashboard</Link>
-                          
-                        </form> */}
                     </div>
-                </div>
             </div>
             <Modal className="modal-min" show={show1} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
                 centered>
