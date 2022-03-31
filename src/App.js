@@ -70,6 +70,7 @@ import Webanalytics from './components/pages/Webanalytics';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
 import Content from './components/sections/Defaultlogin/Content';
+import VendarDashboard from './components/vendor/pages/vendarDashboard';
 
 
 function App() {
@@ -133,7 +134,6 @@ function App() {
         <PrivateRoute exact path="/widgets" component={Widgets} />
         <PrivateRoute exact path="/client-management" component={Clientmanagement} />
         <PrivateRoute exact path="/coming-soon" component={Comingsoon} />
-        
         {/* <PublicRoute exact path="/content" component={Content} /> */}
         <PrivateRoute exact path="/default-register" component={Defaultregister} />
         <PrivateRoute exact path="/error" component={Error} />
@@ -146,6 +146,8 @@ function App() {
         <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
         <PrivateRoute exact path="/user-profile" component={Userprofile} />
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
+        {/* vendar pages */}
+        <PrivateRoute exact path="/vendardashboard" component={VendarDashboard} />
       </Switch>
     </Router>
   );  

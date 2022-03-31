@@ -2,7 +2,8 @@ import actions from "./actions";
 
 const initState  =  {
   isAuthenticated:false,
-  user:{}
+  user:{},
+  route:""
 };
 
 const authReducer = (state = initState, action) => {
@@ -11,7 +12,8 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                isAuthenticated:action.payload.isAuthenticated,
-               user:action.payload
+               user:action.payload,
+               route:action.payload.route
             };
         }
         default: return state;

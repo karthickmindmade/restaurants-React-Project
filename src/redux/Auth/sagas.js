@@ -5,9 +5,11 @@ import { API_URL } from "../../utils/constants";
 
 const AuthSaga = function* () {
   yield all([
-    yield takeEvery(actions.LOG_IN, workersLogIn)
+    yield takeEvery(actions.LOG_IN, workersLogIn),
+    yield takeEvery(actions.LOG_OUT, workersLogOut)
   ]);
 };
+
 
 const workersLogIn = function* (data) {
   console.log(data);
@@ -26,10 +28,18 @@ const workersLogIn = function* (data) {
     console.log(result.data);
     // const Result = JSON.parse(JSON.stringify(result.data));
     if(result.data.statusCode === 200) {
-      yield put({
-        type: actions.UPDATE_AUTH_DETAILS,
-        payload: {isAuthenticated:true}
-      });
+      if(result.data.type==='admin'){
+        yield put({
+          type: actions.UPDATE_AUTH_DETAILS,
+          payload: {isAuthenticated:true,route:"/dashboard"}
+        });
+      }else if(result.data.type==="vendor"){
+        yield put({
+          type: actions.UPDATE_AUTH_DETAILS,
+          payload: {isAuthenticated:true,route:"/vendardashboard"}
+        });
+      }
+     
     } else {
       yield put({
         type: actions.UPDATE_AUTH_DETAILS,
@@ -41,8 +51,19 @@ const workersLogIn = function* (data) {
     yield put({
       type: actions.UPDATE_AUTH_DETAILS,
       
-      payload: { isAuthenticated: false }
+      payload: { isAuthenticated: false, }
     });
   }
+}
+
+const workersLogOut =function* (data){
+  const {payload}=data;
+ 
+    yield put({
+      type: actions.UPDATE_AUTH_DETAILS,
+      
+      payload: { isAuthenticated: payload }
+    });
+  
 }
 export default AuthSaga;

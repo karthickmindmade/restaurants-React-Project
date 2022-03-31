@@ -5,9 +5,9 @@ import { Dropdown, NavLink } from 'react-bootstrap';
 import Scrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { useDispatch } from 'react-redux';
-import costiclogo from '../../assets/img/costic/costic-logo-84x41.png'
-import MenuLink from '../common/MenuLink';
-import actions from '../../redux/Auth/actions';
+import costiclogo from '../../../assets/img/costic/costic-logo-84x41.png'
+import MenuLink from '../../common/MenuLink';
+import actions from '../../../redux/Auth/actions';
 export default function Topnavigation (){
     const dispatch=useDispatch();
    const addsidenavigation = () => {
