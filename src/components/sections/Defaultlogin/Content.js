@@ -1,12 +1,16 @@
-import React, { Component, useState } from 'react';
+import React, {useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
-
-
+import { useDispatch } from 'react-redux';
+import actions from "../../../redux/Auth/actions";
 
 export default function Content() {
     const [show1, setshow1] = useState()
-    const router = useHistory()
+    const dispatch=useDispatch();
+    const router = useHistory();
+    const Email=useRef();
+    const Password=useRef();
+
     //initialize datatable
     function formValidation() {
         window.addEventListener('load', function () {
@@ -24,47 +28,30 @@ export default function Content() {
 
                 }, false);
             });
+
         }, false);
     }
     formValidation();
+
+
     function handleShow1() {
+
         setshow1(true);
     }
     function handleClose() {
         setshow1(false);
     }
-    // const FROM_NUMBER = '+18037705278';
-    // const TO_NUMBER = '9750877583';
-    // const TWILIO_AUTH_TOKEN = '0c7f74f4ca14820764a8ef8eb67b3ab8';
-    // const TWILIO_ACCOUNT_SID = 'AC22863bbf6e02379e0ff900cd9bb1ea9f';
-
-    // const client = require('twilio')(ACCOUNT_SID, AUTH_TOKEN);
-    // const sendMail =()=> {
-    //     client.messages
-    //         .create({
-    //             body: 'message hii Karthick',
-    //             from: FROM_NUMBER,
-    //             to: TO_NUMBER
-    //         })
-    //         .then(message => {
-    //             console.log(message);
-    //         }).catch((error) => {
-    //             console.log(error)
-    //         });
-    // }
-
-    // const client = require('twilio')(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN);
-    // const sendMail=()=> {
-    //     client.messages
-    //         .create({
-    //             body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
-    //             from: '+18037705278',
-    //             to: '9750877583',
-    //         })
-    //         // .then(message => console.log(message.sid));
-    // }
-  
-
+    const SignIn=(e)=>{
+        e.preventDefault();
+        console.log("Email");
+        console.log(Email.current.value);
+        console.log("Password");
+        console.log(Password.current.value);
+        dispatch({ type: actions.LOG_IN, payload: {Email: Email.current.value, Password: Password.current.value} } );
+        Email.current.value="";
+        Password.current.value="";
+    }
+    
     return (
         <div className="ms-content-wrapper ms-auth">
             <div className="ms-auth-container">
@@ -79,14 +66,14 @@ export default function Content() {
                                 <div className="mb-3">
                                     <label htmlFor="validationCustom08">Email Address</label>
                                     <div className="input-group">
-                                        <input type="email" className="form-control" id="validationCustom08" placeholder="Email Address" required />
+                                        <input type="email" className="form-control" ref={Email} id="validationCustom08" placeholder="Email Address" required />
                                         <div className="invalid-feedback">Please provide a valid email.</div>
                                     </div>
                                 </div>
                                 <div className="mb-2">
                                     <label htmlFor="validationCustom09">Password</label>
                                     <div className="input-group">
-                                        <input type="password" className="form-control" id="validationCustom09" placeholder="Password" required />
+                                        <input type="password" className="form-control" ref={Password} id="validationCustom09" placeholder="Password" required />
                                         <div className="invalid-feedback">Please provide a password.</div>
                                     </div>
                                 </div>
@@ -97,7 +84,7 @@ export default function Content() {
                                     <label className="d-block mt-3"><Link  className="btn-link" onClick={handleShow1}>Forgot Password?</Link>
                                     </label>
                                 </div>
-                                <button className="btn btn-primary mt-4 d-block w-100" type="submit">Sign In</button>
+                                <button className="btn btn-primary mt-4 d-block w-100" type="submit"onClick={SignIn}>Sign In</button>
                                 <p className="mb-0 mt-3 text-center">Don't have an account? <Link className="btn-link" to="/default-register">Create Account</Link>
                                 </p>
                             </form>

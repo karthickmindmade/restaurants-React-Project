@@ -6,96 +6,111 @@ import $ from 'jquery';
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../../redux/users/actions';
 import axios from 'axios';
-import rootSaga from '../../../redux/users/sagas';
+import ShowPerPage from '../../common/ShowPerPage';
+import TableSearch from '../../common/TableSearch';
+import Pagination from '../../common/Pagination';
 // Table data
-var dataSet1 = [
-    ["40521", "<img src='../../assets/img/costic/customer-1.jpg' style='width:50px; height:30px;'> Merry", "Hall Street", "kbc@gfail.com", " Garlic Bread", "$43"],
-    ["98521", "<img src='../../assets/img/costic/customer-2.jpg' style='width:50px; height:30px;'> Joe", "Hall Street", "lbc@gfail.com", " Pizza", "$48"],
-    ["45454", "<img src='../../assets/img/costic/customer-3.jpg' style='width:50px; height:30px;'> Bella", "Huston Loan", "abc@gfail.com", " Burger", "$43"],
-    ["12121", "<img src='../../assets/img/costic/customer-4.jpg' style='width:50px; height:30px;'> Herry", "Jk Road", "ghj@gfail.com", " Burger", "$56"],
-    ["56454", "<img src='../../assets/img/costic/customer-5.jpg' style='width:50px; height:30px;'> Joe", "Hall Street", "abc@gfail.com", "Garlic Bread", "$43"],
-    ["25252", "<img src='../../assets/img/costic/customer-6.jpg' style='width:50px; height:30px;'> Dum sum", "Hall Street", "bbc@gfail.com", " Pizza", "$43"],
-    ["45454", "<img src='../../assets/img/costic/customer-7.jpg' style='width:50px; height:30px;'> Herry", "New York", "ghj@gfail.com", " Garlic Bread", "$56"],
-    ["64541", "<img src='../../assets/img/costic/customer-8.jpg' style='width:50px; height:30px;'> Herry", "Jk Road", "khj@gfail.com", " Garlic Bread", "$56"],
-    ["56562", "<img src='../../assets/img/costic/customer-9.jpg' style='width:50px; height:30px;'> Bella", "Hall Street", "lhj@gfail.com", " Garlic Bread", "$36"],
-    ["51558", "<img src='../../assets/img/costic/customer-10.jpg' style='width:50px; height:30px;'> Merry", "Hall Street", "ihj@gfail.com", " Pizza", "$56"],
-    ["55841", "<img src='../../assets/img/costic/customer-1.jpg' style='width:50px; height:30px;'> Herry", "JK Road", "mhj@gfail.com", " Garlic Bread", "$56"],
-    ["55811", "<img src='../../assets/img/costic/customer-2.jpg' style='width:50px; height:30px;'> Max", "Hall Street", "ghj@gfail.com", " Noodles", "$56"],
-    ["01475", "<img src='../../assets/img/costic/customer-3.jpg' style='width:50px; height:30px;'>  Joe", "Street 21", "dhj@gfail.com", " Sandwich", "$46"],
-    ["55454", "<img src='../../assets/img/costic/customer-4.jpg' style='width:50px; height:30px;'> Max", "Street 21", "bhj@gfail.com", " Sandwich", "$46"],
-    ["12145", "<img src='../../assets/img/costic/customer-5.jpg' style='width:50px; height:30px;'> Bella", "Huston Loan", "abc@gfail.com", " Burger", "$43"],
-    ["52351", "<img src='../../assets/img/costic/customer-6.jpg' style='width:50px; height:30px;'> Herry", "Jk Road", "ghj@gfail.com", " Burger", "$56"],
-    ["45823", "<img src='../../assets/img/costic/customer-7.jpg' style='width:50px; height:30px;'> Joe", "Jk Road", "abc@gfail.com", " Burger", "$43"],
-    ["98541", "<img src='../../assets/img/costic/customer-8.jpg' style='width:50px; height:30px;'> Merry", "Hall Street", "kbc@gfail.com", " Garlic Bread", "$43"],
-    ["22366", "<img src='../../assets/img/costic/customer-9.jpg' style='width:50px; height:30px;'> Bella", "Huston Loan", "abc@gfail.com", " Burger", "$43"],
-    ["56465", "<img src='../../assets/img/costic/customer-10.jpg' style='width:50px; height:30px;'> Jake", "Huston Loan", "abc@gfail.com", " Burger", "$43"],
-    ["34256", "<img src='../../assets/img/costic/customer-1.jpg' style='width:50px; height:30px;'> Joe", "Jk Road", "abc@gfail.com", " Sandwich", "$43"],
-    ["45484", "<img src='../../assets/img/costic/customer-2.jpg' style='width:50px; height:30px;'> Dum sum", "Hall Street", "bbc@gfail.com", "  Pizza", "$43"],
-    ["41028", "<img src='../../assets/img/costic/customer-3.jpg' style='width:50px; height:30px;'> Dum sum", "Hall Street", "bbc@gfail.com", " Pizza", "$43"],
-    ["15485", "<img src='../../assets/img/costic/customer-4.jpg' style='width:50px; height:30px;'> Herry", "Jk Road", "ghj@gfail.com", " Burger", "$56"],
-    ["48568", "<img src='../../assets/img/costic/customer-5.jpg' style='width:50px; height:30px;'> Bella", "Hall Street", "lhj@gfail.com", " Garlic Bread", "$36"],
-    ["45815", "<img src='../../assets/img/costic/customer-6.jpg' style='width:50px; height:30px;'> Joe", "Jk Road", "abc@gfail.com", "Sandwich", "$43"],
-    ["46542", "<img src='../../assets/img/costic/customer-7.jpg' style='width:50px; height:30px;'> Joe", "Jk Road", "abc@gfail.com", "Egg Sandwich", "$43"],
-    ["65412", "<img src='../../assets/img/costic/customer-8.jpg' style='width:50px; height:30px;'> Joe", "Hall Street", "lbc@gfail.com", "  Pizza", "$54"],
-    ["89658", "<img src='../../assets/img/costic/customer-9.jpg' style='width:50px; height:30px;'> Herry", "Jk Road", "ghj@gfail.com", " Burger", "$56"],
-    ["02351", "<img src='../../assets/img/costic/customer-10.jpg' style='width:50px; height:30px;'> Max", "Hall Street", "ghj@gfail.com", " Noodles", "$56"],
-    ["56212", "<img src='../../assets/img/costic/customer-1.jpg' style='width:50px; height:30px;'> Herry", "New York", "ghj@gfail.com", " Garlic Bread", "$56"],
-    ["78065", "<img src='../../assets/img/costic/customer-2.jpg' style='width:50px; height:30px;'> Herry", "New York", "ahj@gfail.com", " French Fries", "$56"],
-    ["56121", "<img src='../../assets/img/costic/customer-3.jpg' style='width:50px; height:30px;'> Herry", "New York", "ghj@gfail.com", " French Fries", "$56"],
-    ["14526", "<img src='../../assets/img/costic/customer-4.jpg' style='width:50px; height:30px;'> Lulia", "Street 21", "ehj@gfail.com", " Pizza", "$56"],
-    ["15451", "<img src='../../assets/img/costic/customer-5.jpg' style='width:50px; height:30px;'> Max", "Hall Street", "ghj@gfail.com", "  Noodles", "$56"],
-    ["14451", "<img src='../../assets/img/costic/customer-6.jpg' style='width:50px; height:30px;'> Dum sum", "Hall Street", "bbc@gfail.com", " Pizza", "$43"]
-];
-export default  function Content () {
-        //initialize datatable
-     
+export default function Content() {
+    //initialize datatable
     const dispatch = useDispatch();
-
     const RegisteredUsers = useSelector(
         (state) => state.registeredUserReducer
     );
-       console.log(RegisteredUsers)
-        useEffect(()=>{
-            $('#data-table-4').DataTable({
-                data: dataSet1,
-                columns: [
-                    { title: "Customer ID" },
-                    { title: "Customer Name" },
-                    { title: "Location" },
-                    { title: "Email ID" },
-                    { title: "Ordered Item" },
-                    { title: "Bill" }
-                ],
-            });
-           },[])
-           useEffect(()=>{
-            dispatch({type:actions.GET_ALL_USERS})
-         
-        },[])
-       
-        return (
-            <div className="ms-content-wrapper">
-                <div className="row">
-                    <div className="col-md-12">
-                        <Breadcrumb />
-                        <div className="ms-panel">
-                            <div className="ms-panel-header">
-                                <h6>Customer List</h6>
-                            </div>
-                           
-                          
-                            <div className="ms-panel-body">
-                                <div className="table-responsive">
-                                    <table id="data-table-4" className="table w-100 thead-primary" />
+    console.log(RegisteredUsers.registeredUsers)
+    useEffect(() => {
+        dispatch({ type: actions.GET_ALL_USERS })
+    }, [])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
+
+
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentdata = RegisteredUsers.registeredUsers.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    return (
+        <div className="ms-content-wrapper">
+            <div className="row">
+                <div className="col-md-12">
+                    <Breadcrumb />
+                    <div className="ms-panel">
+                        <div className="ms-panel-header">
+                            <h6>Customer List</h6>
+                        </div>
+                        <div class="ms-panel-body">
+                            <div class="table-responsive">
+                                <div id="data-table-4_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <ShowPerPage label="Show"  >
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </ShowPerPage>
+                                        <TableSearch label="Search" type="search" placeholder="" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table w-100 thead-primary dataTable no-footer" role="grid" >
+                                                <thead>
+                                                    <tr>
+                                                        <th  >
+                                                            Customer ID
+                                                        </th>
+                                                        <th  >
+                                                            Customer Name
+                                                        </th>
+                                                        <th  >
+                                                            Location
+                                                        </th>
+                                                        <th  >
+                                                            Email ID
+                                                        </th>
+                                                        <th >
+                                                            Ordered Item
+                                                        </th>
+                                                        <th >
+                                                            Bill
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {currentdata.map((user) =>
+                                                        <tr >
+                                                            <td>{user._id}</td>
+                                                            <td><img className='Avatar' src={user.file} /></td>
+                                                            <td>{user.Address}</td>
+                                                            <td>{user.PhoneNumber}</td>
+                                                            <td> {user.UserName}</td>
+                                                            <td>{user.Created_On}</td>
+                                                        </tr>
+                                                    )}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <Pagination
+                                            postsPerPage={postsPerPage}
+                                            totalPosts={RegisteredUsers.registeredUsers.length}
+                                            paginate={paginate}
+                                            currentPage={currentPage}
+                                        />
+
+
+                                      
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* <div>{RegisteredUsers.map((item)=><div key={item.UserName}><p>{item.UserName}hftrgdh</p></div>)}</div> */}
                 </div>
-            
             </div>
-        );
-    }
-
+        </div>
+    );
+}
 

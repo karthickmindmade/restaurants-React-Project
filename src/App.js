@@ -68,6 +68,8 @@ import Stockmanagement from './components/pages/Stockmanagement';
 import Userprofile from './components/pages/Userprofile';
 import Webanalytics from './components/pages/Webanalytics';
 import PrivateRoute from './route/PrivateRoute';
+import PublicRoute from './route/PublicRoute';
+import Content from './components/sections/Defaultlogin/Content';
 
 
 function App() {
@@ -75,7 +77,9 @@ function App() {
     <Router >
       <Preloader/>
       <Switch>
-        <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+        <PublicRoute exact path="/" component={Defaultlogin} /> 
+
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/accordions" component={Accordions} />
         <PrivateRoute exact path="/add-product" component={Addproduct} />
         <PrivateRoute exact path="/alerts" component={Alerts} />
@@ -86,7 +90,7 @@ function App() {
         <PrivateRoute exact path="/buttons" component={Buttons} />
         <PrivateRoute exact path="/cards" component={Cards} />
         <PrivateRoute exact path="/chartjs" component={Chartjs} />
-        <PrivateRoute exact exactute path="/chat" component={Chat} />
+        <PrivateRoute exact path="/chat" component={Chat} />
         <PrivateRoute exact path="/cropper" component={Cropper} />
         <PrivateRoute exact path="/customer-list" component={Customerlist} />
         <PrivateRoute exact path="/customer-review" component={Customerreview} />
@@ -129,7 +133,8 @@ function App() {
         <PrivateRoute exact path="/widgets" component={Widgets} />
         <PrivateRoute exact path="/client-management" component={Clientmanagement} />
         <PrivateRoute exact path="/coming-soon" component={Comingsoon} />
-        <Route exact path="/" component={Defaultlogin} />
+        
+        {/* <PublicRoute exact path="/content" component={Content} /> */}
         <PrivateRoute exact path="/default-register" component={Defaultregister} />
         <PrivateRoute exact path="/error" component={Error} />
         <PrivateRoute exact path="/faq" component={Faq} />
@@ -143,7 +148,7 @@ function App() {
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
       </Switch>
     </Router>
-  );
+  );  
 }
 
 export default App;

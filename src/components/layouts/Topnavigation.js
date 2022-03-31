@@ -125,7 +125,7 @@ export default function Topnavigation (){
                             <Dropdown.Toggle as={NavLink} id="userDropdown" className="p-0">
                                 <img className="ms-user-img ms-img-round" src="assets/img/costic/customer-6.jpg" alt="people" />
                             </Dropdown.Toggle>
-                            <Dropdown.Menu className="dropdown-menu dropdown-menu-right user-dropdown" aria-labelledby="userDropdown">
+                            <Dropdown.Menu className="dropdown-menu dropdown-menu-right user-dropdown z-100" aria-labelledby="userDropdown">
                                 <div className="dropdown-menu-header">
                                     <h6 className="dropdown-header ms-inline m-0"><span className="text-disabled">Welcome, Anny Farisha</span></h6>
                                 </div>

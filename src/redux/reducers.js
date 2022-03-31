@@ -1,8 +1,9 @@
 import registeredUserReducer from "./users/reducers";
-
+import authReducer from "./Auth/AuthReducer";
 
 const reducers = { 
-    registeredUserReducer
+    registeredUserReducer,
+    authReducer
 };
 
 

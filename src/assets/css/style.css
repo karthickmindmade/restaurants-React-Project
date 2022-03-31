@@ -7578,7 +7578,12 @@ body:not(.ms-settings-open) .ms-settings-toggle:hover{
 	.mb-xs-10 {
 		margin-bottom: 10px;
 	}
-	.mb-xs-20 {
+  .dropdown-menu.dropdown-menu-right.user-dropdown.z-100.dropdown-menu {
+    left: 0px;
+    visibility: visible;
+    transform: translate3d(0px, 0px, 0px) !important;
+} 
+  .mb-xs-20 {
 		margin-bottom: 20px;
 	}
 	.mb-xs-30 {

@@ -1,1 +1,1 @@
-export const API_URL = 'https://cakey-database.vercel.app';
+export const API_URL = 'https://cakey-database.vercel.app/api';
