@@ -19,7 +19,7 @@ export default function Content() {
     console.log(RegisteredUsers.registeredUsers)
     useEffect(() => {
         dispatch({ type: actions.GET_ALL_USERS })
-    }, [])
+    }, [dispatch])
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
@@ -93,17 +93,14 @@ export default function Content() {
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <Pagination
-                                            postsPerPage={postsPerPage}
-                                            totalPosts={RegisteredUsers.registeredUsers.length}
-                                            paginate={paginate}
-                                            currentPage={currentPage}
-                                        />
-
-
-                                      
-                                    </div>
+                                    <Pagination
+                                        postsPerPage={postsPerPage}
+                                        totalPosts={RegisteredUsers.registeredUsers.length}
+                                        paginate={paginate}                        
+                                        PreviouPage={()=>setCurrentPage(currentPage-1)}
+                                        NextPage={()=>setCurrentPage(currentPage+1)}
+                                        currentPage={currentPage}
+                                    />
                                 </div>
                             </div>
                         </div>
