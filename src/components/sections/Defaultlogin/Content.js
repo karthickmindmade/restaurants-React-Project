@@ -24,12 +24,9 @@ export default function Content() {
 
                 }, false);
             });
-
         }, false);
     }
     formValidation();
-
-
     function handleShow1() {
         setshow1(true);
     }

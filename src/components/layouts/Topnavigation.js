@@ -6,6 +6,7 @@ import Scrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import costiclogo from '../../assets/img/costic/costic-logo-84x41.png'
+import MenuLink from '../common/MenuLink';
 
 export default function Topnavigation (){
    const addsidenavigation = () => {
@@ -31,7 +32,7 @@ export default function Topnavigation (){
                     <span className="ms-toggler-bar bg-primary" />
                 </div>
                 <div className="logo-sn logo-sm ms-d-block-sm">
-                    <Link className="pl-0 ml-0 text-center navbar-brand mr-0" to="/"><img src={costiclogo} alt="logo" /> </Link>
+                     <MenuLink className="pl-0 ml-0 text-center navbar-brand mr-0" to="/"><img src={costiclogo} alt="logo" /></MenuLink>
                 </div>
                 <ul className="ms-nav-list ms-inline mb-0" id="ms-nav-options">
                     <li className="ms-nav-item ms-search-form pb-0 py-0">

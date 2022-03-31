@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import $ from 'jquery';
 import Scrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
-
+import MenuLink from '../common/MenuLink';
 import logo from '../../assets/img/costic/costic-logo-216x62.png';
 import Dropdown from '../common/dropdown';
 
@@ -48,25 +48,25 @@ export default function Sidenavigation() {
                 <ul className="accordion ms-main-aside fs-14" id="side-nav-accordion">
                     {/* Dashboard */}
                     <li className="menu-item">
-                        <Link to="/Dashboard" > <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
-                        </Link>
+                        <MenuLink to="/Dashboard" > <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
+                        </MenuLink>
                     </li>
                     {/* /Dashboard */}
                     {/* product */}
                     <Dropdown
-                        head={<Link to="#" className="has-chevron"> <span><i className="fa fa-archive fs-16" />Menus </span>
-                        </Link>}
+                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fa fa-archive fs-16" />Menus </span>
+                        </MenuLink>}
                         body={
                             <ul id="product" className='active' aria-labelledby="product" data-parent="#side-nav-accordion">
-                                <li> <Link to="/menu-catalogue" >Menu Catalogue</Link>
+                                <li> <MenuLink to="/menu-catalogue" >Menu Catalogue</MenuLink>
                                 </li>
-                                <li> <Link to="/menu-list" >Menu List</Link>
+                                <li> <MenuLink to="/menu-list" >Menu List</MenuLink>
                                 </li>
-                                <li> <Link to="/menu-grid" >Menu Grid</Link>
+                                <li> <MenuLink to="/menu-grid" >Menu Grid</MenuLink>
                                 </li>
-                                <li> <Link to="/add-product" >Add Product</Link>
+                                <li> <MenuLink to="/add-product" >Add Product</MenuLink>
                                 </li >
-                                <li> <Link to="/product-detail" >Product Detail</Link>
+                                <li> <MenuLink to="/product-detail" >Product Detail</MenuLink>
                                 </li >
                             </ul >
                         }
@@ -74,25 +74,25 @@ export default function Sidenavigation() {
                     {/* product end */}
                     {/* orders */}
                     <li className="menu-item">
-                        <Link to="/orders"> <span><i className="fas fa-clipboard-list fs-16" />Orders</span>
-                        </Link>
+                        <MenuLink to="/orders"> <span><i className="fas fa-clipboard-list fs-16" />Orders</span>
+                        </MenuLink>
                     </li >
                     {/* orders end */}
                     {/* restaurants */}
                     <li className="menu-item">
-                        <Link to="/restaurant-list"> <span><i className="fa fa-tasks fs-16" />Restaurants List</span>
-                        </Link>
+                        <MenuLink to="/restaurant-list"> <span><i className="fa fa-tasks fs-16" />Restaurants List</span>
+                        </MenuLink>
                     </li >
                     {/* restaurants end */}
                     {/* Invoice */}
                     <Dropdown
-                        head={<Link to="#" className="has-chevron"> <span><i className="fas fa-file-invoice fs-16" />Invoice </span>
-                        </Link>}
+                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fas fa-file-invoice fs-16" />Invoice </span>
+                        </MenuLink>}
                         body={
                             <ul id="invoice" className='active' aria-labelledby="invoice" data-parent="#side-nav-accordion">
-                                <li> <Link to="/invoice-detail" >Invoice Detail</Link>
+                                <li> <MenuLink to="/invoice-detail" >Invoice Detail</MenuLink>
                                 </li>
-                                <li> <Link to="/invoice-list" >Invoice List</Link>
+                                <li> <MenuLink to="/invoice-list" >Invoice List</MenuLink>
                                 </li>
                             </ul >
                         }
@@ -100,15 +100,15 @@ export default function Sidenavigation() {
                     {/* Invoice end */}
                     {/* customers*/}
                     <Dropdown
-                        head={<Link to="#" className="has-chevron"> <span><i className="fas fa-user-friends fs-16" />Customers </span>
-                        </Link>}
+                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fas fa-user-friends fs-16" />Customers </span>
+                        </MenuLink>}
                         body={
                             <ul id="customer" className="active" aria-labelledby="customer" data-parent="#side-nav-accordion">
-                                <li> <Link to="/customer-review" >Customers Review</Link>
+                                <li> <MenuLink to="/customer-review" >Customers Review</MenuLink>
                                 </li>
-                                <li> <Link to="/customer-list" >Customers List</Link>
+                                <li> <MenuLink to="/customer-list" >Customers List</MenuLink>
                                 </li>
-                                <li> <Link to="/social-activity" >Social Activity</Link>
+                                <li> <MenuLink to="/social-activity" >Social Activity</MenuLink>
                                 </li >
                             </ul >
                         }
@@ -116,8 +116,8 @@ export default function Sidenavigation() {
                     {/* Customers  end */}
                     {/* sales */}
                     <li className="menu-item">
-                        <Link to="/sales" > <span><i className="fa fa-briefcase fs-16" />Sales</span>
-                        </Link>
+                        <MenuLink to="/sales" > <span><i className="fa fa-briefcase fs-16" />Sales</span>
+                        </MenuLink>
                     </li >
                     {/* sales end  */}
                 </ul >

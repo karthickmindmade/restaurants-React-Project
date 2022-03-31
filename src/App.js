@@ -67,6 +67,7 @@ import Portfolio from './components/pages/Portfolio';
 import Stockmanagement from './components/pages/Stockmanagement';
 import Userprofile from './components/pages/Userprofile';
 import Webanalytics from './components/pages/Webanalytics';
+import PrivateRoute from './route/PrivateRoute';
 
 
 function App() {
@@ -74,72 +75,72 @@ function App() {
     <Router >
       <Preloader/>
       <Switch>
-        <Route path="/Dashboard" component={Dashboard} />
-        <Route path="/accordions" component={Accordions} />
-        <Route path="/add-product" component={Addproduct} />
-        <Route path="/alerts" component={Alerts} />
-        <Route path="/animations" component={Animations} />
-        <Route path="/badges" component={Badges} />
-        <Route path="/basic-tables" component={Basictables} />
-        <Route path="/breadcrumbs" component={Breadcrumbs} />
-        <Route path="/buttons" component={Buttons} />
-        <Route path="/cards" component={Cards} />
-        <Route path="/chartjs" component={Chartjs} />
-        <Route path="/chat" component={Chat} />
-        <Route path="/cropper" component={Cropper} />
-        <Route path="/customer-list" component={Customerlist} />
-        <Route path="/customer-review" component={Customerreview} />
-        <Route path="/data-tables" component={Datatables} />
-        <Route path="/draggables" component={Draggables} />
-        <Route path="/email" component={Email} />
-        <Route path="/flaticons" component={Flaticons} />
-        <Route path="/fontawesome" component={Fontawesome} />
-        <Route path="/form-elements" component={Formelements} />
-        <Route path="/form-layouts" component={Formlayouts} />
-        <Route path="/form-validation" component={Formvalidation} />
-        <Route path="/form-wizard" component={Formwizard} />
-        <Route path="/google-maps" component={Googlemaps} />
-        <Route path="/invoice-detail" component={Invoicedetail} />
-        <Route path="/invoice-list" component={Invoicelist} />
-        <Route path="/materialize" component={Materialize} />
-        <Route path="/menu-catalogue" component={Menucatalogue} />
-        <Route path="/menu-grid" component={Menugrid} />
-        <Route path="/menu-list" component={Menulist} />
-        <Route path="/modals" component={Modals} />
-        <Route path="/google-chart" component={Googlechart} />
-        <Route path="/orders" component={Orders} />
-        <Route path="/pagination" component={Pagination} />
-        <Route path="/preloaders" component={Preloaders} />
-        <Route path="/product-detail" component={Productdetail} />
-        <Route path="/progress-bars" component={Progressbars} />
-        <Route path="/range-slider" component={Rangeslider} />
-        <Route path="/rating" component={Rating} />
-        <Route path="/restaurant-list" component={Restaurantlist} />
-        <Route path="/sales" component={Sales} />
-        <Route path="/sliders" component={Sliders} />
-        <Route path="/social-activity" component={Socialactivity} />
-        <Route path="/sweet-alerts" component={Sweetalerts} />
-        <Route path="/tabs" component={Tabs} />
-        <Route path="/toast" component={Toast} />
-        <Route path="/todo-list" component={Todolist} />
-        <Route path="/tour" component={Tour} />
-        <Route path="/typography" component={Typography} />
-        <Route path="/vector-maps" component={Vectormaps} />
-        <Route path="/widgets" component={Widgets} />
-        <Route path="/client-management" component={Clientmanagement} />
-        <Route path="/coming-soon" component={Comingsoon} />
+        <PrivateRoute exact path="/Dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/accordions" component={Accordions} />
+        <PrivateRoute exact path="/add-product" component={Addproduct} />
+        <PrivateRoute exact path="/alerts" component={Alerts} />
+        <PrivateRoute exact path="/animations" component={Animations} />
+        <PrivateRoute exact path="/badges" component={Badges} />
+        <PrivateRoute exact path="/basic-tables" component={Basictables} />
+        <PrivateRoute exact path="/breadcrumbs" component={Breadcrumbs} />
+        <PrivateRoute exact path="/buttons" component={Buttons} />
+        <PrivateRoute exact path="/cards" component={Cards} />
+        <PrivateRoute exact path="/chartjs" component={Chartjs} />
+        <PrivateRoute exact exactute path="/chat" component={Chat} />
+        <PrivateRoute exact path="/cropper" component={Cropper} />
+        <PrivateRoute exact path="/customer-list" component={Customerlist} />
+        <PrivateRoute exact path="/customer-review" component={Customerreview} />
+        <PrivateRoute exact path="/data-tables" component={Datatables} />
+        <PrivateRoute exact path="/draggables" component={Draggables} />
+        <PrivateRoute exact path="/email" component={Email} />
+        <PrivateRoute exact path="/flaticons" component={Flaticons} />
+        <PrivateRoute exact path="/fontawesome" component={Fontawesome} />
+        <PrivateRoute exact path="/form-elements" component={Formelements} />
+        <PrivateRoute exact path="/form-layouts" component={Formlayouts} />
+        <PrivateRoute exact path="/form-validation" component={Formvalidation} />
+        <PrivateRoute exact path="/form-wizard" component={Formwizard} />
+        <PrivateRoute exact path="/google-maps" component={Googlemaps} />
+        <PrivateRoute exact path="/invoice-detail" component={Invoicedetail} />
+        <PrivateRoute exact path="/invoice-list" component={Invoicelist} />
+        <PrivateRoute exact path="/materialize" component={Materialize} />
+        <PrivateRoute exact path="/menu-catalogue" component={Menucatalogue} />
+        <PrivateRoute exact path="/menu-grid" component={Menugrid} />
+        <PrivateRoute exact path="/menu-list" component={Menulist} />
+        <PrivateRoute exact path="/modals" component={Modals} />
+        <PrivateRoute exact path="/google-chart" component={Googlechart} />
+        <PrivateRoute exact path="/orders" component={Orders} />
+        <PrivateRoute exact path="/pagination" component={Pagination} />
+        <PrivateRoute exact path="/preloaders" component={Preloaders} />
+        <PrivateRoute exact path="/product-detail" component={Productdetail} />
+        <PrivateRoute exact path="/progress-bars" component={Progressbars} />
+        <PrivateRoute exact path="/range-slider" component={Rangeslider} />
+        <PrivateRoute exact path="/rating" component={Rating} />
+        <PrivateRoute exact path="/restaurant-list" component={Restaurantlist} />
+        <PrivateRoute exact path="/sales" component={Sales} />
+        <PrivateRoute exact path="/sliders" component={Sliders} />
+        <PrivateRoute exact path="/social-activity" component={Socialactivity} />
+        <PrivateRoute exact path="/sweet-alerts" component={Sweetalerts} />
+        <PrivateRoute exact path="/tabs" component={Tabs} />
+        <PrivateRoute exact path="/toast" component={Toast} />
+        <PrivateRoute exact exacte path="/todo-list" component={Todolist} />
+        <PrivateRoute exact path="/tour" component={Tour} />
+        <PrivateRoute exact path="/typography" component={Typography} />
+        <PrivateRoute exact path="/vector-maps" component={Vectormaps} />
+        <PrivateRoute exact path="/widgets" component={Widgets} />
+        <PrivateRoute exact path="/client-management" component={Clientmanagement} />
+        <PrivateRoute exact path="/coming-soon" component={Comingsoon} />
         <Route exact path="/" component={Defaultlogin} />
-        <Route path="/default-register" component={Defaultregister} />
-        <Route path="/error" component={Error} />
-        <Route path="/faq" component={Faq} />
-        <Route path="/invoice" component={Invoice} />
-        <Route path="/lock-screen" component={Lockscreen} />
-        <Route path="/modal-login" component={Modallogin} />
-        <Route path="/modal-register" component={Modalregister} />
-        <Route path="/portfolio" component={Portfolio} />
-        <Route path="/stock-management" component={Stockmanagement} />
-        <Route path="/user-profile" component={Userprofile} />
-        <Route path="/web-analytics" component={Webanalytics} />
+        <PrivateRoute exact path="/default-register" component={Defaultregister} />
+        <PrivateRoute exact path="/error" component={Error} />
+        <PrivateRoute exact path="/faq" component={Faq} />
+        <PrivateRoute exact path="/invoice" component={Invoice} />
+        <PrivateRoute exact path="/lock-screen" component={Lockscreen} />
+        <PrivateRoute exact path="/modal-login" component={Modallogin} />
+        <PrivateRoute exact path="/modal-register" component={Modalregister} />
+        <PrivateRoute exact path="/portfolio" component={Portfolio} />
+        <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
+        <PrivateRoute exact path="/user-profile" component={Userprofile} />
+        <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
       </Switch>
     </Router>
   );
