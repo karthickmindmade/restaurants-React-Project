@@ -16,7 +16,7 @@ export default function Listcontent() {
     console.log(CakesList.CakesList)
     useEffect(() => {
         dispatch({ type: actions.GET_ALL_CAKES })
-    }, [])
+    }, [dispatch,actions.GET_ALL_CAKES])
     return (
         <div className="ms-content-wrapper">
             <div className="row">
@@ -64,7 +64,7 @@ export default function Listcontent() {
                                                     {CakesList.CakesList.map((cake) =>
                                                         <tr class="odd">
                                                             <td class="sorting_1">{cake._id}</td>
-                                                            <td><img src="https://res.cloudinary.com/mindmadetech/image/upload/v1648797718/tqiugbdh9w22h3mtl7xz.jpg" />French Fries</td>
+                                                            <td><img src={cake.Images} />French Fries</td>
                                                             <td>{cake.TypeOfCake}</td>
                                                             <td>In Stock</td>
                                                             <td>{cake.Price}</td>

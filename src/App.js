@@ -82,7 +82,7 @@ function App() {
 
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/accordions" component={Accordions} />
-        <PrivateRoute exact path="/add-product" component={Addproduct} />
+        <Route exact path="/add-product" component={Addproduct} />
         <PrivateRoute exact path="/alerts" component={Alerts} />
         <PrivateRoute exact path="/animations" component={Animations} />
         <PrivateRoute exact path="/badges" component={Badges} />
