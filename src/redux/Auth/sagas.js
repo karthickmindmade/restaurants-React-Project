@@ -36,7 +36,7 @@ const workersLogIn = function* (data) {
       }else if(result.data.type==="vendor"){
         yield put({
           type: actions.UPDATE_AUTH_DETAILS,
-          payload: {isAuthenticated:true,route:"/vendardashboard"}
+          payload: {isAuthenticated:true,route:"/vendordashboard"}
         });
       }
      

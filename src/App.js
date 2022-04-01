@@ -69,8 +69,7 @@ import Userprofile from './components/pages/Userprofile';
 import Webanalytics from './components/pages/Webanalytics';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
-import Content from './components/sections/Defaultlogin/Content';
-import VendarDashboard from './components/vendor/pages/vendarDashboard';
+import VendorDashboard from './components/vendor/pages/vendorDashboard';
 
 
 function App() {
@@ -78,6 +77,7 @@ function App() {
     <Router >
       <Preloader/>
       <Switch>
+        
         <PublicRoute exact path="/" component={Defaultlogin} /> 
 
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -134,7 +134,6 @@ function App() {
         <PrivateRoute exact path="/widgets" component={Widgets} />
         <PrivateRoute exact path="/client-management" component={Clientmanagement} />
         <PrivateRoute exact path="/coming-soon" component={Comingsoon} />
-        {/* <PublicRoute exact path="/content" component={Content} /> */}
         <PrivateRoute exact path="/default-register" component={Defaultregister} />
         <PrivateRoute exact path="/error" component={Error} />
         <PrivateRoute exact path="/faq" component={Faq} />
@@ -146,8 +145,8 @@ function App() {
         <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
         <PrivateRoute exact path="/user-profile" component={Userprofile} />
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
-        {/* vendar pages */}
-        <PrivateRoute exact path="/vendardashboard" component={VendarDashboard} />
+        {/* vendor pages */}
+        <PrivateRoute exact path="/vendardashboard" component={VendorDashboard} />
       </Switch>
     </Router>
   );  
