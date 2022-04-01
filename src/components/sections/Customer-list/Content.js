@@ -2,10 +2,8 @@ import React, { Component, useEffect, useState } from 'react';
 import Breadcrumb from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
-import $ from 'jquery';
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../../redux/users/actions';
-import axios from 'axios';
 import ShowPerPage from '../../common/ShowPerPage';
 import TableSearch from '../../common/TableSearch';
 import Pagination from '../../common/Pagination';
@@ -83,7 +81,9 @@ export default function Content() {
                                                         <tr >
                                                             <td>{user._id}</td>
                                                             <td><img className='Avatar' src={user.file} /></td>
-                                                            <td>{user.Address}</td>
+                                                            <td>
+                                                               { user.FlavorList.flavor1 }
+                                                            </td>
                                                             <td>{user.PhoneNumber}</td>
                                                             <td> {user.UserName}</td>
                                                             <td>{user.Created_On}</td>
@@ -96,9 +96,9 @@ export default function Content() {
                                     <Pagination
                                         postsPerPage={postsPerPage}
                                         totalPosts={RegisteredUsers.registeredUsers.length}
-                                        paginate={paginate}                        
-                                        PreviouPage={()=>setCurrentPage(currentPage-1)}
-                                        NextPage={()=>setCurrentPage(currentPage+1)}
+                                        paginate={paginate}
+                                        PreviouPage={() => setCurrentPage(currentPage - 1)}
+                                        NextPage={() => setCurrentPage(currentPage + 1)}
                                         currentPage={currentPage}
                                     />
                                 </div>

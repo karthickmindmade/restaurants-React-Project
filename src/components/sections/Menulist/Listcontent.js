@@ -1,84 +1,103 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Breadcrumbs from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
+import { useDispatch, useSelector } from "react-redux";
+import actions from '../../../redux/cake/actions';
 
-var dataSet = [
-    [ "40521","  <img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>pizza",  "5421", "In Stock", "$32", "<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "98521", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>shake", "8422", "In Stock", "$17","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "45454", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Burger",  "1562", "In Stock", "$86","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "12121", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Noodels",  "6224", "In Stock", "$43","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "56454", "<img src='../../assets/img/costic/cereals.jpg' style='width:50px; height:30px;'>cake",  "5407", "Out Of Stock", "$16","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "25252", "<img src='../../assets/img/costic/cereals.jpg' style='width:50px; height:30px;'> Sandwich", "4804", "In Stock", "$37","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "45454", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>Spicy Sandwich", "9608", "Out Of Stock", "$13","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "64541", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>Peri Peri Fries",  "6200", "In Stock", "$32" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "56562", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Pasta",  "2360", "In Stock", "$20" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "51558", "<img src='../../assets/img/costic/cereals.jpg' style='width:50px; height:30px;'>Nachos",  "1667", "In Stock", "$10" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "55841", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>Mexican Pizza", "3814", "Out Of Stock", "$9","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "55811", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'> Pastries",  "9497", "In Stock", "$34","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "01475", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>French Fries",  "6741", "In Stock", "$47" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "55454", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'> Munchurian",  "3597", "In Stock", "$31" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "12145", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Garlic Bread", "1965", "Out Of Stock", "$3","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "52351", "<img src='../../assets/img/costic/cereals.jpg' style='width:50px; height:30px;'> Spaghetti",  "1581", "In Stock", "$19","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "45823", "<img src='../../assets/img/costic/cereals.jpg' style='width:50px; height:30px;'>Mix Sause Pasta",  "3059", "In Stock", "$7","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "98541", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Fried Egg Sandwich ",  "1721", "In Stock", "$23" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "22366", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Multigrain Hot Cereal",  "2558", "Out Of Stock", "$13" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "56465", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>Spicy Sandwich",  "2290", "In Stock", "$21","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "34256", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>shake",  "1937", "In Stock", "$34" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "45484", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Dim sum",  "6154", "In Stock", "$6","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "41028", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>spicy chicken soupe ",  "8330", "In Stock", "$10" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "15485", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>Baked Nachos",  "3023", "In Stock", "$10" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "48568", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>Spaghetti",  "5797", "In Stock", "$1,2","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "45815", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>Munchurian",  "8822", "In Stock", "$9","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "46542", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>Noodels",  "9239", "In Stock", "$35","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "65412", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Fried Egg Sandwich",  "1314", "In Stock", "$20","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "89658", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Hot Cereal",  "2947", "In Stock", "$8","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "02351", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>French Crostini",  "8899", "In Stock", "$16" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "56212", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>Spicy Noodels",  "2769", "Out Of Stock", "$9","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "78065", "<img src='../../assets/img/costic/cereals.jpg' style='width:50px; height:30px;'>Lemon Yogurt Parfait", "6832", "In Stock", "$11" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "56121", "<img src='../../assets/img/costic/cereals.jpg' style='width:50px; height:30px;'>Potato Fries",  "3606", "In Stock", "$14","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "14526", "<img src='../../assets/img/costic/egg-sandwich.jpg' style='width:50px; height:30px;'>Lemon Rice",  "2860", "In Stock", "$21" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "15451", "<img src='../../assets/img/costic/pizza.jpg' style='width:50px; height:30px;'>Fried Rice",  "8240", "In Stock", "$32","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "14451", "<img src='../../assets/img/costic/french-fries.jpg' style='width:50px; height:30px;'>pizza",  "5384", "Out Of Stock", "$85","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ]
-  ];
-class Listcontent extends Component {
-    componentDidMount() {
-        //initialize datatable
-        $('#data-table-5').DataTable({
-            data: dataSet,
-            columns: [
-                { title: "Product ID" },
-                { title: "Product Name" },
-                { title: "Quantity" },
-                { title: "Status" },
-                { title: "Price" },
-            ],
-        });
-    }
-    render() {
-        return (
-            <div className="ms-content-wrapper">
-                <div className="row">
-                    <div className="col-md-12">
-                        <Breadcrumbs />
-                        <div className="ms-panel">
-                            <div className="ms-panel-header">
-                                <h6>Product List</h6>
-                            </div>
-                            <div className="ms-panel-body">
-                                <div className="table-responsive">
-                                    <table id="data-table-5" className="table w-100 thead-primary"/>
+export default function Listcontent() {
+
+    //initialize datatable
+    const dispatch = useDispatch();
+    const CakesList = useSelector(
+        (state) => state.CakesReducer
+    );
+    console.log(CakesList.CakesList)
+    useEffect(() => {
+        dispatch({ type: actions.GET_ALL_CAKES })
+    }, [])
+    return (
+        <div className="ms-content-wrapper">
+            <div className="row">
+                <div className="col-md-12">
+                    <Breadcrumbs />
+                    <div className="ms-panel">
+                        <div className="ms-panel-header">
+                            <h6>Product List</h6>
+                        </div>
+                        <div className="ms-panel-body">
+                            <div class="table-responsive">
+                                <div id="data-table-5_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dataTables_length" id="data-table-5_length">
+                                                <label>
+                                                    Show
+                                                    <select name="data-table-5_length" aria-controls="data-table-5" class="custom-select custom-select-sm form-control form-control-sm">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                        <option value="100">100</option>
+                                                    </select>
+                                                    entries
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div id="data-table-5_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="data-table-5" /></label></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="data-table-5" class="table w-100 thead-primary dataTable no-footer" role="grid" aria-describedby="data-table-5_info" >
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product ID: activate to sort column descending" >Product ID</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Product Name: activate to sort column ascending" >Product Name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Quantity: activate to sort column ascending" >Quantity</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" >Status</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" >Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {CakesList.CakesList.map((cake) =>
+                                                        <tr class="odd">
+                                                            <td class="sorting_1">{cake._id}</td>
+                                                            <td><img src="https://res.cloudinary.com/mindmadetech/image/upload/v1648797718/tqiugbdh9w22h3mtl7xz.jpg" />French Fries</td>
+                                                            <td>{cake.TypeOfCake}</td>
+                                                            <td>In Stock</td>
+                                                            <td>{cake.Price}</td>
+                                                        </tr>
+                                                     ) }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="dataTables_info" id="data-table-5_info" role="status" aria-live="polite">Showing 1 to 10 of 36 entries</div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-7">
+                                            <div class="dataTables_paginate paging_simple_numbers" id="data-table-5_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button page-item previous disabled" id="data-table-5_previous"><a href="#" aria-controls="data-table-5" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                                    <li class="paginate_button page-item active"><a href="#" aria-controls="data-table-5" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                                    <li class="paginate_button page-item "><a href="#" aria-controls="data-table-5" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                                    <li class="paginate_button page-item "><a href="#" aria-controls="data-table-5" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                                                    <li class="paginate_button page-item "><a href="#" aria-controls="data-table-5" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                                                    <li class="paginate_button page-item next" id="data-table-5_next"><a href="#" aria-controls="data-table-5" data-dt-idx="5" tabindex="0" class="page-link">Next</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-        );
-    }
-
+    );
 }
-
-export default Listcontent;

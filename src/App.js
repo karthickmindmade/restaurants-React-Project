@@ -110,7 +110,7 @@ function App() {
         <PrivateRoute exact path="/materialize" component={Materialize} />
         <PrivateRoute exact path="/menu-catalogue" component={Menucatalogue} />
         <PrivateRoute exact path="/menu-grid" component={Menugrid} />
-        <PrivateRoute exact path="/menu-list" component={Menulist} />
+        <Route exact path="/menu-list" component={Menulist} />
         <PrivateRoute exact path="/modals" component={Modals} />
         <PrivateRoute exact path="/google-chart" component={Googlechart} />
         <PrivateRoute exact path="/orders" component={Orders} />
