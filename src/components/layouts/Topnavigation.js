@@ -23,6 +23,7 @@ export default function Topnavigation (){
   
         const logout = () => {
             dispatch({ type: actions.LOG_IN, payload: false } );
+            localStorage.removeItem('token');
         }
     
         return (
