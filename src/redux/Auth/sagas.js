@@ -24,10 +24,16 @@ const workersLogIn = function* (data) {
         `${API_URL}/login/validate`,payload
       )
     );
+    
     console.log("post result");
     console.log(result.data);
     // const Result = JSON.parse(JSON.stringify(result.data));
     if(result.data.statusCode === 200) {
+      
+      console.log(result.data.token);
+      localStorage.setItem('token',result.data.token);
+     
+     
       if(result.data.type==='admin'){
         yield put({
           type: actions.UPDATE_AUTH_DETAILS,
@@ -64,6 +70,7 @@ const workersLogOut =function* (data){
       
       payload: { isAuthenticated: payload }
     });
+   
   
 }
 export default AuthSaga;

@@ -146,7 +146,7 @@ function App() {
         <PrivateRoute exact path="/user-profile" component={Userprofile} />
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
         {/* vendor pages */}
-        <PrivateRoute exact path="/vendardashboard" component={VendorDashboard} />
+        <PrivateRoute exact path="/vendordashboard" component={VendorDashboard} />
       </Switch>
     </Router>
   );  
