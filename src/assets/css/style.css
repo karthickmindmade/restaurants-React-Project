@@ -7711,3 +7711,10 @@ background-image: none;
 .display-block{
   display: block !important;
 }
+.display-flex{
+  display: flex;
+}
+.option-control{
+  width: 100%;
+  font-weight: 400;
+}
