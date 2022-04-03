@@ -2,8 +2,9 @@ import React, { useEffect, useRef, Component, useState } from 'react';
 import Breadcrumb from './Breadcrumb';
 import Productslider from './Productslider'
 import { useDispatch, useSelector } from 'react-redux';
-import actions from '../../../redux/cake/actions';
-import SelectOption from '../../common/selectOption';
+
+import actions from '../../../../redux/cake/actions';
+import SelectOption from '../../../common/selectOption';
 export default function Addproductcontent() {
     const Title = useRef();
     const TypeOfCake = useRef();
@@ -14,6 +15,8 @@ export default function Addproductcontent() {
     const Stock = useRef()
     const [files, setimages] = useState([])
     const dispatch = useDispatch();
+
+
     const [flavor, setflavor] = useState()
     const [flavorlist, setflavorlist] = useState([])
     const [shape, setshape] = useState()
@@ -22,8 +25,10 @@ export default function Addproductcontent() {
     const [toppinglist, settoppinglist] = useState([])
     const [weight, setweight] = useState()
     const [weightlist, setweightlist] = useState([])
+
+    // flavorlist
     function addFlavor() {
-        if (undefined === flavor || '' === flavor) {
+        if (undefined === flavor || '' === flavor || flavorlist.filter((val) => { if (val === flavor) { return val } })[0] === flavor) {
 
         } else {
             setflavorlist([...flavorlist, flavor])
@@ -34,9 +39,9 @@ export default function Addproductcontent() {
 
     }
 
-
+    // cakeshape list
     function addshape() {
-        if (undefined === shape || '' === shape) {
+        if (undefined === shape || '' === shape || shapelist.filter((val) => { if (val === shape) { return val } })[0] === shape) {
 
         } else {
             setshapelist([...shapelist, shape])
@@ -47,9 +52,9 @@ export default function Addproductcontent() {
 
     }
 
-
+    //caketoppingslist
     function addtopping() {
-        if (undefined === topping || '' === topping) {
+        if (undefined === topping || '' === topping || toppinglist.filter((val) => { if (val === topping) { return val } })[0] === topping) {
 
         } else {
             settoppinglist([...toppinglist, topping])
@@ -60,9 +65,9 @@ export default function Addproductcontent() {
 
     }
 
-
+    //cakeweightlist
     function addweight() {
-        if (undefined === weight || '' === weight) {
+        if (undefined === weight || '' === weight || weightlist.filter((val) => { if (val === weight) { return val } })[0] === weight) {
 
         } else {
             setweightlist([...weightlist, weight])
@@ -72,7 +77,7 @@ export default function Addproductcontent() {
         setweightlist(weightlist.filter((val) => { if (val !== e.target.value) { return val } }))
 
     }
-
+    //addcake
     const AddCake = (e) => {
         e.preventDefault();
         const data = new FormData();
@@ -80,19 +85,27 @@ export default function Addproductcontent() {
             data.append("files", files[i]);
         }
 
-        data.append("Title", "Title6765");
-        data.append("Description", "Description");
-        data.append("TypeOfCake", "TypeOfCake");
-        data.append("eggOrEggless", "eggOrEggless")
-        data.append("Price", "Price");
+        data.append("Title", Title.current.value);
+        data.append("Description", Description.current.value);
+        data.append("TypeOfCake", TypeOfCake.current.value);
+        data.append("eggOrEggless", eggOrEggless.current.value)
+        data.append("Price", Price.current.value);
         data.append("Ratings", "Ratings");
         data.append("VendorID", "VendorID");
         data.append("VendorName", "VendorName")
         data.append("MobileNumberVendor", "MobileNumberVendor");
-        data.append("FlavorList", "FlavorList");
-        data.append("ShapesLists", "ShapesLists");
-        data.append("CakeToppings", "CakeToppings")
-        data.append("WeightList", "WeightList")
+        for (let i = 0; i < flavorlist.length; i++) {
+            data.append("FlavorList", flavorlist[i]);
+        }
+        for (let i = 0; i < shapelist.length; i++) {
+            data.append("ShapesLists", shapelist[i]);
+        }
+        for (let i = 0; i < toppinglist.length; i++) {
+            data.append("CakeToppings", toppinglist[i]);
+        }
+        for (let i = 0; i < weightlist.length; i++) {
+            data.append("WeightList", weightlist[i]);
+        }
 
         dispatch({
             type: actions.Add_CAKES, payload: data
@@ -167,7 +180,7 @@ export default function Addproductcontent() {
                                         <div className="input-group">
                                             <select className="form-control" id="validationCustom23" ref={Stock} required>
                                                 <option value="OutOfStock">OutOfStock</option>
-                                                <option value="InStock">OfStock</option>
+                                                <option value="InStock">InStock</option>
 
                                             </select>
                                             <div className="invalid-feedback">
@@ -273,7 +286,7 @@ export default function Addproductcontent() {
                 </div>
                 {CakesList.addCakeStatus === "" || CakesList.addCakeStatus === undefined ? <></> :
                     <div className={CakesList.addCakeStatus.statusCode === 400 ? "alert alert-danger" : "alert alert-success"} role="alert">
-                        <strong>Well done!</strong> You successfully read this important alert message.
+                        <strong>Well done!</strong> {CakesList.addCakeStatus.message}
                     </div>
                 }
             </div>

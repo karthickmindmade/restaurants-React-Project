@@ -59,7 +59,7 @@ export default function Sidenavigation() {
                             <ul id="product" className='active' aria-labelledby="product" data-parent="#side-nav-accordion">
                                 <li> <MenuLink to="/menu-catalogue" >Menu Catalogue</MenuLink>
                                 </li>
-                                <li> <MenuLink to="/menu-list" >Menu List</MenuLink>
+                                <li> <MenuLink to="/Vendor-menu-list" >Menu List</MenuLink>
                                 </li>
                                 <li> <MenuLink to="/menu-grid" >Menu Grid</MenuLink>
                                 </li>

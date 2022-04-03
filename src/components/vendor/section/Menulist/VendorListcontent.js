@@ -4,9 +4,9 @@ import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
 import { useDispatch, useSelector } from "react-redux";
-import actions from '../../../redux/cake/actions';
+import actions from '../../../../redux/cake/actions';
 
-export default function Listcontent() {
+export default function VendorListcontent() {
 
     //initialize datatable
     const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function Listcontent() {
                     <Breadcrumbs />
                     <div className="ms-panel">
                         <div className="ms-panel-header">
-                            <h6>Product List</h6>
+                            <h6>Vendor Product List</h6>
                         </div>
                         <div className="ms-panel-body">
                             <div class="table-responsive">

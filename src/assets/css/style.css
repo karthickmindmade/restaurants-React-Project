@@ -7718,3 +7718,9 @@ background-image: none;
   width: 100%;
   font-weight: 400;
 }
+.align-center{
+  left: 0;
+  right: 0;
+  display: block;
+  margin: auto;
+}

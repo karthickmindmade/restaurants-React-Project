@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Preloader from './components/layouts/Preloader';
 import Dashboard from './components/pages/Dashboard';
 import Accordions from './components/pages/Accordions';
-import Addproduct from './components/pages/Addproduct';
+import Addproduct from './components/vendor/pages/Addproduct';
 import Alerts from './components/pages/Alerts';
 import Animations from './components/pages/Animations';
 import Badges from './components/pages/Badges';
@@ -70,6 +70,8 @@ import Webanalytics from './components/pages/Webanalytics';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
 import VendorDashboard from './components/vendor/pages/vendorDashboard';
+import VendorMenulist from './components/vendor/pages/VendorMenulist';
+import VendorProductdetail from './components/vendor/pages/VendorProductdetail';
 
 
 function App() {
@@ -147,6 +149,8 @@ function App() {
         <PrivateRoute exact path="/user-profile" component={Userprofile} />
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
         {/* vendor pages */}
+        <Route exact path="/Vendor-menu-list" component={VendorMenulist} />
+        <Route exact path="/Vendor-Productdetail" component={VendorProductdetail} />
         <PrivateRoute exact path="/vendordashboard" component={VendorDashboard} />
       </Switch>
     </Router>

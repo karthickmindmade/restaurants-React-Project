@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Sidenavigation from '../layouts/Sidenavigation';
-import Topnavigation from '../layouts/Topnavigation';
-import Addproductcontent from '../sections/Addproduct/Addproductcontent'
-import Quickbar from '../layouts/Quickbar';
+import Sidenavigation from '../layout/Sidenavigation';
+import Topnavigation from '../layout/Topnavigation';
+import Addproductcontent from '../section/Addproduct/Addproductcontent'
+
 
 class Addproduct extends Component {
     render() {
@@ -13,7 +13,7 @@ class Addproduct extends Component {
                     <Topnavigation />
                     <Addproductcontent/>
                 </main>
-                <Quickbar />
+               
             </div>
         );
     }

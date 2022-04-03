@@ -1,8 +1,9 @@
 import actions from "./actions";
 
 const initialState = {
-    CakesList : [],
-    addCakeStatus:""
+  CakesList: [],
+  addCakeStatus: "",
+  CakeDetails:[]
 };
 
 const CakesReducer = (state = initialState, action) => {
@@ -11,13 +12,18 @@ const CakesReducer = (state = initialState, action) => {
       return {
         ...state,
         CakesList: action.payload
-        
+
       }
-      case actions.Add_CAKES_STATUS:
-        return {
-          ...state,
-          addCakeStatus:action.payload.addCakeStatus
-        }
+    case actions.Add_CAKES_STATUS:
+      return {
+        ...state,
+        addCakeStatus: action.payload.addCakeStatus
+      }
+    case actions.SET_SINGLE_CAKEDETAILS:
+      return {
+        ...state,
+        CakeDetails: action.payload.CakeDetails
+      }
     default:
       return state;
   }
