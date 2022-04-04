@@ -8,7 +8,6 @@ export default function VendorDetailcontent(props) {
     const [open, setopen] = useState(false)
     // const {state}=props
     const dispatch = useDispatch();
-
     const [cakedetails, setcakedetails] = useState([])
     useEffect(() => {
         dispatch({

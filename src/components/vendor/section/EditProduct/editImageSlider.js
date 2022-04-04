@@ -5,18 +5,18 @@ export default function EditProductslider(props) {
     const { image } = props
     var images
    var imageurl=props.imagesurl
-    if (image === undefined) {
-        images = []
-    } else {
-        images=image
-        for (let i = 0; i < images.length; i++) {
+    // if (image === undefined) {
+    //     images = []
+    // } else {
+    //     // images=image
+    //     // for (let i = 0; i < images.length; i++) {
            
-                imageurl.push(URL.createObjectURL(images[i]))
+    //     //         imageurl.push(URL.createObjectURL(images[i]))
             
            
-        }
-    }
-  console.log(imageurl)
+    //     // }
+    // }
+
     return (
         <Carousel id="imagesSlider" className="ms-image-slider carousel slide" data-ride="carousel" indicators={false}>
             {imageurl.map((img) =>

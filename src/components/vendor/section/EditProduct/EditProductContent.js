@@ -7,7 +7,7 @@ import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
 import EditProductslider from './editImageSlider';
 import ImgSelectOption from '../Addproduct/imgSelect';
-import Imgloop from './imgloop';
+
 export default function Editproductcontent(props) {
     const { vendor } = props
     const Title = useRef();
@@ -20,7 +20,7 @@ export default function Editproductcontent(props) {
     const [files, setimages] = useState([])
     const dispatch = useDispatch();
     const [updateImage, setupdateImage] = useState(vendor.Images)
-const [deleteopen,setdeleteopen]=useState(false)
+    const [deleteopen, setdeleteopen] = useState(false)
     const [flavor, setflavor] = useState()
     const [flavorlist, setflavorlist] = useState(vendor.FlavorList)
     const [shape, setshape] = useState()
@@ -76,7 +76,7 @@ const [deleteopen,setdeleteopen]=useState(false)
 
     }
     function setdeleteImage(e) {
-        e.preventDefault();
+        e.preventDefault()
         setupdateImage(updateImage.filter((val) => { if (val !== e.target.value) { return val } }))
 
     }
@@ -110,7 +110,6 @@ const [deleteopen,setdeleteopen]=useState(false)
         for (let i = 0; i < weightlist.length; i++) {
             data.append("WeightList", weightlist[i]);
         }
-
         dispatch({
             type: actions.Add_CAKES, payload: data
         });
@@ -120,7 +119,26 @@ const [deleteopen,setdeleteopen]=useState(false)
         (state) => state.CakesReducer
     );
     console.log(CakesList.addCakeStatus)
-    console.log(flavorlist)
+    // console.log(flavorlist)
+    // var imageurl = []
+    // // for (let i = 0; i < files.length; i++) {
+    // //     imageurl.push(files[i])
+    // // }
+    // console.log(files)
+    // var array = [...files]; // make a separate copy of the array
+    // var index = array.indexOf(2)
+
+    //     imageurl = array.splice(index, 1);
+    // setimages(files.splice(index, 1))
+    function removeFile(e, index) {
+        e.preventDefault()
+        setimages([...files].filter((_, i) => i !== index));
+    };
+    console.log(files)
+    var imageurl = []
+    for (let i = 0; i < files.length; i++) {
+        imageurl.push(URL.createObjectURL(files[i]))
+    }
     return (
         <div className="row">
             <div className="col-md-12">
@@ -195,15 +213,22 @@ const [deleteopen,setdeleteopen]=useState(false)
                                         </div>
                                     </div>
                                 </div>
-                                <label htmlFor="validationCustom12">Product Image</label>
+                                <label htmlFor="validationCustom12" >Product Image</label>
                                 <div className="col-md-12 mb-3 display-flex">
-                                    {/* <ImgSelectOption divClassName="display-flex" image={files} imagesurl={updateImage} deleteFun={(e) => setdeleteImage(e)}  deleteButton={deleteopen===false?'btn-secondary':'btn-secondary display-non'} /> */}
-                                    <Imgloop image={files} />
-                                    <div className='image-upload-div' onClick={()=>setdeleteopen(true)}>
-                                        <input type='file'  onChange={(e) => setimages(e.target.files)} name='files' multiple />
+                                    <ImgSelectOption divClassName="display-flex" imagesurl={updateImage} deleteFun={(e) => setdeleteImage(e)} />
+                                   
+                                    <div className='image-upload-div' onClick={() => setdeleteopen(true)}>
+                                        <input type='file' onChange={(e) => setimages(e.target.files)} name='files' multiple />
                                         <i className="material-icons ">add</i>
                                     </div>
                                 </div>
+                                <div className='display-flex'>
+                                        {imageurl.map((value, index) =>
+                                            <div className="display-flex">
+                                                <img width='50px' className='' src={value} /><button className='' value={value} onClick={(e) => removeFile(e, index)}>X</button>
+                                            </div>
+                                        )}
+                                    </div>
                             </div>
                         </form>
                     </div>
@@ -218,7 +243,6 @@ const [deleteopen,setdeleteopen]=useState(false)
                             </div>
                             <div className="ms-panel-body">
                                 <EditProductslider image={files} imagesurl={updateImage} />
-                                
                             </div>
                             <div className='form-row m-3' >
                                 <div className="col-md-6 mb-3">
