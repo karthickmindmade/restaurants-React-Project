@@ -64,10 +64,6 @@ export default function Sidenavigation() {
                                 </li>
                                 <li> <MenuLink to="/menu-grid" >Menu Grid</MenuLink>
                                 </li>
-                                <li> <MenuLink to="/add-product" >Add Product</MenuLink>
-                                </li >
-                                <li> <MenuLink to="/product-detail" >Product Detail</MenuLink>
-                                </li >
                             </ul >
                         }
                     />

@@ -7724,3 +7724,29 @@ background-image: none;
   display: block;
   margin: auto;
 }
+.float-end-button {
+  position: absolute;
+  top: 25%;
+  right: 28px;
+  bottom: 30%;
+}
+.image-upload-div i {
+  font-size: 41px;
+  padding: 22px;
+  cursor: pointer;
+}
+.image-upload-div {
+  position: relative;
+  /* margin: -5px; */
+  margin-left: 14px;
+}
+.image-upload-div input {
+  position: absolute;
+  padding: 21px;
+  opacity: 0;
+  margin: 9px;
+  width: 100%;
+}
+.display-non{
+  display: none;
+}

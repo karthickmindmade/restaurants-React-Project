@@ -151,7 +151,7 @@ function App() {
         {/* vendor pages */}
         <Route exact path="/Vendor-menu-list" component={VendorMenulist} />
         <Route exact path="/Vendor-Productdetail" component={VendorProductdetail} />
-        <PrivateRoute exact path="/vendordashboard" component={VendorDashboard} />
+        <Route exact path="/vendordashboard" component={VendorDashboard} />
       </Switch>
     </Router>
   );  

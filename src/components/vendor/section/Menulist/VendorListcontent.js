@@ -5,9 +5,9 @@ import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
 import $ from 'jquery';
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../../../redux/cake/actions';
-
+import { useHistory } from 'react-router-dom/esm/react-router-dom';
 export default function VendorListcontent() {
-
+    const history = useHistory();
     //initialize datatable
     const dispatch = useDispatch();
     const CakesList = useSelector(
@@ -16,7 +16,11 @@ export default function VendorListcontent() {
     console.log(CakesList.CakesList)
     useEffect(() => {
         dispatch({ type: actions.GET_ALL_CAKES })
-    }, [dispatch,actions.GET_ALL_CAKES])
+    }, [dispatch, actions.GET_ALL_CAKES])
+function ViewDetails(cake){
+    history.push('/Vendor-Productdetail')
+}
+
     return (
         <div className="ms-content-wrapper">
             <div className="row">
@@ -62,14 +66,14 @@ export default function VendorListcontent() {
                                                 </thead>
                                                 <tbody>
                                                     {CakesList.CakesList.map((cake) =>
-                                                        <tr class="odd">
+                                                        <tr class="odd" onClick={(cake)=>ViewDetails(cake)}>
                                                             <td class="sorting_1">{cake._id}</td>
                                                             <td><img src={cake.Images} />{cake.Title}</td>
                                                             <td>{cake.TypeOfCake}</td>
                                                             <td>{cake.Stock}</td>
                                                             <td>{cake.Price}</td>
                                                         </tr>
-                                                     ) }
+                                                    )}
                                                 </tbody>
                                             </table>
                                         </div>

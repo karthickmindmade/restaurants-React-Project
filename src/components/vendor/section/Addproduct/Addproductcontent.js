@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, Component, useState } from 'react';
-import Breadcrumb from './Breadcrumb';
+import Breadcrumb from '../Addproduct/Breadcrumb';
 import Productslider from './Productslider'
 import { useDispatch, useSelector } from 'react-redux';
 
 import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
+import ImgSelectOption from './imgSelect';
 export default function Addproductcontent() {
     const Title = useRef();
     const TypeOfCake = useRef();
@@ -13,9 +14,8 @@ export default function Addproductcontent() {
     const file = useRef()
     const eggOrEggless = useRef()
     const Stock = useRef()
-    const [files, setimages] = useState([])
+    const [files, setfiles] = useState([])
     const dispatch = useDispatch();
-
 
     const [flavor, setflavor] = useState()
     const [flavorlist, setflavorlist] = useState([])
@@ -49,13 +49,10 @@ export default function Addproductcontent() {
     }
     function setdeleteshape(e) {
         setshapelist(shapelist.filter((val) => { if (val !== e.target.value) { return val } }))
-
     }
-
     //caketoppingslist
     function addtopping() {
         if (undefined === topping || '' === topping || toppinglist.filter((val) => { if (val === topping) { return val } })[0] === topping) {
-
         } else {
             settoppinglist([...toppinglist, topping])
         }
@@ -68,7 +65,6 @@ export default function Addproductcontent() {
     //cakeweightlist
     function addweight() {
         if (undefined === weight || '' === weight || weightlist.filter((val) => { if (val === weight) { return val } })[0] === weight) {
-
         } else {
             setweightlist([...weightlist, weight])
         }
@@ -120,9 +116,10 @@ export default function Addproductcontent() {
     );
     console.log(CakesList.addCakeStatus)
 
-    console.log(flavorlist)
+
     return (
         <div className="ms-content-wrapper">
+            { }
             <div className="row">
                 <div className="col-md-12">
                     <Breadcrumb />
@@ -200,11 +197,13 @@ export default function Addproductcontent() {
                                     <div className="col-md-12 mb-3">
                                         <label htmlFor="validationCustom12">Product Image</label>
                                         <div className="custom-file">
-                                            <input type='file' className="custom-file-input" onChange={(e) => setimages(e.target.files)} name='files' multiple />
+                                            <input type='file' className="custom-file-input" onChange={(e) => setfiles(e.target.files)} name='files' multiple />
                                             <label className="custom-file-label" htmlFor="validatedCustomFile">Upload Images...</label>
                                             <div className="invalid-feedback">Example invalid custom file feedback</div>
                                         </div>
+                                        {/* <ImgSelectOption option={files} /> */}
                                     </div>
+                                    
                                 </div>
                             </form>
                         </div>
@@ -225,8 +224,8 @@ export default function Addproductcontent() {
                                     <div className="col-md-6 mb-3">
                                         <label htmlFor="validationCustom22">Add Flavor</label>
                                         <div className="input-group">
-                                            <div className='display-flex'>
-                                                <input type="text" className="form-control" onChange={(e) => setflavor(e.target.value)} />
+                                            <div className='display-flex w-100'>
+                                                <input type="text" className="form-control " onChange={(e) => setflavor(e.target.value)} />
                                                 <button className='btn-secondary' onClick={addFlavor}>add</button>
                                             </div>
                                             <div className="invalid-feedback">
@@ -238,11 +237,10 @@ export default function Addproductcontent() {
                                     <div className="col-md-6 mb-3">
                                         <label htmlFor="validationCustom23">Add Shapes</label>
                                         <div className="input-group">
-                                            <div className='display-flex'>
+                                            <div className='display-flex w-100'>
                                                 <input type="text" className="form-control" onChange={(e) => setshape(e.target.value)} />
                                                 <button className='btn-secondary' onClick={addshape}>add</button>
                                             </div>
-
                                             <div className="invalid-feedback">
                                                 Please select a Currency
                                             </div>
@@ -252,7 +250,7 @@ export default function Addproductcontent() {
                                     <div className="col-md-6 mb-3">
                                         <label htmlFor="validationCustom22">Add CakeToppings</label>
                                         <div className="input-group">
-                                            <div className='display-flex'>
+                                            <div className='display-flex w-100'>
                                                 <input type="text" className="form-control" onChange={(e) => settopping(e.target.value)} />
                                                 <button className='btn-secondary' onClick={addtopping}>add</button>
                                             </div>
@@ -265,7 +263,7 @@ export default function Addproductcontent() {
                                     <div className="col-md-6 mb-3">
                                         <label htmlFor="validationCustom23">Add WeightList</label>
                                         <div className="input-group">
-                                            <div className='display-flex'>
+                                            <div className='display-flex w-100'>
                                                 <input type="text" className="form-control" onChange={(e) => setweight(e.target.value)} />
                                                 <button className='btn-secondary' onClick={addweight}>add</button>
                                             </div>
@@ -278,7 +276,6 @@ export default function Addproductcontent() {
                                 </div>
                                 <div className="ms-panel-header new">
                                     <button className="btn btn-secondary d-block" type="submit" onClick={AddCake}>Save</button>
-
                                 </div>
                             </div>
                         </div>
