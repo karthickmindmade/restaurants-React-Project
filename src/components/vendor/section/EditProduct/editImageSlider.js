@@ -10,7 +10,10 @@ export default function EditProductslider(props) {
     } else {
         images=image
         for (let i = 0; i < images.length; i++) {
-            imageurl.push(URL.createObjectURL(images[i]))
+           
+                imageurl.push(URL.createObjectURL(images[i]))
+            
+           
         }
     }
   console.log(imageurl)

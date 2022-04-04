@@ -7,6 +7,7 @@ import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
 import EditProductslider from './editImageSlider';
 import ImgSelectOption from '../Addproduct/imgSelect';
+import Imgloop from './imgloop';
 export default function Editproductcontent(props) {
     const { vendor } = props
     const Title = useRef();
@@ -75,7 +76,7 @@ const [deleteopen,setdeleteopen]=useState(false)
 
     }
     function setdeleteImage(e) {
-       
+        e.preventDefault();
         setupdateImage(updateImage.filter((val) => { if (val !== e.target.value) { return val } }))
 
     }
@@ -114,7 +115,7 @@ const [deleteopen,setdeleteopen]=useState(false)
             type: actions.Add_CAKES, payload: data
         });
     }
-   
+    console.log(files)
     const CakesList = useSelector(
         (state) => state.CakesReducer
     );
@@ -196,7 +197,8 @@ const [deleteopen,setdeleteopen]=useState(false)
                                 </div>
                                 <label htmlFor="validationCustom12">Product Image</label>
                                 <div className="col-md-12 mb-3 display-flex">
-                                    <ImgSelectOption divClassName="display-flex" image={files} imagesurl={updateImage} deleteFun={(e) => setdeleteImage(e)}  deleteButton={deleteopen===false?'btn-secondary':'btn-secondary display-non'} />
+                                    {/* <ImgSelectOption divClassName="display-flex" image={files} imagesurl={updateImage} deleteFun={(e) => setdeleteImage(e)}  deleteButton={deleteopen===false?'btn-secondary':'btn-secondary display-non'} /> */}
+                                    <Imgloop image={files} />
                                     <div className='image-upload-div' onClick={()=>setdeleteopen(true)}>
                                         <input type='file'  onChange={(e) => setimages(e.target.files)} name='files' multiple />
                                         <i className="material-icons ">add</i>

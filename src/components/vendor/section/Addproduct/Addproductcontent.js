@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
-import ImgSelectOption from './imgSelect';
+
 export default function Addproductcontent() {
     const Title = useRef();
     const TypeOfCake = useRef();
@@ -201,7 +201,7 @@ export default function Addproductcontent() {
                                             <label className="custom-file-label" htmlFor="validatedCustomFile">Upload Images...</label>
                                             <div className="invalid-feedback">Example invalid custom file feedback</div>
                                         </div>
-                                        {/* <ImgSelectOption option={files} /> */}
+                                    
                                     </div>
                                     
                                 </div>
