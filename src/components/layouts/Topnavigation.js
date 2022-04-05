@@ -22,7 +22,7 @@ export default function Topnavigation (){
    
   
         const logout = () => {
-            dispatch({ type: actions.LOG_IN, payload: false } );
+            dispatch({ type: actions.UPDATE_AUTH_DETAILS, payload: {isAuthenticated:false} } );
             localStorage.removeItem('token');
         }
     

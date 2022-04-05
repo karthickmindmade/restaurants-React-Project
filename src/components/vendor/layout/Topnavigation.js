@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import $ from 'jquery';
 import { Dropdown, NavLink } from 'react-bootstrap';
@@ -18,11 +18,10 @@ export default function Topnavigation (){
     const topbaropen = () => {
         $('#ms-nav-options').toggleClass('ms-slide-down');
     }
-
-   
-  
+    
         const logout = () => {
-            dispatch({ type: actions.LOG_IN, payload: false } );
+            dispatch({ type: actions.UPDATE_AUTH_DETAILS, payload: {isAuthenticated:false} } );
+            localStorage.removeItem('token');
         }
     
         return (

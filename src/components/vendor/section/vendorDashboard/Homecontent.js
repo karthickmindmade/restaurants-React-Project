@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import Recentorder from './Recentorder';
 import Scrollbar from 'react-perfect-scrollbar'
@@ -8,6 +8,7 @@ import Chart from './Chart';
 import Trendingorder from './Trendingorder';
 import Orderchart from './Orderchart';
 import Restaurantlisting from './Restaurantlisting';
+import { useSelector } from 'react-redux';
 
 const phonetip = (
     <Tooltip>
@@ -24,8 +25,11 @@ const invitetip = (
         Add to Chat
     </Tooltip>
 );
-class Homecontent extends Component {
-    render() {
+export default function Homecontent() {
+    const auth = useSelector(
+        state => state.authReducer
+    );
+console.log(auth.token.Email)
         return (
             <div className="ms-content-wrapper">
                 <div className="row">
@@ -618,6 +622,3 @@ class Homecontent extends Component {
 
         );
     }
-}
-
-export default Homecontent;
