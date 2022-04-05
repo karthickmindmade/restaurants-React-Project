@@ -17,14 +17,21 @@ export default function Listcontent() {
     console.log(CakesList.CakesList)
     useEffect(() => {
         dispatch({ type: actions.GET_ALL_CAKES })
-    }, [dispatch,actions.GET_ALL_CAKES])
+    }, [])
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
     // Get current posts
+    var currentdata
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost);
+
+    if(CakesList.CakesList===undefined){
+        currentdata=[]
+    }else{
+        currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost);
+    }
+   
       // Change page
       const paginate = pageNumber => setCurrentPage(pageNumber);
     return (
@@ -71,7 +78,7 @@ export default function Listcontent() {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {currentdata.CakesList.map((cake) =>
+                                                    {currentdata.map((cake) =>
                                                         <tr class="odd">
                                                             <td class="sorting_1">{cake._id}</td>
                                                             <td><img src={cake.Images} />{cake.Title}</td>

@@ -4,8 +4,8 @@ import Topnavigation from '../layouts/Topnavigation';
 import Quickbar from '../layouts/Quickbar';
 import Content from '../sections/Userprofile/Content';
 
-function Userprofile () {
-   
+class Userprofile extends Component {
+    render() {
         return (
             <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
                 <Sidenavigation />
@@ -13,10 +13,10 @@ function Userprofile () {
                     <Topnavigation />
                     <Content/>
                 </main>
-              
+                <Quickbar />
             </div>
         );
     }
-
+}
 
 export default Userprofile;

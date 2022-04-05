@@ -82,7 +82,7 @@ export default function Content() {
                                                             <td>{user._id}</td>
                                                             <td><img className='Avatar' src={user.file} /></td>
                                                             <td>
-                                                               { user.FlavorList.flavor1 }
+                                                               { user.FlavorList }
                                                             </td>
                                                             <td>{user.PhoneNumber}</td>
                                                             <td> {user.UserName}</td>

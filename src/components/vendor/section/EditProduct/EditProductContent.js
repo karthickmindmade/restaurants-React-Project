@@ -22,9 +22,9 @@ export default function Editproductcontent(props) {
     const dispatch = useDispatch();
     const [updateImage, setupdateImage] = useState(vendor.Images)
     const [flavor, setflavor] = useState()
-    const [flavorlist, setflavorlist] = useState(vendor.FlavorList)
+    const [flavorlist, setflavorlist] = useState(vendor.FlavourList)
     const [shape, setshape] = useState()
-    const [shapelist, setshapelist] = useState(vendor.ShapesLists)
+    const [shapelist, setshapelist] = useState(vendor.ShapeList)
     const [topping, settopping] = useState()
     const [toppinglist, settoppinglist] = useState(vendor.CakeToppings)
     const [weight, setweight] = useState()
@@ -140,7 +140,7 @@ export default function Editproductcontent(props) {
             <div className="col-xl-6 col-md-12">
                 <div className="ms-panel ms-panel-fh">
                     <div className="ms-panel-header">
-                        <h6>Add Product Form</h6>
+                        <h6>Edits Product Form</h6>
                     </div>
                     <div className="ms-panel-body">
                         <form className="needs-validation clearfix" noValidate>

@@ -26,10 +26,8 @@ const invitetip = (
     </Tooltip>
 );
 export default function Homecontent() {
-    const auth = useSelector(
-        state => state.authReducer
-    );
-console.log(auth.token.Email)
+   
+
         return (
             <div className="ms-content-wrapper">
                 <div className="row">

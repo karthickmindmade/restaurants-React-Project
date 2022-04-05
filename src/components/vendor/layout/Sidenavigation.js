@@ -47,7 +47,7 @@ export default function Sidenavigation() {
                 <ul className="accordion ms-main-aside fs-14" id="side-nav-accordion">
                     {/* Dashboard */}
                     <li className="menu-item">
-                        <MenuLink to="/Dashboard" > <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
+                        <MenuLink to="/vendordashboard" > <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
                         </MenuLink>
                     </li>
                     {/* /Dashboard */}
@@ -57,67 +57,20 @@ export default function Sidenavigation() {
                         </MenuLink>}
                         body={
                             <ul id="product" className='active' aria-labelledby="product" data-parent="#side-nav-accordion">
-                                <li> <MenuLink to="/menu-catalogue" >Menu Catalogue</MenuLink>
+                                <li> <MenuLink to="/vendordashboard" >Menu Catalogue</MenuLink>
                                 </li>
                                 <li> <MenuLink to="/Vendor-menu-list" >Menu List</MenuLink>
                                 </li>
-                                <li> <MenuLink to="/menu-grid" >Menu Grid</MenuLink>
+                                <li> <MenuLink to="#" >Menu Grid</MenuLink>
                                 </li>
                                 <li> <MenuLink to="/add-product" >Add Product</MenuLink>
-                                </li >
-                                <li> <MenuLink to="/product-detail" >Product Detail</MenuLink>
                                 </li >
                             </ul >
                         }
                     />
                     {/* product end */}
                     {/* orders */}
-                    <li className="menu-item">
-                        <MenuLink to="/orders"> <span><i className="fas fa-clipboard-list fs-16" />Orders</span>
-                        </MenuLink>
-                    </li >
-                    {/* orders end */}
-                    {/* restaurants */}
-                    <li className="menu-item">
-                        <MenuLink to="/restaurant-list"> <span><i className="fa fa-tasks fs-16" />Restaurants List</span>
-                        </MenuLink>
-                    </li >
-                    {/* restaurants end */}
-                    {/* Invoice */}
-                    <Dropdown
-                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fas fa-file-invoice fs-16" />Invoice </span>
-                        </MenuLink>}
-                        body={
-                            <ul id="invoice" className='active' aria-labelledby="invoice" data-parent="#side-nav-accordion">
-                                <li> <MenuLink to="/invoice-detail" >Invoice Detail</MenuLink>
-                                </li>
-                                <li> <MenuLink to="/invoice-list" >Invoice List</MenuLink>
-                                </li>
-                            </ul >
-                        }
-                    />
-                    {/* Invoice end */}
-                    {/* customers*/}
-                    <Dropdown
-                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fas fa-user-friends fs-16" />Customers </span>
-                        </MenuLink>}
-                        body={
-                            <ul id="customer" className="active" aria-labelledby="customer" data-parent="#side-nav-accordion">
-                                <li> <MenuLink to="/customer-review" >Customers Review</MenuLink>
-                                </li>
-                                <li> <MenuLink to="/customer-list" >Customers List</MenuLink>
-                                </li>
-                                <li> <MenuLink to="/social-activity" >Social Activity</MenuLink>
-                                </li >
-                            </ul >
-                        }
-                    />
-                    {/* Customers  end */}
-                    {/* sales */}
-                    <li className="menu-item">
-                        <MenuLink to="/sales" > <span><i className="fa fa-briefcase fs-16" />Sales</span>
-                        </MenuLink>
-                    </li >
+                   
                     {/* sales end  */}
                 </ul >
             </Scrollbar >

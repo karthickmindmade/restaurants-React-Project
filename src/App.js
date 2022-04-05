@@ -72,6 +72,7 @@ import PublicRoute from './route/PublicRoute';
 import VendorDashboard from './components/vendor/pages/vendorDashboard';
 import VendorMenulist from './components/vendor/pages/VendorMenulist';
 import VendorProductdetail from './components/vendor/pages/VendorProductdetail';
+import Vendorprofile from './components/vendor/pages/vendorprofile';
 
 
 function App() {
@@ -82,7 +83,6 @@ function App() {
       <Switch>
         
         <PublicRoute exact path="/" component={Defaultlogin} /> 
-
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/accordions" component={Accordions} />
         <Route exact path="/add-product" component={Addproduct} />
@@ -147,11 +147,12 @@ function App() {
         <PrivateRoute exact path="/portfolio" component={Portfolio} />
         <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
         <Route exact path="/user-profile" component={Userprofile} />
+        <Route exact path="/vendor-profile" component={<Vendorprofile />} />
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
         {/* vendor pages */}
         <Route exact path="/Vendor-menu-list" component={VendorMenulist} />
         <Route exact path="/Vendor-Productdetail" component={VendorProductdetail} />
-        <PrivateRoute exact path="/vendordashboard" component={VendorDashboard} />
+        <Route exact path="/vendordashboard" component={VendorDashboard} />
       </Switch>
     </Router>
   );  
