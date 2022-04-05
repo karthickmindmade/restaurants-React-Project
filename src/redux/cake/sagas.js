@@ -7,7 +7,9 @@ const CakeListSaga = function* () {
     yield all([
         yield takeEvery(actions.Add_CAKES, AddCake),
         yield takeEvery(actions.GET_ALL_CAKES, getAllCakes),
-        yield takeEvery(actions.GET_SINGLE_CAKEDETAILS, getCakeDetails)
+        yield takeEvery(actions.GET_SINGLE_CAKEDETAILS, getCakeDetails),
+        yield takeEvery(actions.UPDATE_CAKES, UpdateCake)
+
     ]);
 };
 
@@ -48,6 +50,19 @@ const getCakeDetails=function* (data){
             axios.get(`https://cakey-database.vercel.app/api/cake/list/${payload}`)
         );
         yield put({ type: actions.SET_SINGLE_CAKEDETAILS, payload: {CakeDetails:result.data} });
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const UpdateCake=function*(data){
+    const {payload}=data;
+    console.log(payload);
+    try {
+        const result = yield call(() =>
+            axios.get(`https://cakey-database.vercel.app/api/vendors/update/${payload.reqParamid}`,payload.reqBody)
+        );
+        yield put({ type: actions.UPDATE_CAKES_STATUS, payload: {UpdatecakeStatus:result.data} });
     } catch (err) {
         console.log(err)
     }

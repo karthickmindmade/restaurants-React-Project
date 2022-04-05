@@ -3,7 +3,8 @@ import actions from "./actions";
 const initialState = {
   CakesList: [],
   addCakeStatus: "",
-  CakeDetails:[]
+  CakeDetails: [],
+  UpdatecakeStatus: ''
 };
 
 const CakesReducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const CakesReducer = (state = initialState, action) => {
       return {
         ...state,
         CakeDetails: action.payload.CakeDetails
+      }
+    case actions.UPDATE_CAKES_STATUS:
+      return {
+        ...state,
+        UpdatecakeStatus: action.payload.UpdatecakeStatus
       }
     default:
       return state;

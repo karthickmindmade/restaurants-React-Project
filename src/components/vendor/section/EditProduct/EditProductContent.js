@@ -81,39 +81,7 @@ export default function Editproductcontent(props) {
 
     }
     //addcake
-    const AddCake = (e) => {
-        e.preventDefault();
-        const data = new FormData();
-        for (let i = 0; i < files.length; i++) {
-            data.append("files", files[i]);
-        }
-        data.append("Title", Title.current.value);
-        data.append("Description", Description.current.value);
-        data.append("TypeOfCake", TypeOfCake.current.value);
-        data.append("eggOrEggless", eggOrEggless.current.value)
-        data.append("Price", Price.current.value);
-        data.append("Ratings", "Ratings");
-        data.append("Stock", Stock.current.value);
-        data.append("VendorID", "VendorID");
-        data.append("VendorName", "VendorName")
 
-        data.append("MobileNumberVendor", "MobileNumberVendor");
-        for (let i = 0; i < flavorlist.length; i++) {
-            data.append("FlavorList", flavorlist[i]);
-        }
-        for (let i = 0; i < shapelist.length; i++) {
-            data.append("ShapesLists", shapelist[i]);
-        }
-        for (let i = 0; i < toppinglist.length; i++) {
-            data.append("CakeToppings", toppinglist[i]);
-        }
-        for (let i = 0; i < weightlist.length; i++) {
-            data.append("WeightList", weightlist[i]);
-        }
-        dispatch({
-            type: actions.Add_CAKES, payload: data
-        });
-    }
     console.log(files)
     const CakesList = useSelector(
         (state) => state.CakesReducer
@@ -138,6 +106,40 @@ export default function Editproductcontent(props) {
     var imageurl = []
     for (let i = 0; i < files.length; i++) {
         imageurl.push(URL.createObjectURL(files[i]))
+    }
+
+
+    const AddCake = (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            data.append("files", files[i]);
+        }
+        data.append("Title", Title.current.value);
+        data.append("Description", Description.current.value);
+        data.append("TypeOfCake", TypeOfCake.current.value);
+        data.append("eggOrEggless", eggOrEggless.current.value)
+        data.append("Price", Price.current.value);
+        data.append("Ratings", "Ratings");
+        data.append("Stock", Stock.current.value);
+        data.append("VendorID", "VendorID");
+        data.append("VendorName", "VendorName")
+        data.append("VendorPhoneNumber", "VendorPhoneNumber");
+        for (let i = 0; i < flavorlist.length; i++) {
+            data.append("FlavorList", flavorlist[i]);
+        }
+        for (let i = 0; i < shapelist.length; i++) {
+            data.append("ShapesLists", shapelist[i]);
+        }
+        for (let i = 0; i < toppinglist.length; i++) {
+            data.append("CakeToppings", toppinglist[i]);
+        }
+        for (let i = 0; i < weightlist.length; i++) {
+            data.append("WeightList", weightlist[i]);
+        }
+        dispatch({
+            type: actions.UPDATE_CAKES, payload: { reqBody: data, reqParamid: '624a75492dcd834b7aed1b9c' }
+        });
     }
     return (
         <div className="row">
@@ -216,19 +218,19 @@ export default function Editproductcontent(props) {
                                 <label htmlFor="validationCustom12" >Product Image</label>
                                 <div className="col-md-12 mb-3 display-flex">
                                     <ImgSelectOption divClassName="display-flex" imagesurl={updateImage} deleteFun={(e) => setdeleteImage(e)} />
-                                   
+
                                     <div className='image-upload-div' onClick={() => setdeleteopen(true)}>
                                         <input type='file' onChange={(e) => setimages(e.target.files)} name='files' multiple />
                                         <i className="material-icons ">add</i>
                                     </div>
                                 </div>
                                 <div className='display-flex'>
-                                        {imageurl.map((value, index) =>
-                                            <div className="display-flex">
-                                                <img width='50px' className='' src={value} /><button className='' value={value} onClick={(e) => removeFile(e, index)}>X</button>
-                                            </div>
-                                        )}
-                                    </div>
+                                    {imageurl.map((value, index) =>
+                                        <div className="display-flex">
+                                            <img width='50px' className='' src={value} /><button className='' value={value} onClick={(e) => removeFile(e, index)}>X</button>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -306,9 +308,9 @@ export default function Editproductcontent(props) {
                     </div>
                 </div>
             </div>
-            {CakesList.addCakeStatus === "" || CakesList.addCakeStatus === undefined ? <></> :
-                <div className={CakesList.addCakeStatus.statusCode === 400 ? "alert alert-danger" : "alert alert-success"} role="alert">
-                    <strong>Well done!</strong> {CakesList.addCakeStatus.message}
+            {CakesList.UpdatecakeStatus === "" || CakesList.UpdatecakeStatus === undefined ? <></> :
+                <div className={CakesList.UpdatecakeStatus.statusCode === 400 ? "alert alert-danger" : "alert alert-success"} role="alert">
+                    <strong>Well done!</strong> {CakesList.UpdatecakeStatus.message}
                 </div>
             }
         </div>
