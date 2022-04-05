@@ -7750,3 +7750,19 @@ background-image: none;
 .display-non{
   display: none;
 }
+.imgPreCloseBtn {
+  position: absolute;
+  padding: 0px;
+  border-radius: 13px;
+  font-size: 9px;
+  margin: -7px -5px;
+  right: 0;
+  width: 16px;
+}
+.imgPre {
+  position: relative;
+  margin: 10px;
+}
+.color-theme-text{
+  color: #bc2634;
+}

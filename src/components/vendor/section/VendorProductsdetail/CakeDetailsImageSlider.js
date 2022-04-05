@@ -14,7 +14,7 @@ export default function CakeDetailsImageSlider(props) {
               <Carousel.Item>
               <img className="d-block align-center" src={img} alt="First slide" />
               <div className="carousel-caption d-none d-md-block">
-                  <h3 className="text-white">{props.title}</h3>
+                  <h3 className="text-white text-uppercase">{props.title}</h3>
               </div>
           </Carousel.Item>
             )}

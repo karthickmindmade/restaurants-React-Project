@@ -17,10 +17,10 @@ export default function Editproductcontent(props) {
     const file = useRef()
     const eggOrEggless = useRef()
     const Stock = useRef()
+    
     const [files, setimages] = useState([])
     const dispatch = useDispatch();
     const [updateImage, setupdateImage] = useState(vendor.Images)
-    const [deleteopen, setdeleteopen] = useState(false)
     const [flavor, setflavor] = useState()
     const [flavorlist, setflavorlist] = useState(vendor.FlavorList)
     const [shape, setshape] = useState()
@@ -38,7 +38,6 @@ export default function Editproductcontent(props) {
     }
     function setdeleteFlavor(e) {
         setflavorlist(flavorlist.filter((val) => { if (val !== e.target.value) { return val } }))
-
     }
     // cakeshape list
     function addshape() {
@@ -87,17 +86,7 @@ export default function Editproductcontent(props) {
         (state) => state.CakesReducer
     );
     console.log(CakesList.addCakeStatus)
-    // console.log(flavorlist)
-    // var imageurl = []
-    // // for (let i = 0; i < files.length; i++) {
-    // //     imageurl.push(files[i])
-    // // }
-    // console.log(files)
-    // var array = [...files]; // make a separate copy of the array
-    // var index = array.indexOf(2)
-
-    //     imageurl = array.splice(index, 1);
-    // setimages(files.splice(index, 1))
+  
     function removeFile(e, index) {
         e.preventDefault()
         setimages([...files].filter((_, i) => i !== index));
@@ -107,14 +96,10 @@ export default function Editproductcontent(props) {
     for (let i = 0; i < files.length; i++) {
         imageurl.push(URL.createObjectURL(files[i]))
     }
-
-
     const AddCake = (e) => {
+       
         e.preventDefault();
         const data = new FormData();
-        for (let i = 0; i < files.length; i++) {
-            data.append("files", files[i]);
-        }
         data.append("Title", Title.current.value);
         data.append("Description", Description.current.value);
         data.append("TypeOfCake", TypeOfCake.current.value);
@@ -122,6 +107,12 @@ export default function Editproductcontent(props) {
         data.append("Price", Price.current.value);
         data.append("Ratings", "Ratings");
         data.append("Stock", Stock.current.value);
+        for (let i = 0; i < files.length; i++) {
+            data.append("files", files[i]);
+        }
+        for (let i = 0; i < updateImage.length; i++) {
+            data.append("imageUrl", updateImage[i]);
+        }
         data.append("VendorID", "VendorID");
         data.append("VendorName", "VendorName")
         data.append("VendorPhoneNumber", "VendorPhoneNumber");
@@ -216,21 +207,24 @@ export default function Editproductcontent(props) {
                                     </div>
                                 </div>
                                 <label htmlFor="validationCustom12" >Product Image</label>
-                                <div className="col-md-12 mb-3 display-flex">
-                                    <ImgSelectOption divClassName="display-flex" imagesurl={updateImage} deleteFun={(e) => setdeleteImage(e)} />
-
-                                    <div className='image-upload-div' onClick={() => setdeleteopen(true)}>
-                                        <input type='file' onChange={(e) => setimages(e.target.files)} name='files' multiple />
-                                        <i className="material-icons ">add</i>
+                                <div className="col-md-12 mb-3">
+                                    <div className="custom-file">
+                                        <input type="file" className="custom-file-input" onChange={(e) => setimages(e.target.files)} name='files' multiple />
+                                        <label className="custom-file-label" htmlFor="validatedCustomFile">Upload Images...</label>
+                                        <div className="invalid-feedback">Example invalid custom file feedback</div>
                                     </div>
                                 </div>
                                 <div className='display-flex'>
-                                    {imageurl.map((value, index) =>
-                                        <div className="display-flex">
-                                            <img width='50px' className='' src={value} /><button className='' value={value} onClick={(e) => removeFile(e, index)}>X</button>
-                                        </div>
-                                    )}
+                                    <ImgSelectOption divClassName="display-flex" imagesurl={updateImage} deleteFun={(e) => setdeleteImage(e)} />
+                                    <div className='display-flex'>
+                                        {imageurl.map((value, index) =>
+                                            <div className="imgPre">
+                                                <img width='70px' className='' src={value} /><button className='btn-secondary imgPreCloseBtn' value={value} onClick={(e) => removeFile(e, index)}>X</button>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
+
                             </div>
                         </form>
                     </div>

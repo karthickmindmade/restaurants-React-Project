@@ -8,8 +8,8 @@ import Skilllevel from './Skilllevel';
 import Timeline from './Timeline';
 import Latestpost from './Latestpost';
 
-class Content extends Component {
-    render() {
+function  Content () {
+    
         return (
             <div className="ms-content-wrapper">
                 <div className="ms-profile-overview">
@@ -132,6 +132,6 @@ class Content extends Component {
 
         );
     }
-}
+
 
 export default Content;

@@ -60,7 +60,7 @@ const UpdateCake=function*(data){
     console.log(payload);
     try {
         const result = yield call(() =>
-            axios.get(`https://cakey-database.vercel.app/api/vendors/update/${payload.reqParamid}`,payload.reqBody)
+            axios.put(`https://cakey-database.vercel.app/api/cake/update/${payload.reqParamid}`,payload.reqBody)
         );
         yield put({ type: actions.UPDATE_CAKES_STATUS, payload: {UpdatecakeStatus:result.data} });
     } catch (err) {

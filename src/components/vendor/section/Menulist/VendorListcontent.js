@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect,useState } from 'react';
 import Breadcrumbs from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
@@ -6,6 +6,8 @@ import $ from 'jquery';
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../../../redux/cake/actions';
 import { useHistory } from 'react-router-dom/esm/react-router-dom';
+import Pagination from '../../../common/Pagination';
+
 export default function VendorListcontent() {
     const history = useHistory();
     //initialize datatable
@@ -20,7 +22,14 @@ export default function VendorListcontent() {
 function ViewDetails(cake){
     history.push('/Vendor-Productdetail')
 }
-
+const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage] = useState(10);
+// Get current posts
+const indexOfLastPost = currentPage * postsPerPage;
+const indexOfFirstPost = indexOfLastPost - postsPerPage;
+const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
     return (
         <div className="ms-content-wrapper">
             <div className="row">
@@ -65,7 +74,7 @@ function ViewDetails(cake){
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {CakesList.CakesList.map((cake) =>
+                                                    {currentdata.map((cake) =>
                                                         <tr class="odd" onClick={(cake)=>ViewDetails(cake)}>
                                                             <td class="sorting_1">{cake._id}</td>
                                                             <td><img src={cake.Images} />{cake.Title}</td>
@@ -78,23 +87,14 @@ function ViewDetails(cake){
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-5">
-                                            <div class="dataTables_info" id="data-table-5_info" role="status" aria-live="polite">Showing 1 to 10 of 36 entries</div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-7">
-                                            <div class="dataTables_paginate paging_simple_numbers" id="data-table-5_paginate">
-                                                <ul class="pagination">
-                                                    <li class="paginate_button page-item previous disabled" id="data-table-5_previous"><a href="#" aria-controls="data-table-5" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                                    <li class="paginate_button page-item active"><a href="#" aria-controls="data-table-5" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                    <li class="paginate_button page-item "><a href="#" aria-controls="data-table-5" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                                    <li class="paginate_button page-item "><a href="#" aria-controls="data-table-5" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                                    <li class="paginate_button page-item "><a href="#" aria-controls="data-table-5" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                                    <li class="paginate_button page-item next" id="data-table-5_next"><a href="#" aria-controls="data-table-5" data-dt-idx="5" tabindex="0" class="page-link">Next</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <Pagination 
+                                    postsPerPage={postsPerPage}
+                                    totalPosts={CakesList.CakesList.length}
+                                    paginate={paginate}
+                                    PreviouPage={() => setCurrentPage(currentPage - 1)}
+                                    NextPage={() => setCurrentPage(currentPage + 1)}
+                                    currentPage={currentPage}
+                                   />
                                 </div>
                             </div>
                         </div>

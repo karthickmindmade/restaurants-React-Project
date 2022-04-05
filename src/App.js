@@ -146,7 +146,7 @@ function App() {
         <PrivateRoute exact path="/modal-register" component={Modalregister} />
         <PrivateRoute exact path="/portfolio" component={Portfolio} />
         <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
-        <PrivateRoute exact path="/user-profile" component={Userprofile} />
+        <Route exact path="/user-profile" component={Userprofile} />
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
         {/* vendor pages */}
         <Route exact path="/Vendor-menu-list" component={VendorMenulist} />

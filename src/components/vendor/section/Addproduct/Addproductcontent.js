@@ -71,30 +71,41 @@ export default function Addproductcontent() {
     }
     function setdeleteweight(e) {
         setweightlist(weightlist.filter((val) => { if (val !== e.target.value) { return val } }))
-
     }
     //addcake
+    console.log(files)
     const AddCake = (e) => {
         e.preventDefault();
+        console.log(Title.current.value)
+        console.log(Description.current.value)
+        console.log(TypeOfCake.current.value)
+        console.log(eggOrEggless.current.value)
+        console.log(Price.current.value)
+        console.log(Stock.current.value)
+        console.log(flavorlist)
+        console.log(shapelist)
+        console.log(toppinglist)
+        console.log(weightlist)
+        console.log(files)
         const data = new FormData();
         for (let i = 0; i < files.length; i++) {
             data.append("files", files[i]);
         }
-
         data.append("Title", Title.current.value);
         data.append("Description", Description.current.value);
         data.append("TypeOfCake", TypeOfCake.current.value);
-        data.append("eggOrEggless", eggOrEggless.current.value)
+        data.append("EggOrEggless", eggOrEggless.current.value)
         data.append("Price", Price.current.value);
         data.append("Ratings", "Ratings");
+        data.append("Stock", Stock.current.value)
         data.append("VendorID", "VendorID");
         data.append("VendorName", "VendorName")
-        data.append("MobileNumberVendor", "MobileNumberVendor");
+        data.append("VendorPhoneNumber", "VendorPhoneNumber");
         for (let i = 0; i < flavorlist.length; i++) {
-            data.append("FlavorList", flavorlist[i]);
+            data.append("FlavourList", flavorlist[i]);
         }
         for (let i = 0; i < shapelist.length; i++) {
-            data.append("ShapesLists", shapelist[i]);
+            data.append("ShapeList", shapelist[i]);
         }
         for (let i = 0; i < toppinglist.length; i++) {
             data.append("CakeToppings", toppinglist[i]);
@@ -102,12 +113,9 @@ export default function Addproductcontent() {
         for (let i = 0; i < weightlist.length; i++) {
             data.append("WeightList", weightlist[i]);
         }
-
         dispatch({
             type: actions.Add_CAKES, payload: data
         });
-
-
     }
     console.log(files)
 
@@ -116,10 +124,18 @@ export default function Addproductcontent() {
     );
     console.log(CakesList.addCakeStatus)
 
-
+    function removeFile(e, index) {
+        e.preventDefault()
+        setfiles([...files].filter((_, i) => i !== index));
+    };
+    console.log(files)
+    var imageurl = []
+    for (let i = 0; i < files.length; i++) {
+        imageurl.push(URL.createObjectURL(files[i]))
+    }
     return (
         <div className="ms-content-wrapper">
-            { }
+
             <div className="row">
                 <div className="col-md-12">
                     <Breadcrumb />
@@ -160,9 +176,9 @@ export default function Addproductcontent() {
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <label htmlFor="validationCustom22">Egg Or Eggless</label>
+                                        <label >Egg Or Eggless</label>
                                         <div className="input-group">
-                                            <select className="form-control" id="validationCustom22" ref={eggOrEggless} required>
+                                            <select className="form-control" ref={eggOrEggless} >
                                                 <option value="EggAdded">EggAdded</option>
                                                 <option value="Eggless">Eggless</option>
 
@@ -173,12 +189,11 @@ export default function Addproductcontent() {
                                         </div>
                                     </div>
                                     <div className="col-md-6 mb-3">
-                                        <label htmlFor="validationCustom23">Stock</label>
+                                        <label >Stock</label>
                                         <div className="input-group">
-                                            <select className="form-control" id="validationCustom23" ref={Stock} required>
+                                            <select className="form-control" ref={Stock} >
                                                 <option value="OutOfStock">OutOfStock</option>
                                                 <option value="InStock">InStock</option>
-
                                             </select>
                                             <div className="invalid-feedback">
                                                 Please select a Currency
@@ -201,9 +216,15 @@ export default function Addproductcontent() {
                                             <label className="custom-file-label" htmlFor="validatedCustomFile">Upload Images...</label>
                                             <div className="invalid-feedback">Example invalid custom file feedback</div>
                                         </div>
-                                    
+                                        <div className='display-flex'>
+                                            {imageurl.map((value, index) =>
+                                                <div className="imgPre">
+                                                    <img width='70px' className='' src={value} /><button className='btn-secondary imgPreCloseBtn' value={value} onClick={(e) => removeFile(e, index)}>X</button>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
-                                    
+
                                 </div>
                             </form>
                         </div>

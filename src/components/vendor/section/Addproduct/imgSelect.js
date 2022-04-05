@@ -11,8 +11,8 @@ export default function ImgSelectOption(props) {
     return (
         <div className={props.divClassName} >
             {imageurl.map((value) =>
-                <div className="display-flex">
-                    <img width='50px' className={props.className} src={value} /><button className={props.deleteButton} value={value} onClick={props.deleteFun}>X</button>
+                <div className="imgPre">
+                    <img width='70px' className='' src={value} /><button className='btn-secondary imgPreCloseBtn' value={value} onClick={props.deleteFun}>X</button>
                 </div>
             )}
         </div>

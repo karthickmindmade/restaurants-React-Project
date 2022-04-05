@@ -11,7 +11,7 @@ export default function VendorDetailcontent(props) {
     const [cakedetails, setcakedetails] = useState([])
     useEffect(() => {
         dispatch({
-            type: actions.GET_SINGLE_CAKEDETAILS, payload: '624a75492dcd834b7aed1b9c'
+            type: actions.GET_SINGLE_CAKEDETAILS, payload: "624bf5279de9355198e4639a"
         });
     }, [])
     const Cake = useSelector(
@@ -55,7 +55,7 @@ export default function VendorDetailcontent(props) {
                                     </tr>
                                     <tr>
                                         <th scope="row">Availiblity</th>
-                                        <td><span className="badge badge-pill badge-primary">In stock</span></td>
+                                        <td><span className="badge badge-pill badge-primary">{cakedetails.Stock}</span></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Delivery Charges</th>
