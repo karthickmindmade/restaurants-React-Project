@@ -1,4 +1,5 @@
 import React, {useRef, useState,useEffect } from 'react';
+import Preloader from '../../../components/layouts/Preloader';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch,useSelector } from 'react-redux';
@@ -18,6 +19,15 @@ export default function Content() {
     const Status = useSelector(
         state => state.forgotpasswordReducer
     );
+
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        if(!token){
+            return;
+        }else{
+            dispatch({ type : actions.VERIFY_TOKEN, payload : token });
+        }
+    },[dispatch]);
 
     //initialize datatable
     function formValidation() {
@@ -43,34 +53,33 @@ export default function Content() {
 
 
     function handleShow1() {
-
         setshow1(true);
         setshow2(false);
         setShowMessage("");
     }
+
     function handleClose() {
         setshow1(false);
         setshow2(false);
         setShowMessage("");
-
     }
+
     const SignIn=(e)=>{
         e.preventDefault();
         dispatch({ type: actions.LOG_IN, payload: {Email: EmailR.current.value, Password: PasswordR.current.value} } );
         EmailR.current.value="";
         PasswordR.current.value="";
     }
+
     const handleReset = (e) => {
         e.preventDefault()
         setshow2(false);
         setShowMessage('');
-
-       
+ 
         if(ForgotEmail.current.value === "" || ForgotEmail.current.value === undefined || ForgotEmail.current.value === null){
             setshow2(false);
             setShowMessage('Please enter your Email Id');
-        }else{
-           
+        }else{ 
         var Password = generator.generate({
             length: 10,
             numbers: true,
@@ -89,7 +98,7 @@ export default function Content() {
             setshow2(true);
             setshow1(false);
         }
-    },[Status])
+    },[Status]);
     
     return (
         <div className="ms-content-wrapper ms-auth">
