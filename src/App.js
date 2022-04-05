@@ -65,7 +65,7 @@ import Modallogin from './components/pages/Modallogin';
 import Modalregister from './components/pages/Modalregister';
 import Portfolio from './components/pages/Portfolio';
 import Stockmanagement from './components/pages/Stockmanagement';
-import Userprofile from './components/pages/Userprofile';
+import AdminVendorprofile from './components/pages/adminvendorProfile';
 import Webanalytics from './components/pages/Webanalytics';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
@@ -73,6 +73,7 @@ import VendorDashboard from './components/vendor/pages/vendorDashboard';
 import VendorMenulist from './components/vendor/pages/VendorMenulist';
 import VendorProductdetail from './components/vendor/pages/VendorProductdetail';
 import Vendorprofile from './components/vendor/pages/vendorprofile';
+import AddVendor from './components/pages/AddVendor';
 
 
 function App() {
@@ -81,9 +82,8 @@ function App() {
     <Router >
       <Preloader/>
       <Switch>
-        
         <PublicRoute exact path="/" component={Defaultlogin} /> 
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/accordions" component={Accordions} />
         <Route exact path="/add-product" component={Addproduct} />
         <PrivateRoute exact path="/alerts" component={Alerts} />
@@ -146,9 +146,10 @@ function App() {
         <PrivateRoute exact path="/modal-register" component={Modalregister} />
         <PrivateRoute exact path="/portfolio" component={Portfolio} />
         <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
-        <Route exact path="/user-profile" component={Userprofile} />
-        <Route exact path="/vendor-profile" component={<Vendorprofile />} />
+        <Route exact path="/admin-vendor-profile" component={AdminVendorprofile} />
+        <Route exact path="/vendor-profile" component={Vendorprofile} />
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
+        <Route exact path="/add-vendor" component={AddVendor} />
         {/* vendor pages */}
         <Route exact path="/Vendor-menu-list" component={VendorMenulist} />
         <Route exact path="/Vendor-Productdetail" component={VendorProductdetail} />

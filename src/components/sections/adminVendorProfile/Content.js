@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import { Tab, Nav } from "react-bootstrap";
 
 import customerimg from '../../../assets/img/costic/customer-5.jpg'
-import Chef from './Chef';
-import Skilllevel from './Skilllevel';
-import Timeline from './Timeline';
+
 import Latestpost from './Latestpost';
 
 function  Content () {
@@ -115,15 +113,7 @@ function  Content () {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-12">
-                        <Chef/>
-                    </div>
-                    <div className="col-xl-6 col-md-12">
-                        <Skilllevel/>
-                    </div>
-                    <div className="col-xl-6 col-md-12">
-                        <Timeline/>
-                    </div>
+                  
                     <div className="col-md-12">
                         <Latestpost/>
                     </div>

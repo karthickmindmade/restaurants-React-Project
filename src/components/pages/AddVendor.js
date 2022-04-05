@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import Sidenavigation from '../layouts/Sidenavigation';
 import Topnavigation from '../layouts/Topnavigation';
-import Quickbar from '../layouts/Quickbar';
-import Content from '../sections/Userprofile/Content';
 
-class Userprofile extends Component {
-    render() {
+
+function AddVendor () {
+   
         return (
-            <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+            <div className="ms-body ms-aside-left-open ms-primary-theme">
                 <Sidenavigation />
                 <main className="body-content">
                     <Topnavigation />
-                    <Content/>
+                   
                 </main>
-                <Quickbar />
+               
             </div>
         );
     }
-}
 
-export default Userprofile;
+
+export default AddVendor;

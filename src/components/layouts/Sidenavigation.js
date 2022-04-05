@@ -74,6 +74,19 @@ export default function Sidenavigation() {
                         </MenuLink>
                     </li >
                     {/* orders end */}
+                    <Dropdown
+                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fa fa-archive fs-16" />Vendor</span>
+                        </MenuLink>}
+                        body={
+                            <ul id="product" className='active' aria-labelledby="product" data-parent="#side-nav-accordion">
+                                <li> <MenuLink to="/add-vendor" >Add Vendor</MenuLink>
+                                </li>
+                                <li> <MenuLink to="/menu-list" >Vendor List</MenuLink>
+                                </li>
+                            </ul >
+                        }
+                    />
+
                     {/* restaurants */}
                     <li className="menu-item">
                         <MenuLink to="/restaurant-list"> <span><i className="fa fa-tasks fs-16" />Restaurants List</span>
