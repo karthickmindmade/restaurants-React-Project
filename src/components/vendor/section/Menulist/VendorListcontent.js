@@ -19,9 +19,17 @@ export default function VendorListcontent() {
     useEffect(() => {
         dispatch({ type: actions.GET_ALL_CAKES })
     }, [dispatch, actions.GET_ALL_CAKES])
+
+
+
+
 function ViewDetails(cake){
-    history.push('/Vendor-Productdetail')
+    history.push('/Vendor-Productdetail',cake)
 }
+
+
+
+
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage] = useState(10);
 // Get current posts
@@ -75,7 +83,7 @@ const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost)
                                                 </thead>
                                                 <tbody>
                                                     {currentdata.map((cake) =>
-                                                        <tr class="odd" onClick={(cake)=>ViewDetails(cake)}>
+                                                        <tr class="odd" onClick={()=>ViewDetails(cake)}>
                                                             <td class="sorting_1">{cake._id}</td>
                                                             <td><img src={cake.Images} />{cake.Title}</td>
                                                             <td>{cake.TypeOfCake}</td>

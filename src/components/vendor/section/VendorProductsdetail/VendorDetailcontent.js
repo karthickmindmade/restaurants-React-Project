@@ -4,22 +4,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import actions from '../../../../redux/cake/actions';
 import CakeDetailsImageSlider from './CakeDetailsImageSlider';
 import Editproductcontent from '../EditProduct/EditProductContent';
+import { useLocation } from 'react-router-dom/esm/react-router-dom';
 export default function VendorDetailcontent(props) {
     const [open, setopen] = useState(false)
-    // const {state}=props
+    const state = useLocation()
+    console.log(state.state)
     const dispatch = useDispatch();
     const [cakedetails, setcakedetails] = useState([])
+    // useEffect(() => {
+    //     dispatch({
+    //         type: actions.GET_SINGLE_CAKEDETAILS, payload: "624bf5279de9355198e4639a"
+    //     });
+    // }, [])
+    // const Cake = useSelector(
+    //     (state) => state.CakesReducer
+    // );
     useEffect(() => {
-        dispatch({
-            type: actions.GET_SINGLE_CAKEDETAILS, payload: "624bf5279de9355198e4639a"
-        });
-    }, [])
-    const Cake = useSelector(
-        (state) => state.CakesReducer
-    );
-    useEffect(() => {
-        setcakedetails(Cake.CakeDetails)
-    }, [setcakedetails, Cake])
+        setcakedetails(state.state)
+    }, [setcakedetails, state.state])
 
     console.log(cakedetails)
     return (
@@ -97,7 +99,6 @@ export default function VendorDetailcontent(props) {
             </div> :
                 <Editproductcontent close={() => setopen(false)}  vendor={cakedetails} />
             }
-
         </div>
 
     );

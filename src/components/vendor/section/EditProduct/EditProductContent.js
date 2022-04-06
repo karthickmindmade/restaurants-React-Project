@@ -129,7 +129,7 @@ export default function Editproductcontent(props) {
             data.append("WeightList", weightlist[i]);
         }
         dispatch({
-            type: actions.UPDATE_CAKES, payload: { reqBody: data, reqParamid: '624a75492dcd834b7aed1b9c' }
+            type: actions.UPDATE_CAKES, payload: { reqBody: data, reqParamid: vendor._id }
         });
     }
     return (
