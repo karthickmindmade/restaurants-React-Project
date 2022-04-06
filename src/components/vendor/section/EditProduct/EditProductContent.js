@@ -111,7 +111,7 @@ export default function Editproductcontent(props) {
             data.append("files", files[i]);
         }
         for (let i = 0; i < updateImage.length; i++) {
-            data.append("imageUrl", updateImage[i]);
+            data.append("Images", updateImage[i]);
         }
         data.append("VendorID", "VendorID");
         data.append("VendorName", "VendorName")

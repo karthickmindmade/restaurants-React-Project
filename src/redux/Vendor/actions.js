@@ -1,0 +1,8 @@
+const actions = {
+  GET_ALL_VENDORS: 'GET_ALL_VENDORS',
+  SET_ALL_VENDORS: 'SET_ALL_VENDORS',
+  ADD_VENDORS:'ADD_VENDORS',
+  ADD_VENDORS_STATUS:'ADD_VENDORS_STATUS'
+};
+
+export default actions;

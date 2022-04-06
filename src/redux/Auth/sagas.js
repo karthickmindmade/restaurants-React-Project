@@ -21,7 +21,7 @@ const workersLogIn = function* (data) {
             )
         );
         if (result.data.statusCode === 200) {
-            localStorage.setItem('token', result.data.token);
+           const setToken = localStorage.setItem('token', result.data.token);
             if (result.data.type === 'admin') {
                 yield put({
                     type: actions.UPDATE_AUTH_DETAILS,
@@ -34,12 +34,16 @@ const workersLogIn = function* (data) {
                 });
             }
         } else {
+          localStorage.removeItem('token');
+          window.location.reload(); 
             yield put({
                 type: actions.UPDATE_AUTH_DETAILS,
                 payload: { isAuthenticated: false }
             });
         }
     } catch (err) {
+      localStorage.removeItem('token');
+      window.location.reload();
         yield put({
             type: actions.UPDATE_AUTH_DETAILS,
             payload: { isAuthenticated: false }
@@ -62,19 +66,23 @@ const verifyToken = function* (data) {
                   type: actions.UPDATE_AUTH_DETAILS,
                   payload: { isAuthenticated: true, route: "/dashboard", token: result.data }
               });
-      } else if (result.data.type === "vendor") {
-          yield put({
-              type: actions.UPDATE_AUTH_DETAILS,
-              payload: { isAuthenticated: true, route: "/vendordashboard", token: result.data }
-        });
-      }
-    } else {
+          } else if (result.data.type === "vendor") {
+               yield put({
+                  type: actions.UPDATE_AUTH_DETAILS,
+                   payload: { isAuthenticated: true, route: "/vendordashboard", token: result.data }
+                });
+          }
+    } else if(result.data.message === "Invalid token"){
+      localStorage.removeItem('token');
+      window.location.reload();
       yield put({
         type: actions.UPDATE_AUTH_DETAILS,
-        payload: { token: result.data, isAuthenticated: false, route: "/" }
+        payload: { isAuthenticated: false,route : "/"}
       });
     }
   } catch (err) {
+    localStorage.removeItem('token');
+    window.location.reload();
     yield put({
       type: actions.UPDATE_AUTH_DETAILS,
       payload: { token: 'Failed' }

@@ -22,7 +22,7 @@ export default function Content() {
 
     useEffect(()=>{
         const token = localStorage.getItem('token');
-        if(!token){
+        if(token===null){
             return;
         }else{
             dispatch({ type : actions.VERIFY_TOKEN, payload : token });

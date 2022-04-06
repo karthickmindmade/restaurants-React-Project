@@ -8,7 +8,7 @@ export default function VendorProductdetail() {
     // const {state}   = useLocation()
 
         return (
-            <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+            <div className="ms-body ms-aside-left-open ms-primary-theme">
                 <Sidenavigation />
                 <main className="body-content">
                     <Topnavigation />

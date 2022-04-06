@@ -5488,28 +5488,25 @@ a.ms-g-plus,
 
 /* User Profile */
 
-.ms-profile-overview{
+.ms-profile-overview {
   position: relative;
-  height: 500px;
-  background-color: #fff;
-  margin-bottom: 30px;
-  -webkit-box-shadow: 0 1px 6px 1px rgba(69,65,78, 0.1);
-  -moz-box-shadow: 0 1px 6px 1px rgba(69,65,78,0.1);
-  box-shadow: 0 1px 6px 1px rgba(69,65,78,0.1);
+  margin-bottom: 66px;
+  /* height: 33vh; */
+  box-shadow: 0 1px 6px 1px rgb(69 65 78 / 10%);
 }
-.ms-profile-cover{
+.ms-profile-cover {
   position: relative;
   display: flex;
   align-items: flex-end;
-  background-image: url('../img/costic/banner-1000x370.jpg');
+  /* background-image: url(../img/costic/banner-1000x370.jpg); */
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
-  height: 87%;
+  /* height: 87%; */
   width: 100%;
-  padding: 1.5rem;
+  padding: 3.5rem;
   padding-bottom: 0;
-  z-index:1;
+  z-index: 1;
 }
 .ms-profile-cover::after{
   content: '';
@@ -5518,18 +5515,18 @@ a.ms-g-plus,
   height: 100%;
   top: 0;
   left: 0;
-  background-image: linear-gradient(to top, rgba(0,0,0,0.4), rgba(255,255,255,0));
+  background-color: #ff6877;
   z-index: -1;
 }
-.ms-profile-cover img{
-  width: 200px;
-  margin-bottom: -35px;
+.ms-profile-cover img {
+  width: 186px;
+  margin-bottom: -42px;
   border: 3px solid #fff;
   border-radius: 5px;
 }
 .ms-profile-user-info,
 .ms-profile-user-buttons{
-  padding: 0 0 1.5rem 1.5rem;
+  padding: 0 0 1rem 1.5rem;
 }
 .ms-profile-user-buttons{
   flex: 1 1 auto;
@@ -7765,4 +7762,17 @@ background-image: none;
 }
 .color-theme-text{
   color: #bc2634;
+}
+.profile-img-div{
+  position: relative;
+}
+.profile-img-upload {
+  height: 185px;
+  position: absolute;
+  /* width: fit-content; */
+  opacity: 0;
+  width: 185px;
+  margin: 0px;
+  /* padding: 30px; */
+  left: 0;
 }

@@ -79,9 +79,11 @@ export default function Sidenavigation() {
                         </MenuLink>}
                         body={
                             <ul id="product" className='active' aria-labelledby="product" data-parent="#side-nav-accordion">
-                                <li> <MenuLink to="/add-vendor" >Add Vendor</MenuLink>
+                                <li>
+                                    <MenuLink to="/add-vendor" >Add Vendor</MenuLink>
                                 </li>
-                                <li> <MenuLink to="/menu-list" >Vendor List</MenuLink>
+                                <li>
+                                    <MenuLink to="/admin-vendor-List" >Vendor List</MenuLink>
                                 </li>
                             </ul >
                         }

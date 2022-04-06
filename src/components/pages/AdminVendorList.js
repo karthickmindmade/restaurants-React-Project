@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import Sidenavigation from '../layout/Sidenavigation';
-import Topnavigation from '../layout/Topnavigation';
-import Addproductcontent from '../section/Addproduct/Addproductcontent'
+import Sidenavigation from '../layouts/Sidenavigation';
+import Topnavigation from '../layouts/Topnavigation';
+import Content from '../sections/AdminVendorList/Content';
 
-
-function Addproduct() {
+function AdminVendorList() {
 
     return (
         <div className="ms-body ms-aside-left-open ms-primary-theme">
             <Sidenavigation />
             <main className="body-content">
                 <Topnavigation />
-                <Addproductcontent />
+                <Content />
             </main>
 
         </div>
     );
 }
 
-export default Addproduct;
+
+export default AdminVendorList;

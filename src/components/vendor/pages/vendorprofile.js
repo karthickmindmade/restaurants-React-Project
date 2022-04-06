@@ -11,7 +11,6 @@ export default function Vendorprofile() {
                     <Topnavigation />
                     <Content/>
                 </main>
-              
             </div>
         );
     }

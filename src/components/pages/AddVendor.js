@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Sidenavigation from '../layouts/Sidenavigation';
 import Topnavigation from '../layouts/Topnavigation';
+import AddVendorContent from '../sections/AddVendor/AddVendorContent';
 
 
 function AddVendor () {
@@ -10,9 +11,8 @@ function AddVendor () {
                 <Sidenavigation />
                 <main className="body-content">
                     <Topnavigation />
-                   
+                   <AddVendorContent />
                 </main>
-               
             </div>
         );
     }

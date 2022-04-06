@@ -48,7 +48,7 @@ class Latestpost extends Component {
         return (
             <div className="ms-panel">
                 <div className="ms-panel-body">
-                    <h2 className="section-title">Your Latest Posts</h2>
+                    <h2 className="section-title">Latest Posts</h2>
                     <div className="row">
                         {latestproduct.map((item, i) => (
                             <div key={i} className="col-lg-4 col-md-6 col-sm-6">
