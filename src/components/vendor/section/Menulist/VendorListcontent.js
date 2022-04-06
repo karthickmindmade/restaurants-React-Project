@@ -85,7 +85,7 @@ const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost)
                                                     {currentdata.map((cake) =>
                                                         <tr class="odd" onClick={()=>ViewDetails(cake)}>
                                                             <td class="sorting_1">{cake._id}</td>
-                                                            <td><img src={cake.Images} />{cake.Title}</td>
+                                                            <td><img src={cake.Images[0]} />{cake.Title}</td>
                                                             <td>{cake.TypeOfCake}</td>
                                                             <td>{cake.Stock}</td>
                                                             <td>{cake.Price}</td>

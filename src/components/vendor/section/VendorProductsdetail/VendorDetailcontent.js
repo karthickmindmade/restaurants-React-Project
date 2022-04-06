@@ -10,7 +10,7 @@ export default function VendorDetailcontent(props) {
     const state = useLocation()
     console.log(state.state)
     const dispatch = useDispatch();
-    const [cakedetails, setcakedetails] = useState([])
+   var cakedetails =[]
     // useEffect(() => {
     //     dispatch({
     //         type: actions.GET_SINGLE_CAKEDETAILS, payload: "624bf5279de9355198e4639a"
@@ -19,9 +19,7 @@ export default function VendorDetailcontent(props) {
     // const Cake = useSelector(
     //     (state) => state.CakesReducer
     // );
-    useEffect(() => {
-        setcakedetails(state.state)
-    }, [setcakedetails, state.state])
+  cakedetails=state.state
 
     console.log(cakedetails)
     return (
@@ -53,7 +51,7 @@ export default function VendorDetailcontent(props) {
                                     </tr>
                                     <tr>
                                         <th scope="row">EggAdded or EggLess</th>
-                                        <td>{cakedetails.eggOrEggless}</td>
+                                        <td>{cakedetails.EggOrEggless}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Availiblity</th>

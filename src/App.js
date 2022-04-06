@@ -128,7 +128,7 @@ function App() {
         <PrivateRoute exact path="/social-activity" component={Socialactivity} />
         <PrivateRoute exact path="/sweet-alerts" component={Sweetalerts} />
         <PrivateRoute exact path="/tabs" component={Tabs} />
-        <PrivateRoute exact path="/toast" component={Toast} />
+        <Route exact path="/toast" component={Toast} />
         <PrivateRoute exact exacte path="/todo-list" component={Todolist} />
         <PrivateRoute exact path="/tour" component={Tour} />
         <PrivateRoute exact path="/typography" component={Typography} />

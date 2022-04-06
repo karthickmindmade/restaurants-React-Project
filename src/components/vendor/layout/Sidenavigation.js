@@ -53,7 +53,7 @@ export default function Sidenavigation() {
                     {/* /Dashboard */}
                     {/* product */}
                     <Dropdown
-                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fa fa-archive fs-16" />Menus </span>
+                        head={<MenuLink  className="has-chevron"> <span><i className="fa fa-archive fs-16" />Menus </span>
                         </MenuLink>}
                         body={
                             <ul id="product" className='active' aria-labelledby="product" data-parent="#side-nav-accordion">

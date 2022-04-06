@@ -7,6 +7,8 @@ import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
 import EditProductslider from './editImageSlider';
 import ImgSelectOption from '../Addproduct/imgSelect';
+import SuccessAlert from '../../../common/SuccessAlert';
+import FailAlert from '../../../common/failAlert';
 
 export default function Editproductcontent(props) {
     const { vendor } = props
@@ -17,7 +19,7 @@ export default function Editproductcontent(props) {
     const file = useRef()
     const eggOrEggless = useRef()
     const Stock = useRef()
-    
+
     const [files, setimages] = useState([])
     const dispatch = useDispatch();
     const [updateImage, setupdateImage] = useState(vendor.Images)
@@ -82,11 +84,8 @@ export default function Editproductcontent(props) {
     //addcake
 
     console.log(files)
-    const CakesList = useSelector(
-        (state) => state.CakesReducer
-    );
-    console.log(CakesList.addCakeStatus)
-  
+
+
     function removeFile(e, index) {
         e.preventDefault()
         setimages([...files].filter((_, i) => i !== index));
@@ -97,7 +96,6 @@ export default function Editproductcontent(props) {
         imageurl.push(URL.createObjectURL(files[i]))
     }
     const AddCake = (e) => {
-       
         e.preventDefault();
         const data = new FormData();
         data.append("Title", Title.current.value);
@@ -117,10 +115,10 @@ export default function Editproductcontent(props) {
         data.append("VendorName", "VendorName")
         data.append("VendorPhoneNumber", "VendorPhoneNumber");
         for (let i = 0; i < flavorlist.length; i++) {
-            data.append("FlavorList", flavorlist[i]);
+            data.append("FlavourList", flavorlist[i]);
         }
         for (let i = 0; i < shapelist.length; i++) {
-            data.append("ShapesLists", shapelist[i]);
+            data.append("ShapeList", shapelist[i]);
         }
         for (let i = 0; i < toppinglist.length; i++) {
             data.append("CakeToppings", toppinglist[i]);
@@ -131,7 +129,14 @@ export default function Editproductcontent(props) {
         dispatch({
             type: actions.UPDATE_CAKES, payload: { reqBody: data, reqParamid: vendor._id }
         });
+        // dispatch({ type: actions.UPDATE_CAKES_STATUS, payload: {UpdatecakeStatus:[]} });
     }
+
+    const CakesList = useSelector(
+        (state) => state.CakesReducer
+    );
+
+    console.log(CakesList.UpdatecakeStatus)
     return (
         <div className="row">
             <div className="col-md-12">
@@ -175,7 +180,7 @@ export default function Editproductcontent(props) {
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="validationCustom22">Egg Or Eggless</label>
                                     <div className="input-group">
-                                        <select className="form-control" id="validationCustom22" defaultValue={vendor.eggOrEggless} ref={eggOrEggless} required>
+                                        <select className="form-control" id="validationCustom22" defaultValue={vendor.EggOrEggless} ref={eggOrEggless} required>
                                             <option value="EggAdded">EggAdded</option>
                                             <option value="Eggless">Eggless</option>
 
@@ -224,7 +229,6 @@ export default function Editproductcontent(props) {
                                         )}
                                     </div>
                                 </div>
-
                             </div>
                         </form>
                     </div>
@@ -302,11 +306,13 @@ export default function Editproductcontent(props) {
                     </div>
                 </div>
             </div>
-            {CakesList.UpdatecakeStatus === "" || CakesList.UpdatecakeStatus === undefined ? <></> :
+            {CakesList.UpdatecakeStatus.statusCode === 400 ? <FailAlert alert={CakesList.UpdatecakeStatus} /> : <></>}
+            {CakesList.UpdatecakeStatus.statusCode === 200 ? <SuccessAlert alert={CakesList.UpdatecakeStatus} /> : <></>}
+            {/* {CakesList.UpdatecakeStatus === "" || CakesList.UpdatecakeStatus === undefined ? <></> :
                 <div className={CakesList.UpdatecakeStatus.statusCode === 400 ? "alert alert-danger" : "alert alert-success"} role="alert">
                     <strong>Well done!</strong> {CakesList.UpdatecakeStatus.message}
                 </div>
-            }
+            } */}
         </div>
 
     );
