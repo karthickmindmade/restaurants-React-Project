@@ -21,7 +21,6 @@ export default function VendorDetailcontent(props) {
     );
   cakedetails=Cake.CakeDetails
     return (
-
         <div className="ms-content-wrapper">
             {open === false ? <div className="row">
                 <div className="col-md-12">

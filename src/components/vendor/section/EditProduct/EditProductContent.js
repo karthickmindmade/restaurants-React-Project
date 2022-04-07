@@ -19,7 +19,6 @@ export default function Editproductcontent(props) {
     const file = useRef()
     const eggOrEggless = useRef()
     const Stock = useRef()
-
     const [files, setimages] = useState([])
     const dispatch = useDispatch();
     const [updateImage, setupdateImage] = useState(vendor.Images)
