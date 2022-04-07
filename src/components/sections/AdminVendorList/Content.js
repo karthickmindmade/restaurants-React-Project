@@ -10,25 +10,25 @@ import Pagination from '../../common/Pagination';
 import { useHistory } from 'react-router-dom/esm/react-router-dom';
 // Table data
 export default function Content() {
-    //initialize datatable
     const history = useHistory();
     const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
+    //  geting vendor list from from redux vendor reducer
     const vendorsList = useSelector(
         (state) => state.VendorReducer
     );
- 
     useEffect(() => {
         dispatch({ type: actions.GET_ALL_VENDORS })
     }, [])
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(10);
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentdata = vendorsList.vendorsList.slice(indexOfFirstPost, indexOfLastPost);
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    function ViewVendor(user){
+    //route to vendor profile by click vendor row
+    function ViewVendor(user) {
         history.push('/admin-vendor-profile', user)
     }
     return (
@@ -79,7 +79,7 @@ export default function Content() {
                                                 </thead>
                                                 <tbody>
                                                     {currentdata.map((user) =>
-                                                        <tr onClick={()=>ViewVendor(user)} key={user._id} >
+                                                        <tr onClick={() => ViewVendor(user)} key={user._id} >
                                                             <td>{user._id}</td>
                                                             <td><img className='Avatar' src={user.ProfileImage} />{user.VendorName}</td>
                                                             <td>

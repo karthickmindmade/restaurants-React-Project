@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Tab, Nav } from "react-bootstrap";
 import customerimg from '../../../assets/img/costic/customer-5.jpg'
 import actions from '../../../redux/Vendor/actions';
+import Breadcrumb from './Breadcrumb';
 import { useDispatch, useSelector } from 'react-redux';
 function AddVendorContent() {
     const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function AddVendorContent() {
     console.log(CakesList.addVendorStatus)
     return (
         <div className="ms-content-wrapper">
+            <div className="col-md-12">
+                <Breadcrumb />
+            </div>
             <div className="row">
                 <div className="col-xl-5 col-md-12">
                     <div class="ms-panel ms-panel-fh">

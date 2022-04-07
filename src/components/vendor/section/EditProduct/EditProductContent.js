@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, Component, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Breadcrumb from '../VendorProductsdetail/Breadcrumb';
-
 import { useDispatch, useSelector } from 'react-redux';
-
 import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
 import EditProductslider from './editImageSlider';
@@ -124,13 +122,24 @@ export default function Editproductcontent(props) {
         dispatch({
             type: actions.UPDATE_CAKES, payload: { reqBody: data, reqParamid: vendor._id }
         });
-        // dispatch({ type: actions.UPDATE_CAKES_STATUS, payload: {UpdatecakeStatus:[]} });
+        dispatch({ type: actions.UPDATE_CAKES_STATUS, payload: {UpdatecakeStatus:[]} });
     }
 
     const CakesList = useSelector(
         (state) => state.CakesReducer
     );
 
+    // const [count, setCount] = useState(0);
+    // const [countInTimeout, setCountInTimeout] = useState(0);
+  
+    // useEffect(() => {
+    //   setTimeout(() => {
+    //     setCountInTimeout(count); // count is 0 here
+    //   }, 7000);
+    //   setCount(5); // Update count to be 5 after timeout is scheduled
+    // }, [count]);
+    // console.log(count)
+    // console.log(countInTimeout)
     console.log(CakesList.UpdatecakeStatus)
     return (
         <div className="row">

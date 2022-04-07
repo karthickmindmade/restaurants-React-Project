@@ -6,7 +6,9 @@ import { API_URL } from '../../utils/constants';
 const VendorListSaga = function* () {
     yield all([
         yield takeEvery(actions.GET_ALL_VENDORS, getAllVendors),
-        yield takeEvery(actions.ADD_VENDORS, AddVendor)
+        yield takeEvery(actions.ADD_VENDORS, AddVendor),
+        yield takeEvery(actions.GET_SINGLE_VENDORS, getVendorDetails),
+        yield takeEvery(actions.UPDATE_VENDOR, UpdateVendor)
     ]);
 };
 
@@ -36,6 +38,34 @@ const AddVendor = function* (data) {
         );
         console.log(result.data)
         yield put({ type: actions.ADD_VENDORS_STATUS, payload: {addVendorStatus:result.data} });
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+const getVendorDetails=function* (data){
+    const {payload}=data;
+    console.log(payload);
+    try {
+        const result = yield call(() =>
+            axios.get(`${API_URL}/vendors/list/${payload}`)
+        );
+        console.log(result)
+        yield put({ type: actions.SET_SINGLE_VENDORS, payload: {vendorsDetails:result.data[0]} });
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
+const UpdateVendor=function*(data){
+    const {payload}=data;
+    console.log(payload);
+    try {
+        const result = yield call(() =>
+            axios.put(`${API_URL}/vendors/update/${payload.reqParamid}`,payload.reqBody)
+        );
+        yield put({ type: actions.UPDATE_VENDOR_STATUS, payload: {updateVendorStatus:result.data} });
     } catch (err) {
         console.log(err)
     }

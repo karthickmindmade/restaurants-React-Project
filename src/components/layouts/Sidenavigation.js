@@ -75,10 +75,10 @@ export default function Sidenavigation() {
                     </li >
                     {/* orders end */}
                     <Dropdown
-                        head={<MenuLink to="#" className="has-chevron"> <span><i className="fa fa-archive fs-16" />Vendor</span>
+                        head={<MenuLink className="has-chevron"> <span><i className="fa fa-archive fs-16" />Vendor</span>
                         </MenuLink>}
                         body={
-                            <ul id="product" className='active' aria-labelledby="product" data-parent="#side-nav-accordion">
+                            <ul  className='active'  >
                                 <li>
                                     <MenuLink to="/add-vendor" >Add Vendor</MenuLink>
                                 </li>

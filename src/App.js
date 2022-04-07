@@ -112,7 +112,7 @@ function App() {
         <PrivateRoute exact path="/menu-grid" component={Menugrid} />
         <PrivateRoute exact path="/modals" component={Modals} />
         <PrivateRoute exact path="/google-chart" component={Googlechart} />
-        <PrivateRoute exact path="/orders" component={Orders} />
+        <Route exact path="/orders" component={Orders} />
         <PrivateRoute exact path="/pagination" component={Pagination} />
         <PrivateRoute exact path="/preloaders" component={Preloaders} />
         <PrivateRoute exact path="/product-detail" component={Productdetail} />

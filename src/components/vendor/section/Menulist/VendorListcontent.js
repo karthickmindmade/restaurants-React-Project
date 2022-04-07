@@ -87,7 +87,7 @@ const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost)
                                                             <td class="sorting_1">{cake._id}</td>
                                                             <td><img src={cake.Images[0]} />{cake.Title}</td>
                                                             <td>{cake.TypeOfCake}</td>
-                                                            <td>{cake.Stock}</td>
+                                                            <td ><span className={cake.Stock}>{cake.Stock}</span></td>
                                                             <td>{cake.Price}</td>
                                                         </tr>
                                                     )}

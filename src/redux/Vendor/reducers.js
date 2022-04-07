@@ -2,8 +2,9 @@ import actions from "./actions";
 
 const initialState = {
   vendorsList: [],
-  addVendorStatus:''
-
+  addVendorStatus: '',
+  vendorsDetails: [],
+  updateVendorStatus: ''
 };
 
 const VendorReducer = (state = initialState, action) => {
@@ -13,11 +14,21 @@ const VendorReducer = (state = initialState, action) => {
         ...state,
         vendorsList: action.payload
       }
-      case actions.ADD_VENDORS_STATUS:
-        return {
-          ...state,
-          addVendorStatus: action.payload.addVendorStatus
-        }
+    case actions.ADD_VENDORS_STATUS:
+      return {
+        ...state,
+        addVendorStatus: action.payload.addVendorStatus
+      }
+    case actions.SET_SINGLE_VENDORS:
+      return {
+        ...state,
+        vendorsDetails: action.payload.vendorsDetails
+      }
+    case actions.UPDATE_VENDOR_STATUS:
+      return {
+        ...state,
+        updateVendorStatus: action.payload.updateVendorStatus
+      }
     default:
       return state;
   }
