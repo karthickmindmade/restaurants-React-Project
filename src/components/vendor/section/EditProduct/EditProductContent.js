@@ -61,7 +61,6 @@ export default function Editproductcontent(props) {
     }
     function setdeletetopping(e) {
         settoppinglist(toppinglist.filter((val) => { if (val !== e.target.value) { return val } }))
-
     }
     //cakeweightlist
     function addweight() {
@@ -73,18 +72,15 @@ export default function Editproductcontent(props) {
     }
     function setdeleteweight(e) {
         setweightlist(weightlist.filter((val) => { if (val !== e.target.value) { return val } }))
-
+     
     }
+    //delete imageUrl
     function setdeleteImage(e) {
         e.preventDefault()
         setupdateImage(updateImage.filter((val) => { if (val !== e.target.value) { return val } }))
-
     }
     //addcake
-
     console.log(files)
-
-
     function removeFile(e, index) {
         e.preventDefault()
         setimages([...files].filter((_, i) => i !== index));

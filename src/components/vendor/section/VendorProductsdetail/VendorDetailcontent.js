@@ -10,7 +10,7 @@ export default function VendorDetailcontent(props) {
     const state = useLocation()
     console.log(state.state)
     const dispatch = useDispatch();
-   var cakedetails =[]
+    var cakedetails = []
     useEffect(() => {
         dispatch({
             type: actions.GET_SINGLE_CAKEDETAILS, payload: state.state._id
@@ -19,7 +19,7 @@ export default function VendorDetailcontent(props) {
     const Cake = useSelector(
         (state) => state.CakesReducer
     );
-  cakedetails=Cake.CakeDetails
+    cakedetails = Cake.CakeDetails
     return (
         <div className="ms-content-wrapper">
             {open === false ? <div className="row">
@@ -92,7 +92,7 @@ export default function VendorDetailcontent(props) {
                     </div>
                 </div>
             </div> :
-                <Editproductcontent close={() => setopen(false)}  vendor={cakedetails} />
+                <Editproductcontent close={() => setopen(false)} vendor={cakedetails} />
             }
         </div>
 

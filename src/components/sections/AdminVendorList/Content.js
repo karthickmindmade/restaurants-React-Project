@@ -28,13 +28,9 @@ export default function Content() {
     const currentdata = vendorsList.vendorsList.slice(indexOfFirstPost, indexOfLastPost);
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-
-
     function ViewVendor(user){
         history.push('/admin-vendor-profile', user)
     }
-  
-
     return (
         <div className="ms-content-wrapper">
             <div className="row">

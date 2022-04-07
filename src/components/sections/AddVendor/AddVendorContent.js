@@ -15,16 +15,16 @@ function AddVendorContent() {
     const Pincode = useRef()
     const PhoneNumber = useRef()
     function AddVendor() {
-       const data={
-        "Email":Email.current.value,
-        "Password":Password.current.value,
-       "VendorName": VendorName.current.value,
-       "Street":Street.current.value,
-       "City":City.current.value,
-       "District": District.current.value,
-        "Pincode": Pincode.current.value,
-        "PhoneNumber": PhoneNumber.current.value,
-       }
+        const data = {
+            "Email": Email.current.value,
+            "Password": Password.current.value,
+            "VendorName": VendorName.current.value,
+            "Street": Street.current.value,
+            "City": City.current.value,
+            "District": District.current.value,
+            "Pincode": Pincode.current.value,
+            "PhoneNumber": PhoneNumber.current.value,
+        }
         dispatch({
             type: actions.ADD_VENDORS, payload: data
         });
@@ -103,7 +103,7 @@ function AddVendorContent() {
                                         <input type="text" class="form-control" ref={PhoneNumber} placeholder="PhoneNumber" />
                                     </div>
                                 </div>
-                                <button class="btn btn-secondary float-right mr-4"  type="submit" onClick={AddVendor} >Save</button>
+                                <button class="btn btn-secondary float-right mr-4" type="submit" onClick={AddVendor} >Save</button>
                             </div>
                         </div>
                     </div>
