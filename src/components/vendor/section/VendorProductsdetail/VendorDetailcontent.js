@@ -11,17 +11,15 @@ export default function VendorDetailcontent(props) {
     console.log(state.state)
     const dispatch = useDispatch();
    var cakedetails =[]
-    // useEffect(() => {
-    //     dispatch({
-    //         type: actions.GET_SINGLE_CAKEDETAILS, payload: "624bf5279de9355198e4639a"
-    //     });
-    // }, [])
-    // const Cake = useSelector(
-    //     (state) => state.CakesReducer
-    // );
-  cakedetails=state.state
-
-    console.log(cakedetails)
+    useEffect(() => {
+        dispatch({
+            type: actions.GET_SINGLE_CAKEDETAILS, payload: state.state._id
+        });
+    },[])
+    const Cake = useSelector(
+        (state) => state.CakesReducer
+    );
+  cakedetails=Cake.CakeDetails
     return (
 
         <div className="ms-content-wrapper">

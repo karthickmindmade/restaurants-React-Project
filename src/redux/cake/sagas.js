@@ -47,7 +47,7 @@ const getCakeDetails=function* (data){
     console.log(payload);
     try {
         const result = yield call(() =>
-            axios.get(`${API_URL}/list/${payload}`)
+            axios.get(`${API_URL}/cake/list/${payload}`)
         );
         yield put({ type: actions.SET_SINGLE_CAKEDETAILS, payload: {CakeDetails:result.data} });
     } catch (err) {

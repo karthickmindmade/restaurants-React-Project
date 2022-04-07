@@ -101,7 +101,7 @@ export default function Editproductcontent(props) {
         data.append("Title", Title.current.value);
         data.append("Description", Description.current.value);
         data.append("TypeOfCake", TypeOfCake.current.value);
-        data.append("eggOrEggless", eggOrEggless.current.value)
+        data.append("EggOrEggless", eggOrEggless.current.value)
         data.append("Price", Price.current.value);
         data.append("Ratings", "Ratings");
         data.append("Stock", Stock.current.value);
