@@ -1,4 +1,4 @@
-import React, { Component, useEffect,useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import Breadcrumbs from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
@@ -7,9 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import actions from '../../../../redux/cake/actions';
 import { useHistory } from 'react-router-dom/esm/react-router-dom';
 import Pagination from '../../../common/Pagination';
+import TableSearch from '../../../common/TableSearch';
 
 export default function VendorListcontent() {
     const history = useHistory();
+    const [search, setsearch] = useState('')
+    var filterdata = []
     //initialize datatable
     const dispatch = useDispatch();
     const CakesList = useSelector(
@@ -23,21 +26,36 @@ export default function VendorListcontent() {
 
 
 
-function ViewDetails(cake){
-    history.push('/Vendor-Productdetail',cake)
-}
+    function ViewDetails(cake) {
+        history.push('/Vendor-Productdetail', cake)
+    }
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
 
 
+    if(search===''){
+
+    }
+    filterdata = CakesList.CakesList.filter((val) => {
+        if (
+            val._id === search ||
+            val.Stock === search
+
+        ) {
+            return val
+        }
+    })
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentdata = filterdata.slice(indexOfFirstPost, indexOfLastPost);
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
-const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage] = useState(10);
-// Get current posts
-const indexOfLastPost = currentPage * postsPerPage;
-const indexOfFirstPost = indexOfLastPost - postsPerPage;
-const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost);
-  // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+    console.log()
     return (
         <div className="ms-content-wrapper">
             <div className="row">
@@ -65,9 +83,8 @@ const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost)
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-6">
-                                            <div id="data-table-5_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="data-table-5" /></label></div>
-                                        </div>
+
+                                        <TableSearch label='Search' type="search" onChange={(e) => setsearch(e.target.value)} />
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -83,7 +100,7 @@ const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost)
                                                 </thead>
                                                 <tbody>
                                                     {currentdata.map((cake) =>
-                                                        <tr class="odd" onClick={()=>ViewDetails(cake)}>
+                                                        <tr class="odd" onClick={() => ViewDetails(cake)}>
                                                             <td class="sorting_1">{cake._id}</td>
                                                             <td><img src={cake.Images[0]} />{cake.Title}</td>
                                                             <td>{cake.TypeOfCake}</td>
@@ -95,14 +112,14 @@ const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost)
                                             </table>
                                         </div>
                                     </div>
-                                    <Pagination 
-                                    postsPerPage={postsPerPage}
-                                    totalPosts={CakesList.CakesList.length}
-                                    paginate={paginate}
-                                    PreviouPage={() => setCurrentPage(currentPage - 1)}
-                                    NextPage={() => setCurrentPage(currentPage + 1)}
-                                    currentPage={currentPage}
-                                   />
+                                    <Pagination
+                                        postsPerPage={postsPerPage}
+                                        totalPosts={filterdata.length}
+                                        paginate={paginate}
+                                        PreviouPage={() => setCurrentPage(currentPage - 1)}
+                                        NextPage={() => setCurrentPage(currentPage + 1)}
+                                        currentPage={currentPage}
+                                    />
                                 </div>
                             </div>
                         </div>
