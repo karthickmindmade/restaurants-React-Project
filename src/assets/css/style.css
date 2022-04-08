@@ -7023,7 +7023,14 @@ table td .progress{
 
 }
 @media(max-width: 540px){
-
+  .btn {
+    font-size: 14px;
+    outline: none;
+    padding: 0.3rem 1rem;
+    min-width: 84px;
+    margin-top: 1rem;
+  }
+  
   .ms-form-wizard ul[role="tablist"] li a{
     padding: 10px;
   }

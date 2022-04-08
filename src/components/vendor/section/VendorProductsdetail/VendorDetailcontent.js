@@ -66,7 +66,7 @@ export default function VendorDetailcontent(props) {
                             </table>
                             <div className="new">
                                 <button type="button" className="btn btn-primary" onClick={() => setopen(true)}>Edit</button>
-                                <button type="button" className="btn btn-secondary">Delete</button>
+                                <button type="button" className="btn btn-secondary ml-2">Delete</button>
                             </div>
                         </div>
                     </div>

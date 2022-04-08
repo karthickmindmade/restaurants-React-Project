@@ -299,7 +299,7 @@ export default function Editproductcontent(props) {
                                     <SelectOption className="option-control" option={weightlist} deleteFun={(e) => setdeleteweight(e)} />
                                 </div>
                             </div>
-                            <div className="ms-panel-header new">
+                            <div className="ms-panel-header new display-flex">
                                 {loader === true ?
                                     <CircleDotSpinner />
                                     :

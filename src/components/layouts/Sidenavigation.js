@@ -71,7 +71,20 @@ export default function Sidenavigation() {
                     </li >
                     {/* orders end */}
 
-
+                    <Dropdown
+                        head={<MenuLink className="has-chevron"> <span><i className="fa fa-archive fs-16" />Vendor</span>
+                        </MenuLink>}
+                        body={
+                            <ul className='active'  >
+                                <li>
+                                    <MenuLink to="/add-vendor" >Add Vendor</MenuLink>
+                                </li>
+                                <li>
+                                    <MenuLink to="/admin-vendor-List" >Vendor List</MenuLink>
+                                </li>
+                            </ul >
+                        }
+                    />
 
 
                     {/* customers*/}
