@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Sidenavigation from '../../vendor/layout/Sidenavigation';
 import Topnavigation from '../../vendor/layout/Topnavigation';
 import Content from '../../vendor/section/vendorprofile/Content'

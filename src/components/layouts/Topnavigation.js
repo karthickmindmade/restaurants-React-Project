@@ -133,7 +133,7 @@ export default function Topnavigation (){
                                 </div>
                                 <div className="dropdown-divider" />
                                 <div className="ms-dropdown-list">
-                                    <Link className="media fs-14 p-2" to="/user-profiles"> <span><i className="flaticon-user mr-2" /> Profile</span>
+                                    <Link className="media fs-14 p-2" to="/admin-vendor-profile"> <span><i className="flaticon-user mr-2" /> Profile</span>
                                     </Link>
                                     <Link className="media fs-14 p-2" to="/email"> <span><i className="flaticon-mail mr-2" /> Inbox</span> <span className="badge badge-pill badge-info">3</span>
                                     </Link>

@@ -3,8 +3,9 @@ import actions from "./actions";
 const initState  =  {
   isAuthenticated:false,
   user:{},
-  route:"/",
+  route:"",
   token : '',
+  result : {}
 };
 
 const authReducer = (state = initState, action) => {
@@ -17,6 +18,7 @@ const authReducer = (state = initState, action) => {
                user:action.payload,
                route:action.payload.route,
                token : action.payload.token,
+               result : action.payload.result
             };
         }
         default: return state;

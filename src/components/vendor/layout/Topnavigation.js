@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link,useHistory } from 'react-router-dom'
 import $ from 'jquery';
 import { Dropdown, NavLink } from 'react-bootstrap';
 import Scrollbar from 'react-perfect-scrollbar'
@@ -9,6 +9,7 @@ import costiclogo from '../../../assets/img/costic/costic-logo-84x41.png'
 import MenuLink from '../../common/MenuLink';
 import actions from '../../../redux/Auth/actions';
 export default function Topnavigation (){
+    const pathName = useHistory().location.pathname;
     const dispatch=useDispatch();
    const addsidenavigation = () => {
         $('.ms-body').toggleClass('ms-aside-left-open');

@@ -9040,9 +9040,9 @@ a.text-dark:focus, a.text-dark:hover {
         text-decoration: underline
     }
 
-    abbr[title]::after {
-        /* content: " ("attr(title) ")" */
-    }
+    /* abbr[title]::after {
+        content: " ("attr(title) ")"
+    } */
 
     pre {
         white-space: pre-wrap !important

@@ -96,7 +96,7 @@ function EditVendorProfileContent(props) {
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <label for="validationCustom18">VendorName</label>
+                                        <label for="validationCustom18">Vendor Name</label>
                                         <div class="input-group">
                                             <input type="text" class="form-control" ref={VendorName} defaultValue={vendorDetails.VendorName} placeholder="VendorName" />
                                         </div>

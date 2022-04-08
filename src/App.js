@@ -1,7 +1,7 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import Preloader from './components/layouts/Preloader';
-import Dashboard from './components/pages/Dashboard';
+// import Dashboard from './components/pages/Dashboard';
 import Accordions from './components/pages/Accordions';
 import Addproduct from './components/vendor/pages/Addproduct';
 import Alerts from './components/pages/Alerts';
@@ -55,7 +55,6 @@ import Vectormaps from './components/pages/Vectormaps';
 import Widgets from './components/pages/Widgets';
 import Clientmanagement from './components/pages/Clientmanagement';
 import Comingsoon from './components/pages/Comingsoon';
-import Defaultlogin from './components/pages/Defaultlogin';
 import Defaultregister from './components/pages/Defaultregister';
 import Error from './components/pages/Error';
 import Faq from './components/pages/Faq';
@@ -68,20 +67,43 @@ import Stockmanagement from './components/pages/Stockmanagement';
 import Webanalytics from './components/pages/Webanalytics';
 import PrivateRoute from './route/PrivateRoute';
 import PublicRoute from './route/PublicRoute';
-import VendorDashboard from './components/vendor/pages/vendorDashboard';
 import VendorMenulist from './components/vendor/pages/VendorMenulist';
 import VendorProductdetail from './components/vendor/pages/VendorProductdetail';
 import Vendorprofile from './components/vendor/pages/vendorprofile';
 import AddVendor from './components/pages/AddVendor';
 import AdminVendorList from './components/pages/AdminVendorList';
 import AdminVendorprofile from './components/pages/adminvendorProfile';
-import AdminProductdetail from './components/pages/AdminProductdetail';
+import AdminProductdetail from './components/pages/AdminProductdetail'
+import actions from "../src/redux/Auth/actions";
+import ScrollToTop from './components/common/scroll-to-top';
+import { store } from './redux/store';
+
+const Defaultlogin = lazy(()=> import('./components/pages/Defaultlogin'));
+const Dashboard = lazy(()=> import('./components/pages/Dashboard'));
+const VendorDashboard = lazy(()=> import('./components/vendor/pages/vendorDashboard'));
+
+if(localStorage.getItem('token')){
+
+  store.dispatch({ 
+      type : actions.VERIFY_TOKEN, 
+      payload : localStorage.getItem('token') 
+  });
+  store.dispatch({ 
+      type: actions.UPDATE_AUTH_DETAILS, 
+      payload: { isAuthenticated: true }
+  });
+
+};
+
 function App() {
 
   return (
     <Router >
-      <Preloader />
+       <Suspense fallback={<Preloader />}>
       <Switch>
+      <ScrollToTop history={useHistory()}>
+        <PublicRoute exact path="/" component={Defaultlogin} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/accordions" component={Accordions} />
         <PrivateRoute exact path="/alerts" component={Alerts} />
         <PrivateRoute exact path="/animations" component={Animations} />
@@ -93,6 +115,7 @@ function App() {
         <PrivateRoute exact path="/chartjs" component={Chartjs} />
         <PrivateRoute exact path="/chat" component={Chat} />
         <PrivateRoute exact path="/cropper" component={Cropper} />
+        <PrivateRoute exact path="/customer-list" component={Customerlist} />
         <PrivateRoute exact path="/customer-review" component={Customerreview} />
         <PrivateRoute exact path="/data-tables" component={Datatables} />
         <PrivateRoute exact path="/draggables" component={Draggables} />
@@ -111,9 +134,9 @@ function App() {
         <PrivateRoute exact path="/menu-grid" component={Menugrid} />
         <PrivateRoute exact path="/modals" component={Modals} />
         <PrivateRoute exact path="/google-chart" component={Googlechart} />
-        <Route exact path="/orders" component={Orders} />
+        <PrivateRoute exact path="/orders" component={Orders} />
         <PrivateRoute exact path="/pagination" component={Pagination} />
-        <Route exact path="/preloaders" component={Preloaders} />
+        <PrivateRoute exact path="/preloaders" component={Preloaders} />
         <PrivateRoute exact path="/product-detail" component={Productdetail} />
         <PrivateRoute exact path="/progress-bars" component={Progressbars} />
         <PrivateRoute exact path="/range-slider" component={Rangeslider} />
@@ -124,6 +147,7 @@ function App() {
         <PrivateRoute exact path="/social-activity" component={Socialactivity} />
         <PrivateRoute exact path="/sweet-alerts" component={Sweetalerts} />
         <PrivateRoute exact path="/tabs" component={Tabs} />
+        <PrivateRoute exact path="/toast" component={Toast} />
         <PrivateRoute exact exacte path="/todo-list" component={Todolist} />
         <PrivateRoute exact path="/tour" component={Tour} />
         <PrivateRoute exact path="/typography" component={Typography} />
@@ -140,27 +164,22 @@ function App() {
         <PrivateRoute exact path="/modal-register" component={Modalregister} />
         <PrivateRoute exact path="/portfolio" component={Portfolio} />
         <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
-        <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
-
-
-        <PublicRoute exact path="/" component={Defaultlogin} />
-
-        {/* admin pages */}
-        <Route exact path="/admin-product-details" component={AdminProductdetail} />
         <Route exact path="/admin-vendor-profile" component={AdminVendorprofile} />
-        <Route exact path="/dashboard" component={Dashboard} />
+
+        <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
         <Route exact path="/add-vendor" component={AddVendor} />
         <Route exact path='/admin-vendor-List' component={AdminVendorList} />
+        <Route exact path="/admin-product-details" component={AdminProductdetail} />
         <Route exact path="/admin-product-list" component={AdminProductlist} />
-        <Route exact path="/customer-list" component={Customerlist} />
-        {/* vendor pages */}
-        <Route exact path="/vendor-profile" component={Vendorprofile} />
+        
+        <PrivateRoute exact path="/vendor-profile" component={Vendorprofile} />
         <Route exact path="/Vendor-menu-list" component={VendorMenulist} />
         <Route exact path="/Vendor-Productdetail" component={VendorProductdetail} />
-        <Route exact path="/vendordashboard" component={VendorDashboard} />
+        <PrivateRoute exact path="/vendordashboard" component={VendorDashboard} />
         <Route exact path="/add-product" component={Addproduct} />
-
+      </ScrollToTop>
       </Switch>
+      </Suspense>
     </Router>
   );
 }

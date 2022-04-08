@@ -1,6 +1,5 @@
 import React, {useRef, useState,useEffect } from 'react';
-import Preloader from '../../../components/layouts/Preloader';
-import { Link, useHistory } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch,useSelector } from 'react-redux';
 import actions from "../../../redux/Auth/actions";
@@ -12,22 +11,12 @@ export default function Content() {
     const[show2,setshow2] = useState(false);
     const[showMessage,setShowMessage] = useState('')
     const dispatch=useDispatch();
-    const router = useHistory();
     const EmailR=useRef();
     const PasswordR=useRef();
     const ForgotEmail = useRef();
     const Status = useSelector(
         state => state.forgotpasswordReducer
     );
-
-    useEffect(()=>{
-        const token = localStorage.getItem('token');
-        if(token===null){
-            return;
-        }else{
-            dispatch({ type : actions.VERIFY_TOKEN, payload : token });
-        }
-    },[dispatch]);
 
     //initialize datatable
     function formValidation() {
@@ -129,7 +118,7 @@ export default function Content() {
                                     <label className="ms-checkbox-wrap">
                                         <input className="form-check-input" type="checkbox" defaultValue /> <i className="ms-checkbox-check" />
                                     </label> <span> Remember Password </span>
-                                    <label className="d-block mt-3"><Link  className="btn-link" onClick={handleShow1}>Forgot Password?</Link>
+                                    <label className="d-block mt-3"><Link  to="/#" className="btn-link" onClick={handleShow1}>Forgot Password?</Link>
                                     </label>
                                 </div>
                                 <button className="btn btn-primary mt-4 d-block w-100" type="submit"onClick={SignIn}>Sign In</button>

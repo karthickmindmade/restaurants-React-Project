@@ -21,16 +21,20 @@ const workersLogIn = function* (data) {
             )
         );
         if (result.data.statusCode === 200) {
-           const setToken = localStorage.setItem('token', result.data.token);
+          yield put({
+            type: actions.VERIFY_TOKEN,
+            payload : result.data.token
+        });
+           localStorage.setItem('token', result.data.token);
             if (result.data.type === 'admin') {
                 yield put({
                     type: actions.UPDATE_AUTH_DETAILS,
-                    payload: { isAuthenticated: true, route: "/dashboard" }
+                    payload: { isAuthenticated: true, route: "/dashboard",result: result.data}
                 });
             } else if (result.data.type === "vendor") {
                 yield put({
                     type: actions.UPDATE_AUTH_DETAILS,
-                    payload: { isAuthenticated: true, route: "/vendordashboard" }
+                    payload: { isAuthenticated: true, route: "/vendordashboard",result: result.data}
                 });
             }
         } else {
@@ -77,7 +81,7 @@ const verifyToken = function* (data) {
       window.location.reload();
       yield put({
         type: actions.UPDATE_AUTH_DETAILS,
-        payload: { isAuthenticated: false,route : "/"}
+        payload: { isAuthenticated: false}
       });
     }
   } catch (err) {

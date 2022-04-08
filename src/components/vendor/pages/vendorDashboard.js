@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Sidenavigation from '../../vendor/layout/Sidenavigation';
 import Topnavigation from '../layout/Topnavigation';
 import Homecontent from '../section/vendorDashboard/Homecontent';
 
 
-class VendorDashboard extends Component {
-    render() {
+export default function VendorDashboard () {
         return (
             <div className="ms-body ms-aside-left-open ms-primary-theme ">
                 <Sidenavigation />
@@ -16,7 +15,4 @@ class VendorDashboard extends Component {
                
             </div>
         );
-    }
-}
-
-export default VendorDashboard;
+};
