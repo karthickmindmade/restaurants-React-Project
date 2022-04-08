@@ -114,7 +114,7 @@ function App() {
         <PrivateRoute exact path="/google-chart" component={Googlechart} />
         <Route exact path="/orders" component={Orders} />
         <PrivateRoute exact path="/pagination" component={Pagination} />
-        <PrivateRoute exact path="/preloaders" component={Preloaders} />
+        <Route exact path="/preloaders" component={Preloaders} />
         <PrivateRoute exact path="/product-detail" component={Productdetail} />
         <PrivateRoute exact path="/progress-bars" component={Progressbars} />
         <PrivateRoute exact path="/range-slider" component={Rangeslider} />

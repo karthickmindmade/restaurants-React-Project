@@ -76,7 +76,7 @@ const currentdata = CakesList.CakesList.slice(indexOfFirstPost, indexOfLastPost)
                                                     <tr role="row">
                                                         <th class="sorting sorting_asc" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Product ID: activate to sort column descending" >Product ID</th>
                                                         <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Product Name: activate to sort column ascending" >Product Name</th>
-                                                        <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Quantity: activate to sort column ascending" >Quantity</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Quantity: activate to sort column ascending" >Product Type</th>
                                                         <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" >Status</th>
                                                         <th class="sorting" tabindex="0" aria-controls="data-table-5" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" >Price</th>
                                                     </tr>

@@ -7,6 +7,7 @@ import EditProductslider from './editImageSlider';
 import ImgSelectOption from '../Addproduct/imgSelect';
 import SuccessAlert from '../../../common/SuccessAlert';
 import FailAlert from '../../../common/failAlert';
+import CircleDotSpinner from '../../../common/CircleDotSpinner';
 
 export default function Editproductcontent(props) {
     const { vendor } = props
@@ -28,6 +29,7 @@ export default function Editproductcontent(props) {
     const [toppinglist, settoppinglist] = useState(vendor.CakeToppings)
     const [weight, setweight] = useState()
     const [weightlist, setweightlist] = useState(vendor.WeightList)
+    const [loader, setloader] = useState(false)
     // flavorlist
     function addFlavor() {
         if (undefined === flavor || '' === flavor || flavorlist.filter((val) => { if (val === flavor) { return val } })[0] === flavor) {
@@ -70,7 +72,7 @@ export default function Editproductcontent(props) {
     }
     function setdeleteweight(e) {
         setweightlist(weightlist.filter((val) => { if (val !== e.target.value) { return val } }))
-     
+
     }
     //delete imageUrl
     function setdeleteImage(e) {
@@ -90,6 +92,7 @@ export default function Editproductcontent(props) {
     }
     const AddCake = (e) => {
         e.preventDefault();
+        setloader(true)
         const data = new FormData();
         data.append("Title", Title.current.value);
         data.append("Description", Description.current.value);
@@ -122,24 +125,18 @@ export default function Editproductcontent(props) {
         dispatch({
             type: actions.UPDATE_CAKES, payload: { reqBody: data, reqParamid: vendor._id }
         });
-        dispatch({ type: actions.UPDATE_CAKES_STATUS, payload: {UpdatecakeStatus:[]} });
+        dispatch({ type: actions.UPDATE_CAKES_STATUS, payload: { UpdatecakeStatus: [] } });
     }
 
     const CakesList = useSelector(
         (state) => state.CakesReducer
     );
+    useEffect(() => {
+        if (CakesList.UpdatecakeStatus.statusCode === 200 || CakesList.UpdatecakeStatus.statusCode === 400) {
+            setloader(false)
+        }
+    }, [CakesList, setloader])
 
-    // const [count, setCount] = useState(0);
-    // const [countInTimeout, setCountInTimeout] = useState(0);
-  
-    // useEffect(() => {
-    //   setTimeout(() => {
-    //     setCountInTimeout(count); // count is 0 here
-    //   }, 7000);
-    //   setCount(5); // Update count to be 5 after timeout is scheduled
-    // }, [count]);
-    // console.log(count)
-    // console.log(countInTimeout)
     console.log(CakesList.UpdatecakeStatus)
     return (
         <div className="row">
@@ -303,8 +300,15 @@ export default function Editproductcontent(props) {
                                 </div>
                             </div>
                             <div className="ms-panel-header new">
-                                <button className="btn btn-secondary d-block" type="submit" onClick={AddCake}>Save</button>
-                                <button className="btn btn-secondary d-block" onClick={props.close}>Cancel</button>
+                                {loader === true ?
+                                    <CircleDotSpinner />
+                                    :
+                                    <>
+                                        <button className="btn btn-secondary d-block" type="submit" onClick={AddCake}>Save</button>
+                                        <button className="btn btn-secondary d-block" onClick={props.close}>Cancel</button>
+                                    </>}
+
+
                             </div>
                         </div>
                     </div>

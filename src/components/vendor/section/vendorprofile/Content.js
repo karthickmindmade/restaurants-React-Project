@@ -5,10 +5,15 @@ import customerimg from '../../../../assets/img/costic/customer-5.jpg'
 import Latestpost from './Latestpost';
 import { useLocation } from 'react-router-dom/esm/react-router-dom';
 import EditVendorProfileContent from '../EditVendorProfile/Content';
+import { useDispatch, useSelector } from "react-redux";
 function Content() {
     const state = useLocation()
-    console.log(state)
+    // console.log(state)
     const [edit, setedit] = useState(false)
+    const CakesList = useSelector(
+        (state) => state.authReducer
+    );
+console.log(CakesList)
     return (
         <>{edit === false ?
             <div className="ms-content-wrapper">

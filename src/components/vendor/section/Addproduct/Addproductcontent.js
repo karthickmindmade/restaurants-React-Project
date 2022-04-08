@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
+import CircleDotSpinner from '../../../common/CircleDotSpinner';
 
 export default function Addproductcontent() {
     const Title = useRef();
@@ -16,7 +17,7 @@ export default function Addproductcontent() {
     const Stock = useRef()
     const [files, setfiles] = useState([])
     const dispatch = useDispatch();
-
+    const [loader, setloader] = useState(false)
     const [flavor, setflavor] = useState()
     const [flavorlist, setflavorlist] = useState([])
     const [shape, setshape] = useState()
@@ -76,6 +77,7 @@ export default function Addproductcontent() {
     console.log(files)
     const AddCake = (e) => {
         e.preventDefault();
+        setloader(true)
         console.log(Title.current.value)
         console.log(Description.current.value)
         console.log(TypeOfCake.current.value)
@@ -123,6 +125,12 @@ export default function Addproductcontent() {
         (state) => state.CakesReducer
     );
     console.log(CakesList.addCakeStatus)
+    useEffect(() => {
+        if (CakesList.addCakeStatus.statusCode === 200 || CakesList.addCakeStatus.statusCode === 400) {
+            setloader(false)
+        }
+    },[CakesList,setloader])
+
 
     function removeFile(e, index) {
         e.preventDefault()
@@ -296,12 +304,14 @@ export default function Addproductcontent() {
                                     </div>
                                 </div>
                                 <div className="ms-panel-header new">
-                                    <button className="btn btn-secondary d-block" type="submit" onClick={AddCake}>Save</button>
+                                    {loader === true ? <CircleDotSpinner /> : <button className="btn btn-secondary d-block" type="submit" onClick={AddCake}>Save</button>}
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 {CakesList.addCakeStatus === "" || CakesList.addCakeStatus === undefined ? <></> :
                     <div className={CakesList.addCakeStatus.statusCode === 400 ? "alert alert-danger" : "alert alert-success"} role="alert">
                         <strong>Well done!</strong> {CakesList.addCakeStatus.message}
