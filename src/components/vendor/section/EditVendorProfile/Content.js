@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import customerimg from '../../../../assets/img/costic/customer-5.jpg';
 import Breadcrumb from '../../../vendor/section/EditVendorProfile/Breadcrumb';
 import actions from '../../../../redux/Vendor/actions';
+import CircleDotSpinner from '../../../common/CircleDotSpinner';
 function EditVendorProfileContent(props) {
     const { vendorDetails } = props
     const dispatch = useDispatch()
@@ -48,9 +49,12 @@ function EditVendorProfileContent(props) {
     } else {
         imageurl = image
     }
-    if (Vendor.updateVendorStatus.statusCode === 200 || Vendor.updateVendorStatus.statusCode === 400) {
-        setloader(false)
-    }
+    useEffect(() => {
+        if (Vendor.updateVendorStatus.statusCode === 200 || Vendor.updateVendorStatus.statusCode === 400) {
+            setloader(false)
+        }
+    }, [setloader, Vendor])
+
 
     return (
         <div className="ms-content-wrapper">
@@ -151,10 +155,14 @@ function EditVendorProfileContent(props) {
                                         <input type="text" class="form-control" ref={DeliveryCharge} defaultValue={vendorDetails.DeliveryCharge} placeholder="DeliveryCharge" />
                                     </div>
                                 </div>
-                                {loader === true ? <div class="ms-circle11 ms-circle"></div> : <>
-                                    <button class="btn btn-secondary float-right mr-4" type="submit" onClick={AddCake} >Save</button>
-                                    <button class="btn btn-secondary float-right mr-4" type="submit" onClick={props.closeEdit} >Cancel</button>
-                                </>}
+                                {loader === true ?
+                                    <CircleDotSpinner />
+                                    :
+                                    <>
+                                        <button class="btn btn-secondary float-right mr-4" type="submit" onClick={AddCake} >Save</button>
+                                        <button class="btn btn-secondary float-right mr-4" type="submit" onClick={props.closeEdit} >Cancel</button>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>

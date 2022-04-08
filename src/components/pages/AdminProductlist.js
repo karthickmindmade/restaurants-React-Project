@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Sidenavigation from '../layouts/Sidenavigation';
 import Topnavigation from '../layouts/Topnavigation';
-import Listcontent from '../sections/Menulist/Listcontent';
+import Listcontent from '../sections/adminProductlist/Listcontent';
 import Quickbar from '../layouts/Quickbar';
 
-class Menulist extends Component {
-    render() {
+function AdminProductlist () {
+  
         return (
             <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
                 <Sidenavigation />
@@ -16,7 +16,7 @@ class Menulist extends Component {
                 <Quickbar />
             </div>
         );
-    }
+    
 }
 
-export default Menulist;
+export default AdminProductlist;

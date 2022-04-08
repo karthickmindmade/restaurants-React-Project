@@ -31,7 +31,7 @@ import Invoicelist from './components/pages/Invoicelist';
 import Materialize from './components/pages/Materialize';
 import Menucatalogue from './components/pages/Menucatalogue';
 import Menugrid from './components/pages/Menugrid';
-import Menulist from './components/pages/Menulist';
+import AdminProductlist from './components/pages/AdminProductlist';
 import Modals from './components/pages/Modals';
 import Googlechart from './components/pages/Googlechart';
 import Orders from './components/pages/Orders';
@@ -75,7 +75,7 @@ import Vendorprofile from './components/vendor/pages/vendorprofile';
 import AddVendor from './components/pages/AddVendor';
 import AdminVendorList from './components/pages/AdminVendorList';
 import AdminVendorprofile from './components/pages/adminvendorProfile';
-
+import AdminProductdetail from './components/pages/AdminProductdetail';
 function App() {
 
   return (
@@ -93,7 +93,6 @@ function App() {
         <PrivateRoute exact path="/chartjs" component={Chartjs} />
         <PrivateRoute exact path="/chat" component={Chat} />
         <PrivateRoute exact path="/cropper" component={Cropper} />
-        <PrivateRoute exact path="/customer-list" component={Customerlist} />
         <PrivateRoute exact path="/customer-review" component={Customerreview} />
         <PrivateRoute exact path="/data-tables" component={Datatables} />
         <PrivateRoute exact path="/draggables" component={Draggables} />
@@ -147,11 +146,13 @@ function App() {
         <PublicRoute exact path="/" component={Defaultlogin} />
 
         {/* admin pages */}
+        <Route exact path="/admin-product-details" component={AdminProductdetail} />
         <Route exact path="/admin-vendor-profile" component={AdminVendorprofile} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/add-vendor" component={AddVendor} />
         <Route exact path='/admin-vendor-List' component={AdminVendorList} />
-        <Route exact path="/menu-list" component={Menulist} />
+        <Route exact path="/admin-product-list" component={AdminProductlist} />
+        <Route exact path="/customer-list" component={Customerlist} />
         {/* vendor pages */}
         <Route exact path="/vendor-profile" component={Vendorprofile} />
         <Route exact path="/Vendor-menu-list" component={VendorMenulist} />

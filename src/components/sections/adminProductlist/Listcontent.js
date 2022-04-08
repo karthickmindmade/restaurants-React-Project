@@ -2,13 +2,12 @@ import React, { Component, useEffect,useState } from 'react';
 import Breadcrumbs from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
-import $ from 'jquery';
 import { useDispatch, useSelector } from "react-redux";
 import actions from '../../../redux/cake/actions';
 import Pagination from '../../common/Pagination';
-
+import { useHistory } from 'react-router-dom/esm/react-router-dom';
 export default function Listcontent() {
-
+    const history = useHistory();
     //initialize datatable
     const dispatch = useDispatch();
     const CakesList = useSelector(
@@ -34,6 +33,10 @@ export default function Listcontent() {
    
       // Change page
       const paginate = pageNumber => setCurrentPage(pageNumber);
+      function ViewDetails(cake){
+        history.push('/admin-product-details', cake)
+      }
+
     return (
         <div className="ms-content-wrapper">
             <div className="row">
@@ -79,9 +82,9 @@ export default function Listcontent() {
                                                 </thead>
                                                 <tbody>
                                                     {currentdata.map((cake) =>
-                                                        <tr class="odd">
+                                                        <tr class="odd" key={cake._id} onClick={()=>ViewDetails(cake)}>
                                                             <td class="sorting_1">{cake._id}</td>
-                                                            <td><img src={cake.Images} />{cake.Title}</td>
+                                                            <td><img src={cake.Images[0]} />{cake.Title}</td>
                                                             <td>{cake.TypeOfCake}</td>
                                                             <td>{cake.Stock}</td>
                                                             <td>{cake.Price}</td>
