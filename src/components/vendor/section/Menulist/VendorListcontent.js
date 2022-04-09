@@ -57,9 +57,6 @@ export default function VendorListcontent() {
     const currentdata = filterdata.slice(indexOfFirstPost, indexOfLastPost);
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-
-
-    console.log()
     return (
         <div className="ms-content-wrapper">
             <div className="row">

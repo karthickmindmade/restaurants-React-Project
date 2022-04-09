@@ -2,7 +2,7 @@ import React from 'react';
 import Sidenavigation from '../layouts/Sidenavigation';
 import Topnavigation from '../layouts/Topnavigation';
 import Breadcrumb from '../sections/OrderDetails/Breadcrumb';
-// import Details from '../sections/OrderDetails/Details';
+import Details from '../sections/OrderDetails/Details';
 import Quickbar from '../layouts/Quickbar';
 
 export default function OrderDetails()  {
@@ -15,8 +15,7 @@ export default function OrderDetails()  {
                     <div className="ms-content-wrapper">
                         <div className="row">
                             <div className="col-md-12">
-                                <Breadcrumb/>
-                                {/* <Details/> */}
+                                <Details/>
                             </div>
                         </div>
                     </div>

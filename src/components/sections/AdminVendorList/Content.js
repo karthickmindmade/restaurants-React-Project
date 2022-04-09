@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Breadcrumb from './Breadcrumb';
 import "datatables.net-bs4/js/dataTables.bootstrap4"
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css"
@@ -8,8 +8,10 @@ import ShowPerPage from '../../common/ShowPerPage';
 import TableSearch from '../../common/TableSearch';
 import Pagination from '../../common/Pagination';
 import { useHistory } from 'react-router-dom/esm/react-router-dom';
+
 // Table data
 export default function Content() {
+
     const history = useHistory();
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +31,8 @@ export default function Content() {
     const paginate = pageNumber => setCurrentPage(pageNumber);
     //route to vendor profile by click vendor row
     function ViewVendor(user) {
-        history.push('/admin-vendor-profile', user)
+        console.log(user)
+        history.push('/admin-vendor-list-detail', user)
     }
     return (
         <div className="ms-content-wrapper">
@@ -60,20 +63,20 @@ export default function Content() {
                                                         <th  >
                                                             Vendor ID
                                                         </th>
-                                                        <th  >
-                                                            Vendor Name
+                                                        <th>
+                                                            Profile Image
                                                         </th>
                                                         <th  >
-                                                            Location
+                                                            Vendor Name
                                                         </th>
                                                         <th  >
                                                             Email ID
                                                         </th>
                                                         <th >
-                                                            Ordered Item
+                                                            Phonenumber
                                                         </th>
                                                         <th >
-                                                            Bill
+                                                            DeliveryCharge
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -81,13 +84,13 @@ export default function Content() {
                                                     {currentdata.map((user) =>
                                                         <tr onClick={() => ViewVendor(user)} key={user._id} >
                                                             <td>{user._id}</td>
-                                                            <td><img className='Avatar' src={user.ProfileImage} />{user.VendorName}</td>
+                                                            <td><img className='Avatar profile-image' src={user.ProfileImage} /></td>
+                                                            <td>{user.VendorName}</td>
                                                             <td>
                                                                 {user.Email}
                                                             </td>
                                                             <td>{user.PhoneNumber}</td>
-                                                            <td> {user.UserName}</td>
-                                                            <td>{user.Created_On}</td>
+                                                            <td>{user.DeliveryCharge}</td>
                                                         </tr>
                                                     )}
                                                 </tbody>
@@ -111,4 +114,3 @@ export default function Content() {
         </div>
     );
 }
-

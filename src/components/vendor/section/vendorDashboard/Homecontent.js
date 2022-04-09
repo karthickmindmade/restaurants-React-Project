@@ -9,6 +9,7 @@ import Trendingorder from './Trendingorder';
 import Orderchart from './Orderchart';
 import Restaurantlisting from './Restaurantlisting';
 import { useSelector } from 'react-redux';
+import Preloader from '../../../../components/layouts/Preloader';
 
 const phonetip = (
     <Tooltip>
@@ -27,12 +28,17 @@ const invitetip = (
 );
 export default function Homecontent() {
 
-
+    const auth = useSelector(
+        state => state.authReducer
+    );
     return (
         <div className="ms-content-wrapper">
+            {auth.token === undefined ?
+                <Preloader />
+                :
             <div className="row">
                 <div className="col-md-12">
-                    <h1 className="db-header-title">Welcome, Anny</h1>
+                    <h1 className="db-header-title">Welcome, {auth.token.result.VendorName}</h1>
                 </div>
                 <div className="col-12">
                     <Chart />
@@ -616,6 +622,7 @@ export default function Homecontent() {
                 </div>
                 {/* client chat */}
             </div>
+            }
         </div>
 
     );

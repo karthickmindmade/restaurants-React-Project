@@ -19,6 +19,7 @@ export default function Ordertable(){
     )
     console.log(orders.Order_list);
     function ViewOrderDetails(order) {
+        console.log("OrderTable",order)
         history.push('/Admin-OrderDetails', order)
     }
    return (

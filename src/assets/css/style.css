@@ -7845,3 +7845,6 @@ span.InStock {
 .admin-profile{
   margin: 0px 160px;
 }
+tr td{
+  text-align: center;
+}
