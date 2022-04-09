@@ -1,11 +1,12 @@
 import React from "react"
 import { Carousel } from 'react-bootstrap'
 export default function CakeDetailsImageSlider(props) {
-    const { image } = props
+    const { image } = props;
+    var images;
     if(image===undefined){
-        var images=[]
+        images=[];
     }else{
-        var images=image
+        images=image;
     }
   
     return (

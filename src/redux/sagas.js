@@ -5,6 +5,7 @@ import CakeListSaga from "./cake/sagas"
 import ForgotpasswordSaga from "./ForgotPassword/sagas";
 import VendorListSaga from "./Vendor/sagas";
 import OrderListSaga from "./Order/sagas";
+import Adminsaga from "./Admin/sagas";
 export default function* rootSaga() {
     yield all([
         registeredUserSaga(),
@@ -12,6 +13,7 @@ export default function* rootSaga() {
         ForgotpasswordSaga(),
         CakeListSaga(),
         VendorListSaga(),
-        OrderListSaga()
+        OrderListSaga(),
+        Adminsaga()
     ]);
 };

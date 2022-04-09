@@ -65,7 +65,12 @@ const UpdateVendor=function*(data){
         const result = yield call(() =>
             axios.put(`${API_URL}/vendors/update/${payload.reqParamid}`,payload.reqBody)
         );
-        yield put({ type: actions.UPDATE_VENDOR_STATUS, payload: {updateVendorStatus:result.data} });
+        // yield put({ type: actions.UPDATE_VENDOR_STATUS, payload: {updateVendorStatus:result.data} });
+        if(result.data.statusCode === 200){
+            window.location.reload();
+        }else{
+            window.location.reload(false);
+        }   
     } catch (err) {
         console.log(err)
     }

@@ -102,10 +102,10 @@ export default function Sidenavigation() {
                     />
                     {/* Customers  end */}
                     {/* sales */}
-                    <li className="menu-item">
+                    {/* <li className="menu-item">
                         <MenuLink to="/sales" > <span><i className="fa fa-briefcase fs-16" />Sales</span>
                         </MenuLink>
-                    </li >
+                    </li > */}
                     {/* sales end  */}
                 </ul >
             </Scrollbar >

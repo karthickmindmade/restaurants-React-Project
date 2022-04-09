@@ -7,7 +7,7 @@ import actions from '../../../redux/Vendor/actions';
 import customerimg from '../../../assets/img/costic/customer-5.jpg'
 import Latestpost from './Latestpost';
 import AdminEditVendorProfileContent from '../AdminEditVendorProfile.js/AdminEditVendorProfile';
-import Breadcrumb from '../../sections/adminVendorProfile/Breadcrumb';
+import Breadcrumb from './Breadcrumb';
 function Content() {
     const state = useLocation()
     const dispatch=useDispatch()

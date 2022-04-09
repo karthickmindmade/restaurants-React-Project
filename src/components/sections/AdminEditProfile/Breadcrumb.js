@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Breadcrumb(){
+function Breadcrumb (props) {
+  
         return (
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb pl-0">
                     <li className="breadcrumb-item"><Link to="#"><i className="material-icons">home</i> Home</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">Orders</li>
+                    <li className="breadcrumb-item"><Link onClick={props.closeEdit}>Profile</Link></li>
+                    <li className="breadcrumb-item active" aria-current="page">Edit Profile</li>
                 </ol>
             </nav>
         );
-    }
+   
+}
 
-
+export default Breadcrumb;

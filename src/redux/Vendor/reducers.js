@@ -4,7 +4,7 @@ const initialState = {
   vendorsList: [],
   addVendorStatus: '',
   vendorsDetails: [],
-  updateVendorStatus: ''
+
 };
 
 const VendorReducer = (state = initialState, action) => {
@@ -24,11 +24,11 @@ const VendorReducer = (state = initialState, action) => {
         ...state,
         vendorsDetails: action.payload.vendorsDetails
       }
-    case actions.UPDATE_VENDOR_STATUS:
-      return {
-        ...state,
-        updateVendorStatus: action.payload.updateVendorStatus
-      }
+    // case actions.UPDATE_VENDOR_STATUS:
+    //   return {
+    //     ...state,
+    //     updateVendorStatus: action.payload.updateVendorStatus
+    //   }
     default:
       return state;
   }

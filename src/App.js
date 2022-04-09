@@ -72,7 +72,7 @@ import VendorProductdetail from './components/vendor/pages/VendorProductdetail';
 import Vendorprofile from './components/vendor/pages/vendorprofile';
 import AddVendor from './components/pages/AddVendor';
 import AdminVendorList from './components/pages/AdminVendorList';
-import AdminVendorprofile from './components/pages/adminvendorProfile';
+import AdminProfile from './components/pages/adminProfile';
 import AdminProductdetail from './components/pages/AdminProductdetail'
 import actions from "../src/redux/Auth/actions";
 import ScrollToTop from './components/common/scroll-to-top';
@@ -164,7 +164,7 @@ function App() {
         <PrivateRoute exact path="/modal-register" component={Modalregister} />
         <PrivateRoute exact path="/portfolio" component={Portfolio} />
         <PrivateRoute exact path="/stock-management" component={Stockmanagement} />
-        <Route exact path="/admin-vendor-profile" component={AdminVendorprofile} />
+        <Route exact path="/admin-profile" component={AdminProfile} />
 
         <PrivateRoute exact path="/web-analytics" component={Webanalytics} />
         <Route exact path="/add-vendor" component={AddVendor} />

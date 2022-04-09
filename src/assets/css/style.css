@@ -7841,5 +7841,7 @@ span.InStock {
   font-size: 12px;
   padding : 4px 6px;
   border-radius: 5px;
-
+}
+.admin-profile{
+  margin: 0px 160px;
 }

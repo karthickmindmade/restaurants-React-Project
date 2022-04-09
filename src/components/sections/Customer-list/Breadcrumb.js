@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Breadcrumb extends Component {
-    render() {
-        return (
+function Breadcrumb(){
+    return (
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb pl-0">
                     <li className="breadcrumb-item"><Link to="#"><i className="material-icons">home</i> Home</Link></li>
@@ -12,7 +11,7 @@ class Breadcrumb extends Component {
                 </ol>
             </nav>
         );
-    }
+    
 }
 
 export default Breadcrumb;
