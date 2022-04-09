@@ -1,8 +1,22 @@
-import React, { Component } from 'react';
+import React, { useEffect,useState} from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import actions from "../../../redux/Order/actions";
 
-class Ordertable extends Component {
-    render() {
-        return (
+
+export default function Ordertable(){
+    const dispatch = useDispatch();
+    var [rowClicked,SetRowClicked]=useState(false);
+
+    useEffect(() => {
+        dispatch({ type: actions.GET_ORDER_LIST })
+    }, [])
+    const orders=useSelector(
+        state=>state.OrderReducer
+    )
+    console.log(orders.Order_list);
+   return (
+       <>
+            {rowClicked === false ?
             <div className="col-12">
                 <div className="ms-panel">
                     <div className="ms-panel-header">
@@ -10,117 +24,127 @@ class Ordertable extends Component {
                     </div>
                     <div className="ms-panel-body">
                         <div className="table-responsive">
+                            
                             <table className="table table-hover thead-primary">
                                 <thead>
                                     <tr>
                                         <th scope="col">Order ID</th>
-                                        <th scope="col">Order Name</th>
+                                        <th scope="col">Cake Name</th>
                                         <th scope="col">Customer Name</th>
-                                        <th scope="col">Location</th>
-                                        <th scope="col">Order Status</th>
-                                        <th scope="col">Delivered Time</th>
+                                        <th scope="col">Ordered Date</th>
+                                        <th scope="col">Delivery Date</th>
                                         <th scope="col">Price</th>
+                                        <th scope="col">Order Status</th>
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
+                                {orders.Order_list.map((a)=>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>French Fries</td>
-                                        <td> Jhon Leo</td>
-                                        <td> New Town</td>
-                                        <td><span className="badge badge-primary">Pending</span></td>
-                                        <td>10:05</td>
-                                        <td>$10</td>
+                                        <th scope="row">{a._id}</th>
+                                        <td>{a.Title}</td>
+                                        <td> {a.UserName}</td>
+                                        <td> {a.Created_On}</td>
+                                        <td>{a.DeliveryDate}</td>
+                                        <td>{a.Price}</td>
+                                        <td><span className={a.Status}>{a.Status}</span></td>
+                                        
+                                        
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Mango Pie</td>
-                                        <td>Kristien</td>
-                                        <td> Old Town</td>
-                                        <td><span className="badge badge-dark">Cancelled</span></td>
-                                        <td>14:05</td>
-                                        <td>$9</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>FrieD Egg Sandwich</td>
-                                        <td>Jack Suit</td>
-                                        <td> Oxford Street</td>
-                                        <td><span className="badge badge-success">Delivered</span></td>
-                                        <td>12:05</td>
-                                        <td>$19</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>Lemon Yogurt Parfait</td>
-                                        <td>Alesdro Guitto</td>
-                                        <td> Church hill</td>
-                                        <td><span className="badge badge-success">Delivered</span></td>
-                                        <td>12:05</td>
-                                        <td>$18</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">5</th>
-                                        <td>Spicy Grill Sandwich</td>
-                                        <td>Jacob Sahwny</td>
-                                        <td> palace Road</td>
-                                        <td><span className="badge badge-success">Delivered</span></td>
-                                        <td>12:05</td>
-                                        <td>$21</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">6</th>
-                                        <td>Chicken Sandwich</td>
-                                        <td>Peter Gill</td>
-                                        <td> Street 21</td>
-                                        <td><span className="badge badge-primary">Pending</span></td>
-                                        <td>12:05</td>
-                                        <td>$15</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">7</th>
-                                        <td> Sandwich</td>
-                                        <td>Jack Suit</td>
-                                        <td> 40, Street</td>
-                                        <td><span className="badge badge-success">Delivered</span></td>
-                                        <td>11:05</td>
-                                        <td>$19</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">8</th>
-                                        <td>Spaghetti</td>
-                                        <td>Jack Suit</td>
-                                        <td> Oxford Street</td>
-                                        <td><span className="badge badge-success">Delivered</span></td>
-                                        <td>12:05</td>
-                                        <td>$19</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">9</th>
-                                        <td>Fried Rice</td>
-                                        <td>Jack Suit</td>
-                                        <td> Hilltown Street</td>
-                                        <td><span className="badge badge-success">Delivered</span></td>
-                                        <td>12:05</td>
-                                        <td>$19</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">10</th>
-                                        <td>Noodels</td>
-                                        <td>Jack Suit</td>
-                                        <td> Oxford Street</td>
-                                        <td><span className="badge badge-success">Delivered</span></td>
-                                        <td>12:05</td>
-                                        <td>$19</td>
-                                    </tr>
+                                    //  <tr>
+                                    //     <th scope="row">2</th>
+                                    //     <td>Mango Pie</td>
+                                    //     <td>Kristien</td>
+                                    //     <td> Old Town</td>
+                                    //     <td><span className="badge badge-dark">Cancelled</span></td>
+                                    //     <td>14:05</td>
+                                    //     <td>$9</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">3</th>
+                                    //     <td>FrieD Egg Sandwich</td>
+                                    //     <td>Jack Suit</td>
+                                    //     <td> Oxford Street</td>
+                                    //     <td><span className="badge badge-success">Delivered</span></td>
+                                    //     <td>12:05</td>
+                                    //     <td>$19</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">4</th>
+                                    //     <td>Lemon Yogurt Parfait</td>
+                                    //     <td>Alesdro Guitto</td>
+                                    //     <td> Church hill</td>
+                                    //     <td><span className="badge badge-success">Delivered</span></td>
+                                    //     <td>12:05</td>
+                                    //     <td>$18</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">5</th>
+                                    //     <td>Spicy Grill Sandwich</td>
+                                    //     <td>Jacob Sahwny</td>
+                                    //     <td> palace Road</td>
+                                    //     <td><span className="badge badge-success">Delivered</span></td>
+                                    //     <td>12:05</td>
+                                    //     <td>$21</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">6</th>
+                                    //     <td>Chicken Sandwich</td>
+                                    //     <td>Peter Gill</td>
+                                    //     <td> Street 21</td>
+                                    //     <td><span className="badge badge-primary">Pending</span></td>
+                                    //     <td>12:05</td>
+                                    //     <td>$15</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">7</th>
+                                    //     <td> Sandwich</td>
+                                    //     <td>Jack Suit</td>
+                                    //     <td> 40, Street</td>
+                                    //     <td><span className="badge badge-success">Delivered</span></td>
+                                    //     <td>11:05</td>
+                                    //     <td>$19</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">8</th>
+                                    //     <td>Spaghetti</td>
+                                    //     <td>Jack Suit</td>
+                                    //     <td> Oxford Street</td>
+                                    //     <td><span className="badge badge-success">Delivered</span></td>
+                                    //     <td>12:05</td>
+                                    //     <td>$19</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">9</th>
+                                    //     <td>Fried Rice</td>
+                                    //     <td>Jack Suit</td>
+                                    //     <td> Hilltown Street</td>
+                                    //     <td><span className="badge badge-success">Delivered</span></td>
+                                    //     <td>12:05</td>
+                                    //     <td>$19</td>
+                                    // </tr>
+                                    // <tr>
+                                    //     <th scope="row">10</th>
+                                    //     <td>Noodels</td>
+                                    //     <td>Jack Suit</td>
+                                    //     <td> Oxford Street</td>
+                                    //     <td><span className="badge badge-success">Delivered</span></td>
+                                    //     <td>12:05</td>
+                                    //     <td>$19</td>
+                                    // </tr> 
+                                    )}
                                 </tbody>
-                            </table>
+                            </table> 
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            :
+            // <Details />
+            <></>
+            }
+        </>
         );
-    }
+    
 }
-
-export default Ordertable;

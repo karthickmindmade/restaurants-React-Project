@@ -12,6 +12,9 @@ import TableSearch from '../../../common/TableSearch';
 export default function VendorListcontent() {
     const history = useHistory();
     const [search, setsearch] = useState('')
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
+
     var filterdata = []
     //initialize datatable
     const dispatch = useDispatch();
@@ -25,27 +28,28 @@ export default function VendorListcontent() {
 
 
 
-
+    //passing and navigating cakedetails to vendorproductdetails
     function ViewDetails(cake) {
         history.push('/Vendor-Productdetail', cake)
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(10);
 
 
-    if(search===''){
+    //search function
+    if (search === '') {
+        filterdata = CakesList.CakesList
+    } else {
+        filterdata = CakesList.CakesList.filter((val) => {
+            if (
+                val._id === search ||
+                val.Stock === search ||
+                val.Title === search
+            ) {
+                return val
+            }
+        })
 
     }
-    filterdata = CakesList.CakesList.filter((val) => {
-        if (
-            val._id === search ||
-            val.Stock === search
-
-        ) {
-            return val
-        }
-    })
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
@@ -83,8 +87,7 @@ export default function VendorListcontent() {
                                                 </label>
                                             </div>
                                         </div>
-
-                                        <TableSearch label='Search' type="search" onChange={(e) => setsearch(e.target.value)} />
+                                        <TableSearch label='Search' type="search" onChange={(e) => setsearch(e.target.value.toLowerCase())} />
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">

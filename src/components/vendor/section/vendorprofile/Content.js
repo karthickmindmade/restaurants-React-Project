@@ -28,6 +28,12 @@ function Content() {
     const vendor = useSelector(
         (state) => state.VendorReducer.vendorsDetails
     );
+   
+
+    // const auth = useSelector(
+    //     (state) => state.authReducer.token.result
+    // );
+    // console.log(auth)
     console.log(vendor)
     vendorDetails = vendor
     return (

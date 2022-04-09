@@ -7808,3 +7808,38 @@ span.InStock {
   color: #ff6877;
   right: 9px;
 }
+.Delivered{
+  background-color:  #28a745;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding : 4px 6px;
+  border-radius: 5px;
+}
+.Cancelled{
+  background-color: #34334a;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding : 4px 6px;
+  border-radius: 5px;
+
+}
+.New{
+  background-color: #445cc8;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding : 4px 6px;
+  border-radius: 5px;
+
+}
+.Preparing{
+  background-color: #ff6877;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  padding : 4px 6px;
+  border-radius: 5px;
+
+}

@@ -125,18 +125,18 @@ export default function Editproductcontent(props) {
         dispatch({
             type: actions.UPDATE_CAKES, payload: { reqBody: data, reqParamid: vendor._id }
         });
-        dispatch({ type: actions.UPDATE_CAKES_STATUS, payload: { UpdatecakeStatus: [] } });
+        setTimeout(() =>
+        {  dispatch({ type: actions.UPDATE_CAKES_STATUS, payload: { UpdatecakeStatus: [] } });}, 5000);
+       
     }
-
     const CakesList = useSelector(
         (state) => state.CakesReducer
     );
     useEffect(() => {
-        if (CakesList.UpdatecakeStatus.statusCode === 200 || CakesList.UpdatecakeStatus.statusCode === 400) {
+        if (CakesList.UpdatecakeStatus.statusCode===200||CakesList.UpdatecakeStatus.statusCode === 400){
             setloader(false)
         }
-    }, [CakesList, setloader])
-
+    },[CakesList,setloader])
     console.log(CakesList.UpdatecakeStatus)
     return (
         <div className="row">
@@ -314,8 +314,8 @@ export default function Editproductcontent(props) {
                     </div>
                 </div>
             </div>
-            {CakesList.UpdatecakeStatus.statusCode === 400 ? <FailAlert alert={CakesList.UpdatecakeStatus} /> : <></>}
-            {CakesList.UpdatecakeStatus.statusCode === 200 ? <SuccessAlert alert={CakesList.UpdatecakeStatus} /> : <></>}
+            {CakesList.UpdatecakeStatus.statusCode === 400 ? <FailAlert message={CakesList.UpdatecakeStatus.message} /> : <></>}
+            {CakesList.UpdatecakeStatus.statusCode === 200 ? <SuccessAlert message={CakesList.UpdatecakeStatus.message} /> : <></>}
             {/* {CakesList.UpdatecakeStatus === "" || CakesList.UpdatecakeStatus === undefined ? <></> :
                 <div className={CakesList.UpdatecakeStatus.statusCode === 400 ? "alert alert-danger" : "alert alert-success"} role="alert">
                     <strong>Well done!</strong> {CakesList.UpdatecakeStatus.message}

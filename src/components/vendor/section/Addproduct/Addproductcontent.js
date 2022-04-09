@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import actions from '../../../../redux/cake/actions';
 import SelectOption from '../../../common/selectOption';
 import CircleDotSpinner from '../../../common/CircleDotSpinner';
+import FailAlert from '../../../common/failAlert';
+import SuccessAlert from '../../../common/SuccessAlert';
 
 export default function Addproductcontent() {
     const Title = useRef();
@@ -17,7 +19,6 @@ export default function Addproductcontent() {
     const Stock = useRef()
     const [files, setfiles] = useState([])
     const dispatch = useDispatch();
-    const [loader, setloader] = useState(false)
     const [flavor, setflavor] = useState()
     const [flavorlist, setflavorlist] = useState([])
     const [shape, setshape] = useState()
@@ -26,7 +27,7 @@ export default function Addproductcontent() {
     const [toppinglist, settoppinglist] = useState([])
     const [weight, setweight] = useState()
     const [weightlist, setweightlist] = useState([])
-
+    const [loader, setloader] = useState(false)
     // flavorlist
     function addFlavor() {
         if (undefined === flavor || '' === flavor || flavorlist.filter((val) => { if (val === flavor) { return val } })[0] === flavor) {
@@ -118,6 +119,7 @@ export default function Addproductcontent() {
         dispatch({
             type: actions.Add_CAKES, payload: data
         });
+        setTimeout(() => { dispatch({ type: actions.Add_CAKES_STATUS, payload: { addCakeStatus: [] } }); }, 5000);
     }
     console.log(files)
 
@@ -129,7 +131,7 @@ export default function Addproductcontent() {
         if (CakesList.addCakeStatus.statusCode === 200 || CakesList.addCakeStatus.statusCode === 400) {
             setloader(false)
         }
-    },[CakesList,setloader])
+    }, [CakesList, setloader])
 
 
     function removeFile(e, index) {
@@ -305,18 +307,13 @@ export default function Addproductcontent() {
                                 </div>
                                 <div className="ms-panel-header new">
                                     {loader === true ? <CircleDotSpinner /> : <button className="btn btn-secondary d-block" type="submit" onClick={AddCake}>Save</button>}
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {CakesList.addCakeStatus === "" || CakesList.addCakeStatus === undefined ? <></> :
-                    <div className={CakesList.addCakeStatus.statusCode === 400 ? "alert alert-danger" : "alert alert-success"} role="alert">
-                        <strong>Well done!</strong> {CakesList.addCakeStatus.message}
-                    </div>
-                }
+                {CakesList.addCakeStatus.statusCode === 400 ? <FailAlert message={CakesList.addCakeStatus.message} /> : <></>}
+                {CakesList.addCakeStatus.statusCode === 200 ? <SuccessAlert message={CakesList.addCakeStatus.message} /> : <></>}
             </div>
         </div>
 

@@ -3,7 +3,7 @@ import jQuery from 'jquery'
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css'
 function SuccessAlert (props) {
-       const alert =props
+       const message =props
         toastr.options =
         {
             "closeButton": false,
@@ -24,7 +24,7 @@ function SuccessAlert (props) {
         }
         toastr.remove();
         toastr.options.positionClass = "toast-bottom-left";
-        toastr.success(alert.message, 'Success');
+        toastr.success(message, 'Success');
         return (
             <></>
                                   

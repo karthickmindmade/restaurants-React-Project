@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Sidenavigation from '../layouts/Sidenavigation';
 import Topnavigation from '../layouts/Topnavigation';
 import Breadcrumb from '../sections/Orders/Breadcrumb';
@@ -6,8 +6,8 @@ import Favorder from '../sections/Orders/Favorder';
 import Ordertable from '../sections/Orders/Ordertable';
 import Quickbar from '../layouts/Quickbar';
 
-class Orders extends Component {
-    render() {
+export default function Orders()  {
+    
         return (
             <div className="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
                 <Sidenavigation />
@@ -27,6 +27,3 @@ class Orders extends Component {
             </div>
         );
     }
-}
-
-export default Orders;

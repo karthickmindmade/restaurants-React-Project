@@ -29,7 +29,7 @@ export default function VendorDetailcontent(props) {
                 <div className="col-md-12">
                     <div className="ms-panel">
                         <div className="ms-panel-header">
-                            <h6 >Product Details</h6>
+                            <h6>Product Details</h6>
                         </div>
                         <div className="ms-panel-body">
                             <CakeDetailsImageSlider image={cakedetails.Images} title={cakedetails.Title} />
