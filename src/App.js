@@ -77,6 +77,7 @@ import AdminProductdetail from './components/pages/AdminProductdetail'
 import actions from "../src/redux/Auth/actions";
 import ScrollToTop from './components/common/scroll-to-top';
 import { store } from './redux/store';
+import OrderDetails from './components/pages/OrderDetails';
 
 const Defaultlogin = lazy(()=> import('./components/pages/Defaultlogin'));
 const Dashboard = lazy(()=> import('./components/pages/Dashboard'));
@@ -177,6 +178,8 @@ function App() {
         <Route exact path="/Vendor-Productdetail" component={VendorProductdetail} />
         <PrivateRoute exact path="/vendordashboard" component={VendorDashboard} />
         <Route exact path="/add-product" component={Addproduct} />
+        <PrivateRoute exact path="/Admin-OrderDetails" component={OrderDetails} />
+
       </ScrollToTop>
       </Switch>
       </Suspense>

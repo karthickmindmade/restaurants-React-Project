@@ -1,11 +1,12 @@
 import React from "react";
 import Breadcrumb from "./Breadcrumb";
-export default function Details({closeDetails,singleOrder}){
-    console.log(singleOrder);
+export default function Details({order}){
+    console.log(order);
     return(
     <>
-        <Breadcrumb closeDetails={closeDetails}/>
+        <Breadcrumb />
         <h1>Order details</h1>
-        <button onClick={closeDetails}>Close</button>
-    </>)
+        {/* <button onClick={closeDetails}>Close</button> */}
+    </>
+    )
 }

@@ -1,15 +1,15 @@
-import React, { useEffect,useState} from 'react';
+import React, { useEffect} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import actions from "../../../redux/Order/actions";
-import Details from "../OrderDetails/Details";
 import Breadcrumb from "./Breadcrumb";
 import Favorder from "./Favorder";
+import { useHistory } from "react-router-dom";
 
 
 export default function Ordertable(){
     const dispatch = useDispatch();
-    var [rowClicked,setRowClicked]=useState(false);
-    var [singleOrder,setSingleOrder]=useState("");
+   
+    const history = useHistory();
 
     useEffect(() => {
         dispatch({ type: actions.GET_ORDER_LIST })
@@ -18,13 +18,12 @@ export default function Ordertable(){
         state=>state.OrderReducer
     )
     console.log(orders.Order_list);
-    const handleRowClick=(a)=>{
-        setRowClicked(true);
-        setSingleOrder(a);
+    function ViewOrderDetails(order) {
+        history.push('/Admin-OrderDetails', order)
     }
    return (
        <>
-            {rowClicked === false ?
+            
             <div className="col-12">
                 <Breadcrumb/>
                 <Favorder/>
@@ -49,15 +48,15 @@ export default function Ordertable(){
                                 </thead>
                                 
                                 <tbody>
-                                {orders.Order_list.map((a)=>
-                                    <tr onClick={()=>handleRowClick(a)}>
-                                        <th scope="row">{a._id}</th>
-                                        <td>{a.Title}</td>
-                                        <td> {a.UserName}</td>
-                                        <td> {a.Created_On}</td>
-                                        <td>{a.DeliveryDate}</td>
-                                        <td>{a.Price}</td>
-                                        <td><span className={a.Status}>{a.Status}</span></td>
+                                {orders.Order_list.map((order)=>
+                                    <tr onClick={()=>ViewOrderDetails(order)}>
+                                        <th scope="row">{order._id}</th>
+                                        <td>{order.Title}</td>
+                                        <td> {order.UserName}</td>
+                                        <td> {order.Created_On}</td>
+                                        <td>{order.DeliveryDate}</td>
+                                        <td>{order.Price}</td>
+                                        <td><span className={order.Status}>{order.Status}</span></td>
                                     </tr>
                                    )}
                                 </tbody>
@@ -66,10 +65,9 @@ export default function Ordertable(){
                     </div>
                 </div>
             </div>
-            :
-            <Details closeDetails={()=>setRowClicked(false)} singleOrder={singleOrder}/>
+            
            
-            }
+            
         </>
         );
     
